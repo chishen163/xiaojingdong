@@ -1,0 +1,45 @@
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>账户安全</title>
+		<link rel="stylesheet" type="text/css" href="/fanke/Public/Home/Css/accountsafe.css">
+	</head>
+	<body>
+		<div id="account_div">
+			<span>账户安全</span>
+		</div>
+		<center id="safe_method">
+			<b>安全等级:<span>中</span></b>
+			<span style="font-size:13px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;建议用以下方式提高安全级别</span>
+		</center>
+
+		<!-- 修改密码 -->
+		<div class="safe_way">
+			<div class="safe_way_div1"><img src="/fanke/Public/Home/Images/update_pwd_icon.jpg" /></div>
+			<div class="safe_way_div2">为了保护您账户和资产的安全,请定期修改您的密码</div>
+			<div class="safe_way_div3"><a href="/fanke/index.php/Home/MyVancl/updatepwd"><input type="button" value="修改密码" style="width:90px;height:25px;" /></a></div>
+		</div>
+		
+		<!-- 修改验证邮箱 -->
+		<div class="safe_way">
+			<div class="safe_way_div1"><img src="/fanke/Public/Home/Images/update_varitify_email.jpg" /></div>
+			<div class="safe_way_div2">您验证的邮箱地址:<?php echo ($user["email"]); ?></div>
+			<div class="safe_way_div3"><a href="#"><input type="button" value="修改验证邮箱" style="width:90px;height:25px;" /></a></div>
+		</div>
+		
+		<!-- 验证手机 -->
+		<div class="safe_way">
+			<div class="safe_way_div1"><img src="/fanke/Public/Home/Images/veritify_telphone.jpg"  /></div>
+			<div class="safe_way_div2">为了保护您账户和资产的安全,请验证您的手机号码</div>
+			<div class="safe_way_div3"><a href="#"><input type="button" value="验证手机" style="width:90px;height:25px;" /></a></div>
+		</div>
+		
+		<!-- 启动支付密码 -->
+		<div class="safe_way">
+			<div class="safe_way_div1"><img src="/fanke/Public/Home/Images/start_pay_pwd.jpg" /></div>
+			<div class="safe_way_div2">为了保护您资产的安全,请启动支付密码</div>
+			<div class="safe_way_div3"><a href="#"><input type="button" value="启动支付密码" style="width:90px;height:25px;" /></a></div>
+		</div>
+	</body>
+</html>

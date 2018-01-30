@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+	<head>
+		<title>修改发货单</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/z_delivery.css">
+		<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+		<script src="__PUBLIC__/Home/Js/PCASClass.js"></script>
+	</head>
+	<body>
+		<div class="z_delivery_modify">
+			<div class="zd_title">修改发货单：</div>
+			<div class="zd_content">
+				<form action="" method="post" class="zd_frm">
+					<p><input type="hidden" value="{$delivery_data.pname}" name="h_pname"></p>
+					<p><input type="hidden" value="{$delivery_data.cname}" name="h_cname"></p>
+					<p><input type="hidden" value="{$delivery_data.county}" name="h_county"></p>
+					<p><input type="hidden" value="{$delivery_data.id}" name="id"></p>
+					<p>发货单号：<input type="text" value="{$delivery_data.deliverysn}"><span>不需要修改</span></p>
+					<p>订单编号：<input type="text" value="{$order_data.ordersn}"><span>不需要修改</span></p>
+					<p>发票编号：<input type="text" value="{$receipt_data.rec_sn}" size="50"><span>不需要修改</span></p>
+					<p>生成时间：<input type="text" value="{$delivery_data.addtime|date="Y-m-d H:i:s", ###}"><span>不需要修改</span></p>
+					<p>收货姓名：<input type="text" value="{$delivery_data.consignee}"><span>可以修改</span></p>
+					<p>收货地址：<select name="pname"></select><select name="cname"></select><select name="county"></select><span>可以修改</span></p>
+					<p>详细地址：<input type="text" size="50" value="{$delivery_data.address}"><span>可以修改</span></p>
+					<p>邮政编码：<input type="text" value="{$delivery_data.zipcode}"><span>可以修改</span></p>
+					<p>联系电话：<input type="text" value="{$delivery_data.phone}"><span>可以修改</span></p>
+					<p>联系邮箱：<input type="text" value="{$delivery_data.email}"><span>可以修改</span></p>
+					<p>送货时间：<input type="text" value="{$delivery_data.besttime}" size="50"><span>可以修改</span></p>
+					<p>订单描述：<br>
+						<textarea name="" id="zd_textarea" cols="100" rows="5">{$delivery_data.desc}</textarea><span>可以修改</span>
+					</p>
+					<p>需要签名：
+						<input type="radio" name="sign" value="是" checked>是
+						<input type="radio" name="sign" value="否">否
+						<span>需要签名</span>
+					</p>
+					<p>处理姓名：<input type="text" name="adminname" value="{$delivery_data.adminname}"></p>
+					<p><div class="z_delivery_sub">确认修改</div></p>
+				</form>
+			</div>
+		</div>
+	</body>
+	<script>
+		//通过影藏表单，为省市县三级下拉菜单选择默认值
+		$(function() {
+			var h_pname = $('input[type=hidden]').eq(0).val();
+			var h_cname = $('input[type=hidden]').eq(1).val();
+			var h_county = $('input[type=hidden]').eq(2).val();
+
+			//实例化一个省市级三级联动下拉选项框，关于该插件的说明：详见视图目录
+			new PCAS("pname","cname","county", h_pname, h_cname, h_county);
+		});
+
+		//表单取值
+		$('.z_delivery_sub').click(function() {
+
+			//获取收货人姓名
+			var consignee = $('input[type=text]').eq(4).val();
+
+			//获取收货地址--省份
+			var pname = $('select[name=pname]').val();
+
+			//获取收货地址--市区
+			var cname = $('select[name=cname]').val();
+
+			//获取收货地址--县级市
+			var county = $('select[name=county]').val();
+
+			//获取详细地址
+			var address = $('input[type=text]').eq(5).val();
+
+			//获取邮政编码
+			var zipcode = $('input[type=text]').eq(6).val();
+
+			//获取联系电话
+			var phone = $('input[type=text]').eq(7).val();
+
+			//获取送货时间
+			var besttime = $('input[type=text]').eq(8).val();
+
+			//获取订单描述
+			var desc = $('#zd_textarea').val();
+			
+			//获取签名信息值
+			var sign = $('input[type=radio]:checked').val();
+
+			//获取处理者姓名
+			var adminname = $('input[name=adminname]').val();
+
+			//获取发货单id号
+			var id = $('input[name=id]').val();
+
+			$.post("__CONTROLLER__/updateDelivery", {id: id, consignee : consignee, pname : pname, cname : cname, county : county, address : address, zipcode : zipcode, phone : phone, besttime : besttime, desc : desc, sign : sign, adminname : adminname}, function(data) {
+				$('.z_delivery_modify').html(data);
+			});
+		});
+	</script>
+</html>

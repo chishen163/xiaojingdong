@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>添加网站配置</title>
+		<style type="text/css">
+			body{
+				background:url("__PUBLIC__/Admin/Images/w70.png") repeat;
+			}
+			table{
+				width:800px;
+				border-collapse:collapse;
+			}
+			th{
+				width:130px;
+				text-align:right;
+				color:#d39c59;
+			}
+			td{
+				height:60px;
+				text-indent:35px;
+			}
+			tr{
+				border-top:2px solid #f9f0e1;
+			}
+			tr:hover{
+				background:#f9f0e1;
+			}
+		</style>
+	</head>
+	<body>
+		<center style="height:50px;line-height:50px;"><b style="font-size:30px;color:#f39c59;">修改网站配置</b></center>
+		<center>
+			<form action="__CONTROLLER__/upd/id/{$setup.id}" method="post" enctype="multipart/form-data">
+				<table width="880">
+					<tr>
+						<th>网站标题 :</th>
+						<td><textarea name="title" id="" cols="80" rows="3">{$setup.title}</textarea></td>
+					</tr>
+					<tr>
+						<th>网站版权 :</th>
+						<td><textarea name="copy" id="" cols="80" rows="3">{$setup.copy}</textarea></td>
+					</tr>
+					<tr>
+						<th>网站Logo :</th>
+						<td>
+							<img src="__PUBLIC__/Common/Uploads/Photos/{$setup.logo}" width="80" height="60" style="margin-right:20px;" />
+							<input type="file" name="logo">
+						</td>
+					</tr>
+					<tr>
+						<th>网站关键字 :</th>
+						<td><textarea name="keywords" id="" cols="80" rows="3">{$setup.keywords}</textarea></td>
+					</tr>
+					<tr>
+						<th>网站描述 :</th>
+						<td><textarea name="description" id="" cols="80" rows="3">{$setup.description}</textarea></td>
+					</tr>
+					<tr>
+						<th>今日搜索 :</th>
+						<td><textarea name="hotsearch" id="" cols="80" rows="3">{$setup.hotsearch}</textarea></td>
+					</tr>
+					<tr>
+						<th>网站作者 :</th>
+						<td><textarea name="author" id="" cols="80" rows="3">{$setup.author}</textarea></td>
+					</tr>
+					<tr>
+						<th>是否启用 :</th>
+						<td style="color:#ff9d59;">
+							<input type="radio" name="status" value="1" <if condition="$setup.status eq 1">checked</if> />是
+							<input type="radio" name="status" value="0" <if condition="$setup.status eq 0">checked</if> />否
+						</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td sytle="text-align:center;line-height:60px;">
+							<input type="submit" value="修改配置" style="height:35px;width:80px;font-weight:bold;color:#ff9c59;" />
+						</td>
+					</tr>
+				</table>
+			</form>
+		</center>
+	</body>
+</html>

@@ -1,0 +1,209 @@
+* {
+	margin:0px;
+	padding:0px;
+}
+body{
+	background:url("../Images/admin_bg.jpg") repeat;
+}
+
+/*顶级导航栏*/
+#z_admin_nav {
+	height:70px;
+	border:1px solid #A8732F;
+	margin:10px;
+	margin-bottom:none;
+	background:url("../Images/w70.png") repeat;
+	border-radius:5px;
+}
+/*logo*/
+.z_logo{
+	width:450px;
+	height:40px;
+	float:left;
+	margin-left:20px;
+	font-size:48px;
+	color:#C69662;
+	text-shadow:1px 2px 2px rgba(150,0,0,.5);
+}
+
+
+/*欢迎信息和快速菜单按钮*/
+.z_nav_cat {
+	float:right;
+	width:800px;
+	height:68px;
+	color:#C69662;
+}
+
+/*登录信息提示*/
+.z_login_notice {
+	float:right;
+	width:300px;
+	height:20px;
+	line-height:20px;
+	font-size:12px;
+	text-align:right;
+	color:#8C5434;
+	margin-top:10px;
+	margin-right:20px;
+
+}
+
+.z_login_notice>b{
+	color:red;
+	font-size:15px;
+}
+
+/*快速进入菜单区*/
+.z_quick_cat {
+	float:right;
+	width:550px;
+	height:30px;
+	line-height:30px;
+	margin-top:35px;
+	position:absolute;
+	right:10px;
+}
+
+.z_quick_cat > ul {
+	float:right;
+	width:auto;
+	height:30px;
+	list-style:none;
+	font-size:12px;
+	text-align:center;
+}
+
+.z_quick_cat > ul > li {
+	float:left;
+	width:65px;
+	margin:0 3px 0 3px;
+}
+
+.z_quick_cat > ul > li > a {
+	width:65px;
+	height:30px;
+	text-decoration:none;
+	color:#8C5434;
+	display:block;
+	/*margin:10px 3px 0 0 ;*/
+	float:left;
+	padding:0 3px 0 3px;
+	font-weight:bold;
+}
+.z_quick_cat > ul > li > a:hover {
+	background:#94754D;
+	border-radius:5px;
+	color:#fff;
+}
+
+.z_quick_cat > ul > span {
+	float:left;
+	height:12px;
+	line-height:30px;
+}
+
+/*页面主体内容显示*/
+#z_admin_content {
+	width:auto;
+	min-height:500px;
+	margin:0px auto;
+}
+
+/*左边菜单选择区*/
+.z_content_left {
+	float:left;
+	width:180px;
+	min-height:500px;
+	margin:0 5px 0 5px;
+}
+
+/*快速选项卡区*/
+.z_content_card {
+	float:left;
+	width:25px;
+	min-height:350px;
+}
+
+/*左边快速菜单选项卡*/
+.z_content_card > div {
+	float:right;
+	width:20px;
+	height:50px;
+	/*margin-top:10px;*/
+	text-align:center;
+	padding-top:5px;
+	font-size:14px;
+	font-weight:bold;
+	word-wrap:break-word;
+	border:1px solid #A8732F;
+	border-top-left-radius:5px;
+	border-bottom-left-radius:5px;
+	color:#fff;
+}
+
+.z_content_card > div:hover {
+	cursor:pointer;
+	background:url("../Images/w70.png") repeat;
+	width:21px;
+	color:#8C5434;
+}
+
+/*自定义导航菜单样式表 菜单选项添加栏目，按格式添加即可*/
+.z_content_menu {
+	float:left;
+	width:150px;
+	min-height:500px;
+	border:1px solid #A8732F;
+	/*margin-top:10px;*/
+	margin-left:-1px;
+	background:url("../Images/w70.png") repeat;
+	border-radius:5px;
+	border-top-left-radius:0px;
+}
+
+/*一个核心区块的显示控制，该区块默认显示*/
+.z_controller {
+	float:left;
+	width:150px;
+	min-height:500px;
+	display:none;
+}
+
+.z_frm_content {
+	float:left;
+	width:150px;
+	height:auto;
+}
+
+/*栏目的下拉菜单选项，可多项添加*/
+.z_frm_content > span {
+	clear:both;
+	float:left;
+	width:150px;
+	height:25px;
+	/*margin-top:5px;*/
+	line-height:25px;
+	font-size:12px;
+	text-align:center;
+	overflow:hidden;
+	margin-left:-2px;
+}
+.z_frm_content > span > a{
+	color:#222222;
+	text-decoration:none;
+	width:150px;
+	height:25px;
+	display:block;
+	outline:none;
+}
+.z_frm_content > span > a:hover{
+	background:url("../Images/btn_bg.png")  left -415px no-repeat;
+}
+
+#my_main_frame{
+	float:left;
+	border:1px solid #A8732F;
+	border-radius:5px;
+	margin:0 10px 10px 0;
+}

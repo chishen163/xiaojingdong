@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>友情链接-VANCL凡客诚品</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/footer.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/header.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/home.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/fdlink.css">
+		<script src="__PUBLIC__/Home/Js/jquery.js"></script>
+	</head>
+	<body>
+		<include file="Header/index" />
+		<div class="fk_main_top">
+			友情链接
+		</div>
+		<div id="fk_name">
+			<ul>
+				<foreach name="link" item="lk">
+					<li class="fk_link_name"><a href="{$lk.url}" title="{$lk.introduction}">{$lk.linkname}</a></li>
+				</foreach>
+			</ul>
+		</div>
+		<div class="fk_main_top">
+			申请友情链接
+		</div>
+
+		<!-- 申请友情链接的步骤 -->
+		<div id="apply_link">
+			<div id="apply_link_left">
+				<h3>申请步骤：</h3>
+				<div class="apply_steps">
+					<span>1.</span>请先在贵网站做好凡客诚品的文字友情链接：
+					<p>链接文字：凡客诚品 链接地址：http://www.vancl.com</p>
+				</div>
+			    	
+			    	<div class="apply_steps">
+					<span>2.</span>做好链接后，请在右侧填写申请信息。凡客诚品只接受申请文字友情链接。					
+				</div>
+
+				<div class="apply_steps">
+					<span>3.</span>已经开通我站友情链接且内容健康，符合本站友情链接要求的网站，经凡客诚品管理员审核后， 
+					<p>可以显示在此友情链接页面。</p>
+				</div>
+
+				<div class="apply_steps">
+					<span>4.</span>请通过右侧发送邮件联系.或者联系QQ:1193301624,注明:友情链接交换.
+				</div>
+			</div>
+
+			<!-- 申请填写信息框 -->
+			<div id="apply_link_right">
+				<h3>申请信息:</h3>
+				<form action="__CONTROLLER__/getApply" method="post">
+
+					<!-- 网站名称输入框 -->
+					<div class="apply_link_info">
+						<span>网站名称:</span><input type="text" name="linkname" /><p style="float:left;margin-left:63px;color:#666666;"></p>
+					</div>
+
+					<!-- 网站地址输入框 -->
+					<div class="apply_link_info">
+						<span>网&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:</span><input type="text" name="url" />
+					</div>
+					<div class="apply_link_info">
+						<span>电子邮箱:</span><input type="email" name="email" />
+					</div>
+
+					<!-- 网站介绍 -->
+					<div class="apply_link_intoduction">
+						<p class="apply_info_p">网站介绍:</p>
+						<textarea name="introduction" cols="34" rows="3" style="margin-left:11px;"></textarea>
+					</div>
+
+					<!-- 验证码输入框 -->
+					<div class="apply_link_code">
+						<span class="apply_info_pcode">验&nbsp;证&nbsp;码:</span>
+						<img src="__CONTROLLER__/code" alt="" onclick="this.src = this.src + '?' + new Date().getTime();" />
+						<p style="color:#999999;"></p>
+						<input type="text" name="code" />
+					</div>
+
+					<!-- 申请链接提交按钮 -->
+					<div class="apply_link_btn">
+						<input type="image" src="__PUBLIC__/Home/Images/commit_apply_btn.jpg" style="margin-left:66px;" /> 
+					</div>
+				</form>
+			</div>
+		</div>
+		<include file="Public:footer" />
+	</body>
+	<script>
+		// 网站名称输入框失去焦点时的提示信息
+		$("input[name=linkname]").blur(function() {
+			$(this).next().html("请填写网站名称,字数在1-16个字符之间");
+		});
+
+		//点击code时,刷新验证码
+		$("input[name=code]").focus(function() {
+			$(this).prev().html("请输入验证码");
+		});
+
+		//图片提交按钮的单击事件
+		/*$("input[type=image]").click(function() {
+			$.post("__CONTROLLER__/getApply",function(data) {
+
+			})
+		});*/
+		function openwin() {
+			window.open ("page.html", "newwindow", "height=100, width=400, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no")
+		}
+
+	</script>
+</html>

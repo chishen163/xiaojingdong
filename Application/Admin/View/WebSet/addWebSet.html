@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>添加网站配置</title>
+		<style type="text/css">
+			body{
+				background:url("__PUBLIC__/Admin/Images/w70.png") repeat;
+			}
+			table{
+				width:800px;
+				border-collapse:collapse;
+			}
+			th{
+				text-align:right;
+				color:#d39c59;
+			}
+			td{
+				height:60px;
+				text-indent:40px;
+			}
+			tr{
+				border-top:2px solid #f9f0e1;
+			}
+			tr:hover{
+				background:#f9f0e1;
+			}
+		</style>
+	</head>
+	<body>
+		<center style="height:50px;line-height:50px;"><b style="font-size:30px;color:#f39c59;">添加网站配置</b></center>
+		<center>
+			<form action="__CONTROLLER__/addset" method="post" enctype="multipart/form-data">
+				<table  width="880">
+					<tr>
+						<th>网站标题 :</th>
+						<td><textarea name="title" id="" cols="80" rows="3"></textarea></td>
+					</tr>
+					<tr>
+						<th>网站版权 :</th>
+						<td><textarea name="copy" id="" cols="80" rows="3"></textarea></td>
+					</tr>
+					<tr>
+						<th>网站Logo :</th>
+						<td><input type="file" name="logo"></td>
+					</tr>
+					<tr>
+						<th>网站关键字 :</th>
+						<td><textarea name="keywords" id="" cols="80" rows="3"></textarea></td>
+					</tr>
+					<tr>
+						<th>网站描述 :</th>
+						<td><textarea name="description" id="" cols="80" rows="3"></textarea></td>
+					</tr>
+					<tr>
+						<th>今日搜索 :</th>
+						<td><textarea name="hotsearch" id="" cols="80" rows="3"></textarea></td>
+					</tr>
+					<tr>
+						<th>网站作者 :</th>
+						<td><textarea name="author" id="" cols="80" rows="3"></textarea></td>
+					</tr>
+					<tr>
+						<th>是否启用 :</th>
+						<td style="color:#ff9d59;">
+							<input type="radio" name="status" value="1" />是
+							<input type="radio" name="status" value="0" checked />否
+						</td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><input type="submit" value="添加配置" style="height:40px;width:100px;font-weight:bold;color:#ff9c59;font-size:17px;" /></td>
+					</tr>
+				</table>
+			</form>
+		</center>
+	</body>
+</html>
+
+
+
+
+

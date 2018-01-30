@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+	<head>
+		<title>我要评价</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/bootstrap.css">
+		<link rel="stylesheet" href="__PUBLIC__/Home/Css/skim_order.css">
+		<script src="__PUBLIC__/Home/Js/jquery.js"></script>
+		<script src="__PUBLIC__/Home/Js/jquery.raty.js"></script>
+	</head>
+	<body>
+		<div class="point">
+			<div class="grant">感谢您评论我们的商品，并与其他人分享您的购物心得。</div>
+			<div class="point_con">
+				<div class="p_title">
+					<span>商品评价</span>
+					<div>注意：带*为必填项</div>
+				</div>
+
+				<div class="p_frm">
+					<div class="p_img">
+						<img src="__PUBLIC__/Home/Images/goods/{$goods.goodsimg}" alt="">
+						<div>
+							<p>{$goods.name}{$goods.color}</p>
+							<p>{$goods.size}</p>
+							<p>￥{$goods.goodsprice}</p>
+						</div>
+					</div>
+					<form action="" class="point_form">
+						<p><input type="hidden" name="id" value="{$goods.goodsid}"></p>
+						<p><div class="pl_col">*外观：</div><div class="raty" id="watch"></div><span class="msg"></span></p>
+						<p><div class="pl_col">*舒适：</div><div class="raty" id="comfort"></div><span class="msg"></span></p>
+						<p><div class="pl_col">*透气：</div><div class="raty" id="freely"></div><span class="msg"></span></p>
+						<p><div class="pl_col">*色差：</div><div class="raty" id="color"></div><span class="msg"></span></p>
+						<p><div class="pl_col">*匹配：</div>
+							<div class="pf">
+								<input type="radio" value="偏小" name="prefect">偏小
+								<input type="radio" value="合适" name="prefect" ckecked>合适
+								<input type="radio" value="偏大" name="prefect">偏大
+							</div>
+						</p>
+						<p><div class="pl_col">*厚度：</div>
+							<div class="pf">
+								<input type="radio" value="偏薄" name="thick">偏薄
+								<input type="radio" value="合适" name="thick" ckecked>合适
+								<input type="radio" value="偏厚" name="thick">偏厚
+							</div>
+						</p>
+						<p><div class="pl_col">*身高：</div>
+							<div class="pf">
+								<input type="text" value="" name="height">cm
+							</div>
+						</p>
+						<p><div class="pl_col">*体重：</div>
+							<div class="pf">
+								<input type="text" value="" name="weight">kg
+							</div>
+						</p>
+						<p><div class="pl_col">*评价：</div>
+							<textarea name="" cols="100" rows="5" class="pf_text"></textarea>
+						</p>
+					</form>
+				</div>
+				<div class="fb"></div>
+				<div class="warnning">
+					<div>商品评论说明</div>
+					<ul>
+						<li>发表评论时请遵守《凡客诚品服务条款》，不要包含任何代购和敏感类信息。 </li>
+						<li>评论应该是针对商品本身，而不是针对订单和送货等购物过程。</li>
+						<li>不仅评价商品的好或不好，更重要的是阐述自己的观点和理由，以帮助其他顾客判断商品是否适合自己。</li>
+						<li>我们鼓励您的原创评论，未经授权的文字请勿转载。</li>
+						<li>有关订单和送货等购物过程的问题，请查看 帮助中心 或者联系客服（400-650-7099）</li>
+						<li>管理员有权删除违反上述要求的内容，并对多次发布违规内容的用户禁止其发布评论。</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		//星级评分插件的使用，评价外观
+		var watch = null;
+		 $('#watch').raty({
+		 	path: '__PUBLIC__/Home/Images/img',
+		 	click : function(score) {
+		 		watch = score;
+
+		 		if (watch == 1) {
+		 			$('.msg').eq(0).html("很不好看");
+		 		} else if (watch == 2) {
+		 			$('.msg').eq(0).html("不好看");
+		 		} else if (watch == 3) {
+		 			$('.msg').eq(0).html("还行");
+		 		} else if (swatch == 4) {
+		 			$('.msg').eq(0).html("好看");
+		 		} else if (watch == 5) {
+		 			$('.msg').eq(0).html("非常好看");
+		 		} 
+		 	}
+		 });
+
+		 //评价舒适
+		 var comfort = null;
+		 $('#comfort').raty({
+		 	path: '__PUBLIC__/Home/Images/img',
+		 	click : function(score) {
+		 		comfort = score;
+
+		 		if (comfort == 1) {
+		 			$('.msg').eq(1).html("很不舒适");
+		 		} else if (comfort == 2) {
+		 			$('.msg').eq(1).html("不舒适");
+		 		} else if (comfort == 3) {
+		 			$('.msg').eq(1).html("还行");
+		 		} else if (comfort== 4) {
+		 			$('.msg').eq(1).html("舒适");
+		 		} else if (comfort == 5) {
+		 			$('.msg').eq(1).html("非常舒适");
+		 		} 
+		 	}
+		 });
+
+		 //评价透气
+		 var freely = null;
+		 $('#freely').raty({
+		 	path: '__PUBLIC__/Home/Images/img',
+		 	click : function(score) {
+		 		freely = score;
+
+		 		if (freely == 1) {
+		 			$('.msg').eq(2).html("很不透气");
+		 		} else if (freely == 2) {
+		 			$('.msg').eq(2).html("不透气");
+		 		} else if (freely == 3) {
+		 			$('.msg').eq(2).html("适中");
+		 		} else if (freely == 4) {
+		 			$('.msg').eq(2).html("透气");
+		 		} else if (freely == 5) {
+		 			$('.msg').eq(2).html("非常透气");
+		 		} 
+		 	}
+		 });
+
+		 //评价色差
+		 var color = null;
+		 $('#color').raty({
+		 	path: '__PUBLIC__/Home/Images/img',
+		 	click : function(score) {
+		 		color = score;
+
+		 		if (color == 1) {
+		 			$('.msg').eq(3).html("严重偏色");
+		 		} else if (color == 2) {
+		 			$('.msg').eq(3).html("色差较大");
+		 		} else if (color == 3) {
+		 			$('.msg').eq(3).html("色差一般");
+		 		} else if (color== 4) {
+		 			$('.msg').eq(3).html("较小色差");
+		 		} else if (color == 5) {
+		 			$('.msg').eq(3).html("无色差");
+		 		} 
+		 	}
+		 });
+
+		 $('.fb').click(function() {
+
+		 	//获取商品id
+		 	var id = $('input[name=id]').val();
+
+		 	//获取外观的值
+		 	var wat = $('.msg').eq(0).text();
+
+		 	//获取舒适的值
+		 	var com = $('.msg').eq(1).text();
+
+		 	//获取透气的值
+		 	var fly = $('.msg').eq(2).text();
+
+		 	//获取色差的值
+		 	var col = $('.msg').eq(3).text();
+
+		 	//获取匹配的值
+		 	var pre = $('input[name=prefect]:checked').val();
+
+		 	//获取厚度的值
+		 	var th = $('input[name=thick]:checked').val();
+
+		 	//获取身高的值
+		 	var hei = $('input[name=height]').val();
+
+		 	//获取体重的值
+		 	var wei = $('input[name=weight]').val();
+
+		 	//获取评价信息
+		 	var pf_text = $('.pf_text').val();
+
+		 	//发送数据到控制器中
+		 	$.post("__CONTROLLER__/subSay", {goodsid : id, watch : wat, comfort : com, freely : fly, color : col, prefect : pre, thick : th, height : hei+'cm', weight : wei+'kg', content : pf_text}, function(data) {
+		 		$('.point').html(data);
+		 	});
+
+		 });
+	</script>
+</html>

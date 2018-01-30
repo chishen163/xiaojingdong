@@ -1,0 +1,144 @@
+.ico{
+	width:12px;
+	height:25px;
+	float:left;
+	position:absolute;
+	background:url("../Images/jt.gif");
+}
+.icoCurrent{
+	background-position:0 -26px;
+}
+
+.popup{
+	width:290px;
+	border:1px solid #777;
+	font-size:12px;
+	background:#e6eaf3;
+	color:#999;
+	/*height:500px;*/
+	height:auto;
+}
+
+.pop_pic{
+	width:270px;
+	height:287px;
+	margin:0 auto;
+	padding:9px 0 0;
+	position:relative;
+}
+
+.pop_pic>img{
+	width:270px;
+	height:270px;
+	border:1px solid #fff;
+}
+
+.pop_title{
+	width:275px;
+	line-height:24px;
+	color:#333;
+	margin:0 0 0 13px;
+	padding:0;
+	text-align:left;
+}
+.pop_title>span{
+	width:270px;
+	height:24px;
+	display:block;
+	font-size:14px;
+	font-weight:bold;
+	overflow:hidden;
+}
+.pop_title>em{
+	width:50%;
+	float:left;
+	color:#999;
+	display:block;
+	white-space:nowrap;
+	font-style:normal;
+	overflow:hidden;
+}
+
+.good_box{
+	width:50%;
+	height:24px;
+	float:right;
+	overflow:hidden;
+}
+.isgood{
+	width:50%;
+	height:24px;
+	display:block;
+	float:left;
+	font-size:12px;
+	color:#999;
+}
+.ispoor{
+	width:50%;
+	height:24px;
+	display:block;
+	float:left;
+	color:#999;
+}
+
+.market{
+	width:270px;
+	height:24px;
+	margin:0 auto;
+	margin-bottom:10px;
+	line-height:24px;
+	font-size:14px;
+	color:#999;
+
+}
+
+.pop_price{
+	width:135px;
+	float:left;
+	margin:17px 0 0 12px;
+	border-right:1px solid #ccc;
+}
+
+.price1{
+	line-height:23px;
+	color:#a10000;
+}
+.price1>strong{
+	color:#a10000;
+	font-weight:bold;
+}
+.price2{
+	color:#999;
+	line-height:23px;
+}
+.price2>del{
+	color:#999;
+	text-decoration:line-through;
+}
+
+.pop_praise{
+	float:left;
+	color:#a10000;
+	display:inline;
+	line-height:20px;
+	margin:16px 0 0 32px;
+}
+.pop_praise>span{
+	padding-left:2px;
+	color:#a10000;
+}
+.pop_praise>em{
+	font-size:29px;
+	padding:0 0 2px;
+	color:#a10000;
+	display:block;
+}
+
+.pop_comment{
+	width:250px;
+	height:36px;
+	color:#666;
+	line-height:18px;
+	overflow:hidden;
+	position:relative;
+}

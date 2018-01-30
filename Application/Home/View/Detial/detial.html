@@ -1,0 +1,712 @@
+<!-- 
+	商品详情页z_detail.html
+	时间：2014-08-01    10:30
+ -->
+ <!doctype html>
+ <html>
+ 	<head>
+		<link rel="stylesheet" href="__PUBLIC__/Home/Css/header.css">
+		<link rel="stylesheet" href="__PUBLIC__/Home/Css/z_detial.css">
+		<link rel="stylesheet" href="__PUBLIC__/Home/Css/jquery.jqzoom.css">
+		<link rel="stylesheet" href="__PUBLIC__/Home/Css/footer.css">
+		<script src="__PUBLIC__/Home/Js/jquery.js"></script>
+		<script src="__PUBLIC__/Home/Js/jquery.raty.js"></script>
+
+		<!-- 图片放大镜插件 -->
+		<script src="__PUBLIC__/Home/Js/jquery.jqzoom-core.js"></script>
+
+		<!-- 页面弹出一个遮盖层插件 -->
+		<script src="__PUBLIC__/Home/Js/EV_Mode.js"></script>
+ 	</head>
+ 	<body>
+		<include file="Header:index" />
+
+		<!-- 页面主体区域内容 -->
+		<div id="z_main">
+
+			<!-- 面包屑导航区：首页》男装》卫衣... -->
+			<div id="z_detial_nav">
+				<!-- <ul>
+					<li><a href="#">首页</a></li><span>></span>
+					<li><a href="#">男装</a></li><span>></span>
+					<li><a href="#">卫衣</a></li><span>></span>
+					<li><a href="#">开衫卫衣</a></li><span>></span>
+					<li><a href="#">轻柔棉感时尚连帽马甲 男</a></li>
+				</ul> -->
+			</div>
+			
+			<!-- 商品详情展示区：主体商品图片、大图浏览、购买和价格详情处 -->
+			<div id="z_goods_show">
+
+				<!-- 商品和标题显示部分 -->
+				<div id="z_show_title">
+					<div id="z_title">{$goods.goodsname} <span>特惠 直降{$goods['goodsprice'] - $goods['promoteprice']}元</span></div>
+					<div id="z_goods_number">商品编号:{$goods.goodssign}</div>
+				</div>
+
+				<!-- 商品主要展示区 -->
+				<div id="z_show_box">
+
+					<!-- 左部快速浏览区 -->
+					<div id="show_box_left">
+						<span class="z_zoom_top"></span>
+						<div class="zoom_small_1">
+							<img src="__PUBLIC__/Home/Images/goods/{$goods.goodsimg}" alt="" width="70" height="70">
+						</div>
+						<!-- <div class="zoom_small_2"></div>
+						<div class="zoom_small_3"></div>
+						<div class="zoom_small_4"></div>
+						<div class="zoom_small_5"></div> -->
+						<span class="z_zoom_bottom"></span>
+					</div>
+
+					<!-- 中间放大特效图 -->
+					<div id="show_box_middle">
+
+						<!-- 调用放大镜效果插件处 -->
+						<a href="__PUBLIC__/Home/Images/goods/{$goods.goodsimg}" width="800" heihgt="800" class="jqzoom" title="">
+							<img id="z_d_default_1" src="__PUBLIC__/Home/Images/goods/{$goods.goodsimg}" title="" width="400" heihgt="400">
+						</a>
+						<div id="z_middle_share">
+							<a href="">点击分享:</a>
+							<span>
+
+								<!-- 调用商品收藏夹使用遮盖插件处 -->
+								<a href="javascript:collect({$goods.id})" id="mycollect">收藏商品</a>
+								<a href="">放大查看</a>
+							</span>
+						</div>
+
+						<!-- 收藏商品影藏框 -->
+						<div class="use_collect" id="EV_Mode_plug">
+							<div class="collect_goods">
+								<div>
+									<div id="collect_msg"></div>
+									<a href="__APP__/Home/MyVancl/myvancl"><div class="collect_look">查看收藏夹>></div></a>
+
+									<!-- 该图标是关闭当前窗口时调用插件中的方法 -->
+									<div class="collect_close" onclick="EV_closeAlert()"></div>
+								</div>
+								<div>
+									<div class="collect_notice">您还可以通过添加标签为商品分类，或添加邮箱订制</div>
+									<div class="collect_look">余量通知</div>
+								</div>
+								<div>
+									<div class="collect_tag"></div>
+									<div class="collect_look">收藏标签</div>
+								</div>
+								<div>
+									<div class="collect_check"></div>
+									<div class="collect_look">余量通知</div>
+								</div>
+							</div>
+							<hr />
+							<div class="like_goods">
+								<div>
+									<span class="similar_goods">看过该商品的人还购买过</span>
+									<span class="more_goods"><a href="">更多您可能喜欢的商品>></a></span>
+								</div>
+								<div class="collect_order">
+									<div>
+										<img src="__PUBLIC__/Home/Images/z_collect_example.jpg" alt="">
+										<div>
+											<p>秋之北纬 4韩版女装小清新简约风紫色收腰雪纺连衣裙001CPP-1 紫色</p>
+											<p>售价￥79.00</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 收藏商品影藏框结束位置 -->
+
+					</div>
+
+					<!-- 右边商品购买快速详情预览部分 -->
+					<div id="show_box_right">
+
+						<!-- 商品品牌 -->
+						<div id="z_right_first">
+							<div id="z_f_left">VANCL 凡客诚品旗舰店</div>
+							<div id="z_f_right"> 商品品牌：VANCL 凡客诚品</div>
+						</div>
+
+						<!-- 商品价格等信息 -->
+						<div id="z_right_second">
+							<div id="z_s_price">特惠价：￥{$goods.promoteprice}元</div>
+							<div id="z_s_market"> 市场价：<i>￥{$goods.goodsprice}元</i> &nbsp;&nbsp;售价：￥{$goods.goodsprice} 元</div>
+							<div id="z_s_service">配送服务：下单后立即发货，由凡客诚品负责配送并开具发票</div>
+							<div id="z_s_score"> 用户评分： ({$count}人已评论) </div>
+						</div>
+
+						<!-- 颜色、尺码、数量和购物车快速操作区 -->
+						<div id="z_right_third">
+
+							<!-- 颜色 -->
+							<div id="z_t_color">
+								<div id="z_color_left"><span>颜色:</span></div>
+								<div class="z_color_right">
+									<span>
+										<img src="__PUBLIC__/Home/Images/goods/{$goods.goodsimg}" alt="" width="35" height="35">
+										<div>{$goods.goodsColor}</div>
+									</span>
+									<!-- <span>
+										<img src="" alt="">
+										<div>浅灰色</div>
+									</span>
+									<span>
+										<img src="" alt="">
+										<div>浅灰色</div>
+									</span>
+									<span>
+										<img src="" alt="">
+										<div>浅灰色</div>
+									</span>
+									<span>
+										<img src="" alt="">
+										<div>浅灰色</div>
+									</span> -->
+									
+								</div>
+									<div class="z_color_right">
+									<!-- <span>
+										<img src="__PUBLIC__/Home/Images/goods/{$goods.goodsimg}" alt="" width="35" height="35">
+										<div>浅灰色</div>
+									</span> -->
+								</div>
+							</div>
+
+							<!-- 尺码 -->
+							<div id="z_t_size">
+								<div id="z_size_left">尺码:</div>
+								<div id="z_size_middle">
+									<div>{$goods.goodsSize}</div>
+								</div>
+								<div id="z_size_right"><a href="#look_tab_size">查看尺码表</a></div>
+							</div>
+
+							<!-- 一个影藏的购物车盒子开始 -->
+							<div class="z_show_cart_page">
+								<div class="z_page_title">
+									<span>商品成功放入购物车</span>
+									<div id="z_page_close">关闭</div>
+								</div>
+								<div class="z_page_content">
+									<span>
+										<div class="z_content_left_cart">
+											<img src="" alt="">
+											<div>
+												<p></p>
+												<p></p>
+											</div>
+										</div>
+										<div class="z_content_right_continue">
+											<div><a href=""><<继续购物</a></div>
+											<span><a href="__CONTROLLER__/gocart">去购物车>></a></span>
+										</div>
+									</span>
+									<div>
+										<span>
+											<p>购买过该商品的人还购买过</p>
+											<span>你可能喜欢的商品>></span>
+										</span>
+										<div>
+											<div>
+												<img src="__PUBLIC__/Home/Images/z_cart_default_last.jpg" alt="">
+												<div>
+													<p>经典质感花纱短袖POLO(男款) 花纱绿色</p>
+													<p>售价￥101.00</p>
+												</div>
+											</div>
+											<div></div>
+											<div></div>
+											<div></div>
+											<div></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 影藏的购物车盒子结束 -->
+
+							<!-- 数量 -->
+							<div id="z_t_num">
+								<div id="z_num_left">数量:</div>
+								<div id="z_num_right">
+									<input id="need_num" type="number" min="1" value="1">
+								</div>
+								<span class="notice_msg"></span>
+							</div>
+
+							<!-- 已选购信息 -->
+							<div id="z_t_sel">
+								<div id="z_sel_left">已选:</div>
+								<div id="z_sel_right"></div>
+							</div>
+
+							<!-- 购物车图标 -->
+							<div id="z_t_car">
+								<div id="z_car_view"><a href="javascript:">放入购物车</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 优惠提示支付和区域选择部分 -->
+				<div id="z_pay">
+					<hr  class="z_pay_line" />
+					<span id="z_pay_notice">优惠提示:免运费</span>
+					<hr  id="z_p_line" />
+
+					<!-- 支付和地区选择 -->
+					<div id="z_p_zone">
+						<div id="z_zone_left">支付:</div>
+						<div id="z_zone_middle">
+							<a href="">货到付款(部分地区)</a>&nbsp;|
+							<a href="">在线支付</a>&nbsp;|
+							<a href="">邮局汇款</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 商品详情页，包括左边快速浏览页 -->
+			<div id="z_goods_detial">
+
+				<!-- 看过此商品的用户最终购买了以下一些商品 -->
+				<div class="z_fast_left">
+					
+					<div class="z_fast_top">点击次数最多的商品</div>
+
+					<!-- 对上一小标题所作的关联商品列表，限制5项遍历 -->
+					<div class="z_fast_bottom">
+
+						<!-- 15.7%的用户购买本商品，还有相关信息页面展示的一个小标题 -->
+						<div class="z_fast_notice"></div>
+
+						<!-- 一个完整的小区块 -->
+						<foreach name="click_data" item="click">
+						<div class="z_finial_buy">
+							<img class="z_b_images" src="__PUBLIC__/Home/Images/goods/{$click.goodsimg}" alt="" onclick="location.href='__APP__/Home/Detial/detial/id/{$click.id}'" />
+							<div class="z_b_content">
+								<div class="z_content_sty">共点击{$click.clickcount}次</div>
+								<div class="z_content_sty">{$click.goodsname} {$click.goodsColor}</div>
+								<div class="z_content_sty">商品价￥{$click.goodsprice}元 促销价￥{$click.promoteprice}元</div>
+							</div>
+						</div>
+						</foreach>
+						<!-- 结束位置 -->
+
+					</div>
+				</div>
+
+				<!-- 页面右边部分栏目布局总盒子，商品详情页以下的所有栏目均在该盒子中 -->
+				<div id="z_detial_right">
+
+					<!-- 针对商品详情信息的解析，各种图片和商品信息 -->
+					<div id="z_goods_images">
+
+						<!-- 盒子顶部的四个选项：最新提问、最新评论、售后服务和如何购买快捷菜单 -->
+						<div id="z_images_top">
+							<div>最新提问({$newcount})</div>
+							<div>最新评论({$count})</div>
+							<div>售后服务</div>
+							<div>如何购买</div>
+						</div>
+
+						<!-- 该商品的各种图片展示 -->
+						<div id="z_watch_images">
+							<!-- 产品描述 -->
+							<div class="z_product_desc new_dash">
+								<div class="z_desc_bottom">产品描述：</div>
+								<div class="z_desc_unique">简洁时尚的男款马甲，采用环保时尚的毛圈卫衣面料，更加清爽舒适，是春夏秋季节的搭配首选单品。采用当下最时尚的合体修身剪裁，优质的YKK撞色金属拉链，提升整件衣服的品质感。</div>
+								<div class="z_desc_bottom z_desc_color">温馨提示:此款产品蓝绿色内里为抓绒材质，其他颜色内里为毛圈材质。</div>
+							</div>
+
+							<!-- 产品属性 -->
+							<div class="z_product_desc">
+								<div class="z_desc_bottom">产品属性：</div>
+								<div class="z_desc_value">
+									<div>人群：男</div>
+									<div>季节：四季</div>
+									<div>袖长：无袖</div>
+									<div>花色：纯色</div>
+									<div>成分：棉+聚酯纤维</div>
+								</div>
+								<div class="z_desc_bottom z_desc_color new_notice">
+									<span>洗涤说明</span>
+									<div>
+										<div class="new_img1"></div>
+										<div class="new_img2"></div>
+										<div class="new_img3"></div>
+										<div class="new_img4"></div>
+										<div class="new_img5"></div>
+										<div class="new_img6"></div>
+										<div class="new_img7"></div>
+									</div>
+								</div>
+							</div>
+
+							<!-- 产品尺码表 -->
+							<!-- 增加一个锚链接 -->
+							<a href="" name="look_tab_size"></a>
+							<div class="size_tab">
+								<div class="tab_tit">产品尺码表：（单位:cm）</div>
+								<div class="tab_con">
+									<table>
+										<tr class="bold_tit">
+											<td>号型</td>
+											<td>尺码</td>
+											<td>腰围</td>
+											<td colspan="8">成品规格表(单位CM)</td>
+										</tr>
+										<tr>
+											<td>身高/净腰围</td>
+											<td>英寸</td>
+											<td>市尺(仅供参考)</td>
+											<td>腰围</td>
+											<td>臀围</td>
+											<td>大腿围</td>
+											<td>膝围</td>
+											<td>脚口围</td>
+											<td>前浪</td>
+											<td>后浪</td>
+											<td>外长</td>
+										</tr>
+										<tr>
+											<td>155/62A</td>
+											<td>25</td>
+											<td>1尺9寸</td>
+											<td>68.5</td>
+											<td>83.5</td>
+											<td>49.4</td>
+											<td>33</td>
+											<td>27.6 </td>
+											<td>20</td>
+											<td>31</td>
+											<td>98</td>
+										</tr>
+										<tr>
+											<td>160/64A</td>
+											<td>26</td>
+											<td>2尺</td>
+											<td>71</td>
+											<td>86</td>
+											<td>50.6</td>
+											<td>34</td>
+											<td>28.4</td>
+											<td>20</td>
+											<td>31</td>
+											<td>99</td>
+										</tr>
+										<tr>
+											<td>160/66A</td>
+											<td>27</td>
+											<td>2尺05</td>
+											<td>73.5</td>
+											<td>88.5</td>
+											<td>51.8</td>
+											<td>35</td>
+											<td>29.2</td>
+											<td>20.5</td>
+											<td>31.5</td>
+											<td>100</td>
+										</tr>
+										<tr>
+											<td>165/70A</td>
+											<td>28</td>
+											<td>2尺1寸5</td>
+											<td>76</td>
+											<td>91</td>
+											<td>53</td>
+											<td>36</td>
+											<td>30</td>
+											<td>20.5 </td>
+											<td>31.5</td>
+											<td>101</td>
+										</tr>
+										<tr>
+											<td>165/72A</td>
+											<td>29 </td>
+											<td>2尺2寸</td>
+											<td>78.5</td>
+											<td>93.5</td>
+											<td>54.2</td>
+											<td>37</td>
+											<td>30.8</td>
+											<td>21</td>
+											<td>32</td>
+											<td>102</td>
+										</tr>
+										<tr>
+											<td>170/74A</td>
+											<td>30</td>
+											<td>2尺3寸</td>
+											<td>81</td>
+											<td>96</td>
+											<td>55.4</td>
+											<td>38</td>
+											<td>31.6</td>
+											<td>21</td>
+											<td>32</td>
+											<td>103</td>
+										</tr>
+										<tr>
+											<td>170/76A</td>
+											<td>31 </td>
+											<td>2尺3寸5 </td>
+											<td>83.5</td>
+											<td>98.5 </td>
+											<td>56.6</td>
+											<td>39</td>
+											<td>32.4 </td>
+											<td>21.5</td>
+											<td>32.5</td>
+											<td>104</td>
+										</tr>
+										<tr>
+											<td>175/80A</td>
+											<td>32</td>
+											<td>2尺4寸5 </td>
+											<td>86</td>
+											<td>101</td>
+											<td>57.8</td>
+											<td>40</td>
+											<td>33.2</td>
+											<td>21.5 </td>
+											<td>32.5</td>
+											<td>105</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 空盒子，该主题结束的标志分隔符 -->
+					<div class="z_images_end"></div>
+					
+					<!-- 使用include加载用户评价部分页面，该页面已被分离出去 -->
+					<div class="comment_include">
+						<include file="Detial/comment" />
+					</div>
+
+					<!-- 一个简单的投票评价：满意、一般、不满意 -->
+					<div id="z_vote">
+						<span class="z_vote_left">您在使用“商品页”时？</span>
+						<span class="z_vote_right">
+							<input type="radio" name="notice">满意
+							<input type="radio" name="notice">一般
+							<input type="radio" name="notice">不满意
+							<input type="button" value = "提交">
+						</span>
+					</div>
+
+					<!-- 该主题结束的标志分隔符 -->
+					<div class="z_images_end"></div>
+					
+					<!-- 加载用户提问咨询内容部分 -->
+					<div class="question_include">
+						<include file="Detial/question" />
+					</div>
+					
+				</div>
+			</div>
+
+			<!-- 一个空白的30px高的占位条，用于与页脚分开 -->
+			<div class="z_space_bar"></div>
+		</div>
+
+		<include file="Public:footer" />
+	</body>
+	<script>
+		/*
+			一个简单的算法，通过JS字符串函数split()将字符串分割成数组和
+			数组函数pop()弹出数组最后一个元素进行浏览器地址的分割处理
+			最后得到浏览器地址中的id值，用于jQuery向控制器进行异步请求
+		*/
+		function goodsid() {
+			var str = location.pathname;
+			str = str.split('/');
+			str = str.pop();
+
+			return str;
+		}
+
+		/*
+			图像放大镜插件，使用方法为：
+			1，加载jquery.js插件和jquery.jqzoom.css样式表到当前页面中
+			2，标签格式为
+			<a href="__PUBLIC__/Home/Images/z_zoom_big_1.jpg" class="jqzoom">
+				<img id="z_d_default_1" src="__PUBLIC__/Home/Images/z_zoom_thumb_1.jpg" title="无下限无节操">
+			</a>
+			3，网页中显示的图像为img标签中显示的图像，一般是一张缩略图
+			4，需要一张大图放在比如a标签的href属性中，这张大图是必须使用的，同时需要给a标签加上class=“jqzoom”这个类样式
+			5，同时加载如下的js代码
+			6，所有设置项有：
+				zoomType，默认值：’standard’，另一个值是’reverse’，是否将原图用半透明图层遮盖。
+			      zoomWidth，默认值：200，放大窗口的宽度。
+			      zoomHeight，默认值：200，放大窗口的高度。
+			      xOffset，默认值：10，放大窗口相对于原图的x轴偏移值，可以为负。
+			      yOffset，默认值：0，放大窗口相对于原图的y轴偏移值，可以为负。
+			      position，默认值：’right’，放大窗口的位置，值还可以是:’right’ ,’left’ ,’top’ ,’bottom’。
+			      lens，默认值：true，若为false，则不在原图上显示镜头。
+			      imageOpacity，默认值：0.2，当zoomType的值为’reverse’时，这个参数用于指定遮罩的透明度。
+			      title，默认值：true，在放大窗口中显示标题，值可以为a标记的title值，若无，则为原图的title值。
+			      showEffect，默认值：’show’，显示放大窗口时的效果，值可以为: ‘show’ ,’fadein’。
+			      hideEffect，默认值：’hide’，隐藏放大窗口时的效果: ‘hide’ ,’fadeout’。
+			      fadeinSpeed，默认值：’fast’，放大窗口的渐显速度(选项: ‘fast’,'slow’,'medium’)。
+			      fadeoutSpeed，默认值：’slow’，放大窗口的渐隐速度(选项: ‘fast’,'slow’,'medium’)。
+			      showPreload，默认值：true，是否显示加载提示Loading zoom(选项: ‘true’,'false’)。
+			      preloadText，默认值：’Loading zoom’，自定义加载提示文本。
+			      preloadPosition，默认值：’center’，加载提示的位置，值也可以为’bycss’，以通过css指定位置。
+		*/
+		$(document).ready(function() {
+			$('.jqzoom').jqzoom({
+		            zoomType: 'standard',
+		            lens:true,
+		            xOffset:20,
+				zoomWidth:400,
+				zoomHeight:400,
+		            preloadImages: false,
+		            alwaysOn:false
+		        });	
+		});
+
+		//定义一个变量储存颜色的值
+		//默认选择黑色
+		$('.z_color_right span').eq(2).css('border', '2px solid red');
+		var color = $('.z_color_right span div').eq(2).html();
+
+		//设置购物车处已选状态
+		$('#z_sel_right').html('默认颜色&nbsp;&nbsp'+color);
+
+		$('.z_color_right span').click(function() {
+			$('.z_color_right span').css('border', '');
+			$(this).css('border', '2px solid red');
+			color = $(this).text();
+
+			//设置购物车处已选状态
+			$('#z_sel_right').html('颜色&nbsp;&nbsp'+color+'尺寸&nbsp;&nbsp'+size);
+		});
+
+		//定义一个变量存储尺寸的值
+		var size = null;
+		$('#z_size_middle div').click(function() {
+			$('#z_size_middle div' ).css('border', '');
+			$(this).css('border', '2px solid red');
+			size = $(this).html();
+
+			//设置购物车处已选状态
+			$('#z_sel_right').html('颜色&nbsp;&nbsp'+color+'&nbsp;&nbsp;尺寸&nbsp;&nbsp'+size);
+		});
+
+		//点击放入购物车时，将其存入SESSION['goods']字段中，读取处数量和总价格显示在突显框内供用户查看
+		$('#z_car_view a').click(function() {
+			if (color == null)  {
+				alert('请选择颜色');
+			} else if(size == null){
+				alert('请选择尺寸');
+			}else {
+				var str = location.pathname;
+				str = str.split('/');
+				str = str.pop();
+				
+				//获取该用户选择该商品时的数量
+				var num = $('#need_num').val();
+
+				//需要局部请求判断需要的数量是否大于商品库存量
+				$.post("__CONTROLLER__/check", {num : num, id : str}, function(data) {
+					if (data == '-1') {
+						$('.notice_msg').html("查询不到该商品信息");
+					} else if (data != '1') {
+						$('.notice_msg').html('该商品目前的库存量是'+data+'件');
+					} else {
+						$('.notice_msg').html('');
+
+						//可以购买，使用jQuery请求数据库，查询该商品的信息，将商品id传递到控制器中去，返回json格式的字符串
+						$.post('__CONTROLLER__/addcart', {id : str, num : num, color : color, size : size},  function(data) {
+				
+							$('.z_content_left_cart > div > p').eq(0).html('共有'+data.sum+'件商品');
+							$('.z_content_left_cart > div > p').eq(1).html('总计￥'+data.total+'元');
+						}, 'json');
+
+						//请求成功，显示购物车概略信息
+						$('.z_show_cart_page').css('display', 'block');
+					}
+				});
+			}
+		});
+
+		$('#z_page_close').click(function() {
+			$('.z_show_cart_page').css('display', 'none');
+		});
+
+		/*
+			收藏商品时调用的函数，该函数需要继续调用遮盖层插件
+		*/
+		function collect(id) {
+
+			//获得商品id号，通过调用goodsid()函数获取
+			var goods_id = goodsid();
+			
+
+			$.post("__CONTROLLER__/collect", 'id='+goods_id, function(data) {
+
+				//调用遮盖层插件函数
+				EV_modeAlert('EV_Mode_plug');
+
+				switch(data) {
+					case '1':
+						$('#collect_msg').text('成功收藏该商品');
+						break;
+					case '-1':
+						$('#collect_msg').text('你已经收藏了该商品，不需要重复收藏');
+						break;
+					case '-2':
+						$('#collect_msg').text('收藏商品失败');
+						break;
+					case '-3':
+						$('#collect_msg').text('查询不到该商品的信息');
+						break;
+
+					case '-4':
+						$('#collect_msg').text('登录用户才可以收藏商品');
+						break;
+				}
+			}, 'json');	
+		}
+
+		function setPage(url) {
+		
+		$('.comment_page a').mouseup(function() {
+			
+			var p = $(this).text();
+			var str = location.pathname;
+			str = str.split('/');
+			str = str.pop();
+			
+			$.get("__APP__/Home/Detial/cpage", {id : str, p : p}, function(data) {
+				$('.comment_include').html(data);
+			});
+		});
+	}
+
+	/*$('.shopping').click(function() {
+			$.post("__APP__/Home/Cart/checkCart", function(data) {
+
+				if (data != 'no') {
+					var html='';
+					for(var i in data) {
+
+						html = '<div class="one_good" style="width:308px;height:50px;">';
+						html += '<img src="__PUBLIC__/Home/Images/goods/'+data[i]['goodsimg']+' style="float:left;width:36px;height:36px;margin:5px 7px 0 5px;"><div style="float:left;width:200px;height:40px;margin:5px 0 0 5px;font-size:12px;">';
+						html += '<p style="float:left;width:200px;height:20px;font-size:12px;line-height:20px;">'+data[i]['goodsname']+'</p>';
+						html += '<p style="float:left;width:200px;height:20px;font-size:12px;line-height:20px;">￥'+data[i]['promoteprice']+'元</p></div>';
+						html += '<a href="javascript:del('+data[i]+')" style="float:left;width:40px;height:40px;margin:5px 0 0 0;font-size:12px;line-height:40px;text-align:right;">删除</a></div>';
+						alert(html);
+					}
+				}
+				$('.one_good').html(html);
+			}, 'json');
+		});*/
+	</script>
+</html>

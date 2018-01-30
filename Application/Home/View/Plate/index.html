@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- 列表页 -->
+	<title></title>
+	<link rel="shortcut icon" href="__PUBLIC__/Home/Images/favicon.ico" type="image/x-icon" />
+	<meta name="keywords" content="" />
+     <meta name="description" content="" />
+	<link rel="stylesheet" href="__PUBLIC__/Home/Css/header.css">
+	<link rel="stylesheet" href="__PUBLIC__/Home/Css/plate.css">
+	<link rel="stylesheet" href="__PUBLIC__/Home/Css/footer.css">
+	<link rel="stylesheet" href="__PUBLIC__/Home/Css/goodsDetail.css">
+	<script src="__PUBLIC__/Home/Js/jquery.js"></script>
+	<script src="__PUBLIC__/Home/Js/GetRequest.js"></script>
+	<script src="__PUBLIC__/Home/Js/getDate.js"></script>
+</head>
+<body>
+	<!-- 载入头文件 -->
+	<include file="Header/index" />
+
+	<!-- main部分 -->
+	<div id="main_content">
+		<!-- 频道导航 -->
+		<div id="main_minNav">
+			<h1>
+				<a class="track">{$logo.name}频道</a>
+			</h1>
+			<div class="navList">
+				<ul id="nav_class">
+					<foreach name="plate" item="plate">
+						<li>
+							<a href="__APP__/Home/GoodsList/getDefault.html?id={$plate.id}">{$plate.listName}</a>
+						</li>
+					</foreach>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 幻灯片部分 -->
+		<div id="main_slide">
+			<div class="slide_left">
+				<ul id="slide_btn">
+					<for start="0" end="8" step="1">
+						<li></li>
+					</for>
+				</ul>
+				<a id="btn_left" href="javascript:"></a>
+				<a id="btn_right" href="javascript:"></a>
+				<div id="slide_pic">
+					<ul id="slide_img">
+						<foreach name="slide" item="slide">
+							<li>
+								<a href="{$slide.links}">
+									<img src="__PUBLIC__/Home/Images/slide/{$slide.address}">
+								</a>
+							</li>
+						</foreach>
+					</ul>
+				</div>
+			</div>
+			<div class="slide_right">
+				<a href="javascript:">
+					<img src="__PUBLIC__/Home/Images/womanjiaodianyouce2.jpg">
+				</a>
+				
+				<span class="clear"></span>	
+
+				<a href="javascript:">
+					<img src="__PUBLIC__/Home/Images/chuyu.jpg">
+				</a>
+			</div>
+		</div>
+
+		<!-- 展示区 -->
+		<div class="main_productList">
+			<div class="product_title">
+				<h2>所有精品</h2>
+			</div>
+
+			<ul id="list_detail">
+				
+				<if condition="$goods eq 'null'">
+					<div id="noresult">
+						<p>抱歉！本栏目还没有任何商品，</p>
+							<p>
+								您可以
+								<span style="color:#a10000">去其他栏目</span>
+								逛逛。
+							</p>
+						</div>
+				<else /> 
+				<foreach name="goods" item="goods">
+					<li title="{$goods['goodsname']}">
+						<a href="__APP__/Home/Detial/detial.html?id={$goods.id}">
+							<img class="popup_detail" src="__PUBLIC__/Home/Images/goods/{$goods['goodsimg']}" alt="{$goods.id}">
+						</a>
+						<h3>
+							<a href="__APP__/Home/Detial/detial.html?id={$goods.id}">{$goods['goodsname']}</a>
+						</h3>
+						<p>
+							<span>市场价 ￥{$goods['goodsprice']}</span>售价 ￥{$goods['promoteprice']}
+						</p>
+					</li>
+				</foreach>
+				</if>
+			</ul>
+		</div>
+	</div>
+
+	<!-- 载入商品详细页面 -->
+	<include file="Public/goodsDetail" />
+
+	<!-- 载入脚文件 -->
+	<include file="Public/footer" />
+	
+</body>
+<script>
+	var oli = $("#slide_img li");
+	var bli = $("#slide_btn li");
+	var btn_l = $("#btn_left");
+	var btn_r = $("#btn_right");
+	
+	//点击菜单时设置选中状态
+	$("#nav_class li").click(function(){
+		$(this).addClass("current").siblings().removeClass("current");
+	});
+
+	$("#list_detail li:nth-child(5n+5)").css("margin-right","0");
+
+
+	// 幻灯片----------------------------------------------------
+
+	var i = 0;
+	var num = 0;
+
+	for(i=0;i<bli.length;i++){
+		bli[i].index = i;
+		bli.eq(i).mouseover(function(){
+			if(num != this.index){
+				num = this.index;
+				show(this.index);
+				clearInterval(play);
+			}
+		});
+	}
+
+	show(num);
+
+	oli.mouseover(function(){
+		clearInterval(play);
+	});
+	oli.mouseout(function(){
+		autoplay();
+	});
+	btn_l.click(function(){
+		num = num - 1;
+		num < 0 && (num = bli.length-1);
+		show(num);
+	});
+
+	btn_r.click(function(){
+		num = num + 1;
+		num >= bli.length && ( num = 0 );
+		show(num);
+	});
+
+	autoplay();
+	function autoplay(){
+		play = setInterval(function(){
+			num++;
+			num >= oli.length && ( num = 0 );
+			show(num);
+		},5000);
+	}
+	
+	function show(a){
+		for(i=0;i<oli.length;i++){
+			oli.eq(i).css("display","none");
+			bli.eq(i).css("background","#9E9D9D");
+		}
+		oli.eq(a).slideDown(200);
+		bli.eq(a).css("background","#CC0000");
+	}
+// 幻灯片----------------------------------------------------------------------
+
+	// 如果地址栏没有ID，则默认为1
+	if(Request['id'] == null){
+		location.href = location.href + "?id=1";
+	}
+
+	//判断幻灯片是否存在，不存在则隐藏
+	$.get("__CONTROLLER__/showSlide?cid="+Request['id'],function(data){
+		if(data == null){
+			$("#main_slide").css("display","none");
+		}
+	},"json");
+
+
+	// 商品详情信息(以下代码是判断弹出框的位置以及请求数据库的代码)
+	var popup_detail = $(".popup_detail");
+	popup_detail.hover(function(event){
+		var eve = event || window.event;
+		$(this).css("border","1px solid #B33333");
+		$("#arrowIcon").css("display","block");
+		$("#popup").css("display","block");
+		$("#arrowIcon").css("left",$(this).offset().left + $(this).width());
+		$("#popup").css("left",$(this).offset().left + $(this).width() + $("#arrowIcon").width());
+		$("#arrowIcon").css("top",eve.pageY);
+
+		if(eve.pageY > $(this).offset().top + $(this).height() / 2){
+			$("#arrowIcon").css("top",eve.pageY - 25);
+		}
+
+		var screenHeight = $(window).height();
+		if(eve.clientY > screenHeight / 2){
+			$("#popup").css("top",screenHeight - $("#popup").height() - 5);
+		}else{
+			$("#popup").css("top",(screenHeight / 10) - 60);
+		}
+
+		if($(this).offset().left > $(document).width() / 2){
+			$("#arrowIcon").css({"background-position":"0 -28px","left":$(this).offset().left - $("#arrowIcon").width()});
+			$("#popup").css("left",$(this).offset().left - $("#popup").width() - $("#arrowIcon").width()-1);
+		}else{
+			$("#arrowIcon").css("background-position","0 0");
+		}
+
+
+			// ajax请求数据
+			$.get("__CONTROLLER__/getGoods",{"id":$(this).attr("alt")},function(data){
+				$(".pop_pic").html('<img src="__PUBLIC__/Home/Images/goods/' + data.goodsimg + '">');
+				$(".pop_title span").html(data.goodsname);
+				$(".pop_title em").html("总销量："+data.goodssales);
+				$(".isgood").html("好评：" + data.isGood);
+				$(".ispoor").html("差评：" + data.isPoor);
+
+				$(".market").html("上架时间："+getDate(data.addtime));
+				$(".price1 strong").html("售价：￥"+data.promoteprice);
+				$(".price2 del").html("￥"+data.goodsprice);
+				var sum = (parseInt(data.isGood) + parseInt(data.isPoor));
+				var result = Math.round(parseInt(data.isGood) / parseInt(sum) * 100) + "%";
+				if(result == "NaN%"){
+					result = "100%";
+				}
+				$(".pop_praise em").html(result);
+			},"json");
+
+		},function(){
+			$(this).css("border","1px solid #DCDCDC");
+			$("#pop_pic_detail").attr("src"," ");
+			$("#arrowIcon").css("display","none");
+			$("#popup").css("display","none");
+		});
+</script>
+</html>

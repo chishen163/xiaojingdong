@@ -1,0 +1,290 @@
+<!doctype html>
+<html>
+	<head>
+		<title>我的订单页面</title>
+		<meta charset="utf-8" /> 
+		<link rel="stylesheet" href="__PUBLIC__/Home/Css/header.css">
+		<link rel="stylesheet" href="__PUBLIC__/Home/Css/z_neworder.css">
+		<link rel="stylesheet" href="__PUBLIC__/Home/Css/footer.css">
+		<script src="__PUBLIC__/Home/Js/jquery.js"></script>
+	</head>
+	<body>
+		<!-- 加载头文件 -->
+		<include file="Header:index" />
+	
+		<!-- 顶部占位，留出一段空白位置 -->
+		<div class="static_space"></div>
+
+		<!-- 主体内容区域 -->
+		<div id="neworder">
+			
+			<!-- 浏览订单部分 -->
+			<div id="order_list">
+				<div class="order_list_top">
+					<div class="order_list_top_left">
+
+						<!-- 表格上面的付款等提示 -->
+						<div class="z_order_notice">
+							<div>订单已提交成功，请您等待收货！</div>
+							<span>下载客户端，随时查看订单状态。</span>
+						</div>
+
+						<!-- 订单详情表 -->
+						<table>
+							<tr class="z_tab_th">
+								<th class="z_ordersn">订单号</th>
+								<th class="z_ordersn">需支付金额</th>
+								<th class="z_ordersn">支付方式</th>
+								<th class="z_house">发货库房</th>
+								<th class="z_ordersn">预计配送时间</th>
+							</tr>
+
+							<foreach name="order_data" item="order">
+							<!-- 一个订单中一件商品遍历的开始 -->
+							<tr>
+								<td class="z_ordersn">{$order.ordersn}</td>
+								<td class="z_ordersn">{$order.total}</td>
+								<td class="z_ordersn">{$order.paytype}</td>
+								<td  class="z_house_content">由凡客北京二店负责发货</td>
+								<td class="z_ordersn">由北京凡客诚品负责配送</td>
+							</tr>
+
+							<!-- 妹遍历一次，就对订单中的价格累加一次 -->
+							<assign name="total" value="$total +=$order['total']" />
+							<!-- 该订单中每件商品遍历的结束 -->
+							</foreach>
+							
+						</table>
+					</div>
+					<div class="order_list_top_right">
+						<img src="__PUBLIC__/Home/Images/z_gzkf.png" alt="">
+					</div>
+				</div>
+				<div class="order_list_bottom">
+					<div class="bottom_notice">
+						<div>请选择支付方式完成付款</div>
+						<span>请在3小时内完成付款，否则订单将会被自动取消</span>
+					</div>
+					<div class="bottom_type">
+						<div class="normal_pay_type">常用支付方式</div>
+						<span class="all_pay_type">全部支付方式</span>
+					</div>
+
+					<div class="bottom_bank_quick">
+						<div class="bank_list_quick">
+							<!-- 银行列表，一排四张 -->
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/upico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/gsico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/zsico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/zgico.png" alt="" />
+							</div>
+							<!-- 第一排结束 -->
+						</div>
+					</div>
+
+					<!-- 银行列表区域默认是影藏不显示的 -->
+					<div class="bottom_bank">
+						<div class="bank_title">银行或支付机构：</div>
+						<div class="bank_list">
+
+							<!-- 银行列表，一排四张 -->
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/upico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/gsico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/zsico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/zgico.png" alt="" />
+							</div>
+							<!-- 第一排结束 -->
+
+							<!-- 银行列表，一排四张 -->
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/jsico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/nyico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/gfico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/xyico.png" alt="" />
+							</div>
+							<!-- 第二排结束 -->
+
+							<!-- 银行列表，一排四张 -->
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/bjico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/ncico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/yzico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/jtico.png" alt="" />
+							</div>
+							<!-- 第三排结束 -->
+
+							<!-- 银行列表，一排四张 -->
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/pfico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/szico_1.jpg" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/gdico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/msico.png" alt="" />
+							</div>
+							<!-- 第四排结束 -->
+
+							<!-- 银行列表，一排四张 -->
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/zxico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/paico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/hzico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/nbico.png" alt="" />
+							</div>
+							<!-- 第五排结束 -->
+
+						</div>
+
+						<div class="bank_title">支付平台：</div>
+						<div class="bank_list">
+
+							<!-- 支付平台，一排四张 -->
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/alipayscancode.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/zfbico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/sjzfico.png" alt="" />
+							</div>
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/cftico.png" alt="" />
+							</div>
+							<!-- 第一排结束 -->
+
+							<div>
+								<div><input type="radio" name="bank" value="" /></div>
+								<img src="__PUBLIC__/Home/Images/Bank/tenpay_kuaijie1.jpg" alt="" />
+							</div>
+						</div>
+
+					</div>
+					<!-- 以上区域默认是不显示的 -->
+
+					<!-- 支付按钮 -->
+					<div class="bottom_pay">
+						<div>
+							<div class="need_info">您共需要为订单支付：</div>
+							<div class="pay_money">￥{$total}元</div>
+							<div class="to_pay">去付款</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 订单操作快捷键部分 -->
+			<div id="order_quick">
+				<div class="order_quick_top">
+					<div class="order_quick_bar">
+						<span class="">您目前共有 10 积分，<b class="integral_eco">积分商城</b></span>
+						<span class="second_status" onclick="location.href='__APP__/Home/myVancl/myvancl/id/1'">修改订单</span>
+						<span class="second_status" onclick="location.href='__APP__/Home/myVancl/myvancl/id/1'">查看订单</span>
+						<span class="second_status" onclick="location.href='__APP__/Home/Index/index'">继续购物</span>
+					</div>
+				</div>
+				<div class="order_quick_bottom">点击最多:</div>
+			</div>
+
+			<!-- 购买以上商品的顾客还购买过 -->
+			<div id="inner_goods">
+
+				<!-- 一个盒子遍历的开始 -->
+				<foreach name="click_data" item="click">
+				<div class="goods_position">
+					<img class="goods_position_image" src="__PUBLIC__/Home/Images/goods/{$click.goodsimg}" alt="" onclick="location.href='__APP__/Home/Detial/detial/id/{$click.id}'">
+					<div class="goods_position_content">
+						<p>{$click.goodsname}</p>
+						<p><del>商品价：￥{$click.goodsprice}元</del></p>
+						<p>促销价：￥{$click.promoteprice}元</p>
+					</div>
+				</div>
+				</foreach>
+				<!-- 一个盒子遍历的结束 -->
+
+			</div>
+		</div>
+
+		<!-- 底部占位，留出一段空白位置 -->
+		<div class="static_space"></div>
+
+		<!-- 加载尾文件 -->
+		<include file="Public:footer" />
+	</body>
+	<script>
+		//银行列表的显示与影藏代码
+		$('.all_pay_type').click(function() {
+			$('.bottom_bank_quick').css('display', 'none');
+			$('.bottom_bank').css('display', 'block');
+		});
+
+		$('.normal_pay_type').click(function() {
+			$('.bottom_bank').css('display', 'none');
+			$('.bottom_bank_quick').css('display', 'block');
+		});
+	</script>
+</html>

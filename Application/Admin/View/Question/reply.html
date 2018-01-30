@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+	<head>
+		<title>回复提问列表</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/bootstrap.css">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/z_question.css">
+		<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+	</head>
+	<body>
+		<div class="reply_list">
+			<div class="reply_title">
+				<span>回复列表：</span>
+			</div>
+			<div class="reply_con">
+				<table class="reply_tab">
+					<tr>
+						<th>选择</th>
+						<th>提问者</th>
+						<th>商品名</th>
+						<th>回复者</th>
+						<th class="content_con">回复内容</th>
+						<th>回复时间</th>
+						<th>IP</th>
+						<th>状态</th>
+					</tr>
+
+					<!-- 回复数据遍历开始 -->
+					<foreach name="reply_data" item="reply">
+					<tr>
+						<td><input type="checkbox" value="{$reply.id}" name="ids[]" class="reply_status"></td>
+						<td><a href="javascript:detial('{$reply.pid}')">{$reply.question.email}</a></td>
+						<td>{$reply.question.name}</td>
+						<td>{$reply.email}</td>
+						<td>{$reply.content}</td>
+						<td>{$reply.addtime|date="Y-m-d H:i:s", ###}</td>
+						<td>{$reply.ip}</td>
+						<td>
+							<!-- 判断变量是否为空或不为空，不用大括号也不用$符号 -->
+							<input type="checkbox" value="已通过" name="" <notempty name="reply['question']['adminname']">checked</notempty>>已通过<br>
+							<input type="checkbox" value="未通过" name="" <if condition="$reply.pass eq 1">checked</if>>默认可见
+						</td>
+					</tr>
+					</foreach>
+					<!-- 回复数据遍历结束 -->
+
+					<tr>
+						<td colspan="9" class="set_pass">
+							<input type="button" value="全选" onclick="qx()">
+							<input type="button" value="反选" onclick="fx()">
+							<input type="button" value="全不选" onclick="qbx()">
+							<input type="button" value="删除" onclick="dels()">
+							<input type="button" value="设为可见状态" onclick="show()">
+							<input type="button" value="设为不可见状态" onclick="notpass()">
+						</td>
+					</tr>
+				</table>
+				<div class="fpg" >{$page}</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		/*
+			定义一个函数，用来局部动态请求该页面，每次点击页码时都是局部刷新操作，
+			注意，不要自动调用一次该函数，否则会无限循环调用下去
+			但是修改了框架中的分页类，重新改名为Page_ajax.class.php
+			原分页类仍然是原名，不受影响
+		*/
+		function setPage(url) {
+			$.get(url, function(data) {
+				$('.reply_list').html(data);
+			});
+		}
+
+		function getIds() {
+
+			/*
+				此时需要通过js方式获取所有复选框的选中状态，并且获得其value值传递到控制器中去
+				算法是：先获取满足条件input输入框的个数
+				声明一个空数组用来存取每个输入框的id值
+				通过for循环遍历出所有满足条件的id值
+				注意要使用eq()来过滤，下标从0开始读取
+				然后使用jQuery中的ajax请求控制器中的方法，将订单表中的字段修改为已付款状态
+			*/
+			var length = $('input[type=checkbox].reply_status:checked').length;
+			var ids = new Array();
+			for(var i = 0; i < length; i++) {
+				ids[i] = $('input[type=checkbox].reply_status:checked').eq(i).val();
+			}
+
+			//返回一个数组给调用处
+			return ids;
+		}
+
+		/*
+			全选，反选，全不选函数集合
+			选中元素的方式$('input[type=checkbox].order_status')，过滤掉后面的状态按钮
+		*/
+
+		//全选函数
+		function qx() {
+			$('input[type=checkbox].reply_status').attr('checked', 'true');
+		}
+
+		//反选函数
+		function fx() {
+			var length = $('input[type=checkbox].reply_status').length;
+			for(var i = 0; i < length; i++) {
+				$('input[type=checkbox].reply_status').eq(i).attr('checked', !$('input[type=checkbox].reply_status').eq(i).attr('checked')) ;
+			}
+		}
+
+		//全不选函数
+		function qbx() {
+			$('input[type=checkbox].reply_status').removeAttr('checked');
+		}
+
+		//点击提问邮箱名时触发该函数，函数显示该提问的管理员回复即我要回复的信息
+		function detial(id) {
+
+			//这个id值是提问表的id值，在回复表中是pid字段
+			$.post("__CONTROLLER__/detial", {id : id}, function(data) {
+				$('.reply_list').html(data);
+			});
+		}
+
+		//设为前台可见状态
+		function show() {
+
+			//通过自定义函数获得批量操作的id值
+			var ids = getIds();
+			
+			$.post("__CONTROLLER__/notPass", {ids : ids, status : 'show'}, function(data) {
+				$('.reply_list').html(data);
+			});
+		}
+
+		//点击设为不可见状态时触发的方法，该方法将修改回复表中的pass字段修改为1，默认为1，需要修改为0
+		function notpass() {
+
+			//通过自定义函数获得批量操作的id值
+			var ids = getIds();
+			
+			$.post("__CONTROLLER__/notPass", {ids : ids, status : 'notpass'}, function(data) {
+				$('.reply_list').html(data);
+			});
+		}
+
+		//点击删除回复时触发的方法，该方法只删除本条数据，同样还是需要返回值
+		function dels() {
+
+			//通过自定义函数获得批量操作的id值
+			var ids = getIds();
+
+			if (confirm("你确认要删除该回复吗？")) {
+				$.post("__CONTROLLER__/replyDel", {ids : ids}, function(data) {
+					$('.reply_list').html(data);
+				});
+			}
+		}
+	</script>
+</html>

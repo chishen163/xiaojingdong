@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>添加用户组</title>
+		<style type="text/css">
+			body{
+				background:url('__PUBLIC__/Admin/Images/w70.png') repeat;
+			}
+			.add_group{
+				width:100px;
+			}
+			table{
+				border-collapse:collapse;
+			}
+			tr{
+				border-top:2px solid #f9f0e0;
+			}
+			tr:hover{
+				background:#f9f0e0;
+			}
+			td{
+				height:60px;
+				text-indent:30px;
+			}
+			th{
+				color:#d39c59;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+			<center style="height:50px;line-height:50px;"><strong style="color:#d39c59;font-size:30px;">添加用户组</strong></center>
+			<form action="__CONTROLLER__/insertGroup" method="post">
+				<table width="900">
+					<!-- 添加用户组名 -->
+					<tr height="30">
+						<th class="add_group">用户组名:</th>
+						<td><input type="text" name="groupname" style="height:26px;" /></td>
+					</tr>
+					<!-- 添加用户组的描述 -->
+					<tr height="130">
+						<th class="add_group">用户组描述:</th>
+						<td><textarea name="description" cols="70" rows="5"></textarea></td>
+					</tr>
+					<!-- 添加用户组的权限 -->
+					<tr height="30">
+						<th class="add_group">用户组权限:</th>
+						<td>
+							<input type="checkbox" name="useradmin" value="1" />用户管理权限
+							<input type="checkbox" name="commentadmin" value="1" />发表评论权限
+							<input type="checkbox" name="webadmin" value="1" />网站管理权限
+							<input type="checkbox" name="sendmessage" value="1" />发送消息权限
+							<input type="checkbox" name="sendarticle" value="1" />发表文章权限
+							<input type="checkbox" name="articleadmin" value="1" />文章管理权限
+						</td>
+					</tr>
+					<!-- 添加用户组按钮 -->
+					<tr>
+						<th colspan="2" style="height:80px;line-height:80px;">
+							<input type="submit" value="添加"style="height:25px;width:110px;font-weight:bold;color:#d39c59;" />
+						</th>
+					</tr>	
+				</table>
+			</form>
+		</center>
+	</body>
+</html>

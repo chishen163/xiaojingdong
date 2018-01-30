@@ -1,0 +1,62 @@
+<div class="mod_order">
+<div class="modify_title">修改订单：</div>
+<form action="" method="post" class="modify_frm form-control">
+	<p>订&nbsp;单&nbsp;号:<input type="text" name="id" value="{$order_data.id}" disabled></p>
+	<p>订单编号:<input type="text" name="ordersn" value="{$order_data.ordersn}" disabled></p>
+	<p>订单总价:<input type="text" name="total" value="{$order_data.total}" disabled></p>
+	<p>支付方式:<input type="text" name="paytype" value="{$order_data.paytype}" disabled></p>
+	<p>送货方式:<input type="text" name="shiptype" value="{$order_data.shiptype}" disabled></p>
+	<p>用&nbsp;户&nbsp;名:<input type="text" name="uname" value="{$user_data.username}" disabled></p>
+	<p>处&nbsp;理&nbsp;者:<input type="text" name="admin" value="{$order_data.adminname}"></p>
+	<p>收&nbsp;货&nbsp;人:<input type="text" name="consignee" value="{$order_data.consignee}"></p>
+	<p>订单描述:<br>
+		<textarea name="content" id="modify_content" cols="100" rows="5">{$order_data.desc}</textarea>
+	</p>
+	<p>
+		订单状态:
+		<input type="checkbox" name="orderstatus" value="" <if condition="$order_data['orderstatus'] eq 1">checked</if>>已完成
+		<input type="checkbox" name="orderstatus" value="" <if condition="$order_data['orderstatus'] eq 0">checked</if>>未完成
+	</p>
+	<p>
+		发票状态:
+		<input type="checkbox" name="receipt" value="" <if condition="$order_data['receiptid'] neq 0">checked</if>>有发票
+		<input type="checkbox" name="receipt" value=""  <if condition="$order_data['receiptid'] eq 0">checked</if>>无发票
+	</p>
+	<p>
+		包装状态:
+		<input type="checkbox" name="pack" value="" <if condition="$order_data['packid'] neq 0">checked</if>>已包装
+		<input type="checkbox" name="pack" value="" <if condition="$order_data['packid'] eq 0">checked</if>>未包装
+	</p>
+	<p>
+		付款状态:
+		<input type="checkbox" name="ispay" value="" <if condition="$order_data['ispay'] eq 1">checked</if>>已付款
+		<input type="checkbox" name="ispay" value="" <if condition="$order_data['ispay'] eq 0">checked</if>>未付款
+	</p>
+	<p>
+		发货状态:
+		<input type="checkbox" name="isshipping" value="" <if condition="$order_data['isshipping'] eq 1">checked</if>>已发货
+		<input type="checkbox" name="isshipping" value="" <if condition="$order_data['isshipping'] eq 0">checked</if>>未发货
+	</p>
+	<p><div  id="modify_save" onclick=""></div>
+</form>
+</div>
+<script>
+	$('#modify_save').click(function() {
+
+		//获得订单号
+		var id = $('input[name=id]').val();
+		
+		//获取处理者姓名
+		var adminname = $('input[name=admin]').val();
+
+		//获取收件人姓名
+		var consignee = $('input[name=consignee]').val();
+
+		//获取订单表述信息
+		var desc = $('textarea[name=content]').val();
+
+		$.post("__CONTROLLER__/saveModify", {id : id, adminname : adminname, consignee : consignee, desc : desc}, function(data) {
+			$('.mod_order').html(data);
+		});
+	});
+</script>

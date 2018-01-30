@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>商品列表</title>
+	<link rel="stylesheet" href="__PUBLIC__/Home/Css/header.css">
+	<link rel="stylesheet" href="__PUBLIC__/Home/Css/goodslist.css">
+	<link rel="stylesheet" href="__PUBLIC__/Home/Css/footer.css">
+	<script src="__PUBLIC__/Home/Js/jquery.js"></script>
+</head>
+<body>
+	<!-- 载入头文件 -->
+	<include file="public/header" />
+
+	<!-- main部分 -->
+	<div id="goods_content">
+		<!-- 频道导航 -->
+		<div id="main_minNav">
+			<h1>
+				<a class="track" href="javascript:">女装频道</a>
+			</h1>
+			<div class="navList">
+				<ul>
+					<li>
+						<a href="javascript:">衬衫</a>
+					</li>
+					<li>
+						<a href="javascript:">T恤</a>
+					</li>
+					<li>
+						<a href="javascript:">卫衣</a>
+					</li>
+					<li>
+						<a href="javascript:">裙装</a>
+					</li>
+					<li>
+						<a href="javascript:">帆布鞋</a>
+					</li>
+					<li>
+						<a href="javascript:">针织衫</a>
+					</li>
+					<li>
+						<a href="javascript:">裤装</a>
+					</li>
+					<li>
+						<a href="javascript:">法兰绒</a>
+					</li>
+					<li>
+						<a href="javascript:">全部商品</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 左边列表部分 -->
+		<div id="goods_leftList">
+			<!-- 商品筛选盒子 -->
+			<div class="left_filtrateBox">
+				<div class="filtrate_Category">
+					<h2>
+						<a href="javascript:">重置筛选项</a>
+						<span>衬衫</span>
+					</h2>
+
+					<dl>
+						<dt>品牌</dt>
+						<dd>
+							<a href="javascript:">vancl 凡客诚品</a>
+						</dd>
+					</dl>
+
+
+					<dl>
+						<dt>风格</dt>
+						<dd>
+							<a href="javascript:">日系</a>
+						</dd>
+						<dd>
+							<a href="javascript:">韩系</a>
+						</dd>
+						<dd>
+							<a href="javascript:">时尚</a>
+						</dd>
+						<dd>
+							<a href="javascript:">OL</a>
+						</dd>
+					</dl>
+
+					<dl>
+						<dt>版型</dt>
+						<dd>
+							<a href="javascript:">修身</a>
+						</dd>
+						<dd>
+							<a href="javascript:">标准</a>
+						</dd>
+					</dl>
+
+					<!-- 频道搜索 -->
+					<div class="list_search">
+						<input type="text" value="频道内搜索">
+						<input type="button">
+					</div>
+				</div>
+			</div>
+
+			<div class="left_order">
+				<div class="list_title">
+					<h2>
+						<span>一周销量排行</span>
+					</h2>
+				</div>
+
+				<div class="list_detail">
+					<div>
+						<span class="blank"></span>
+						<ul>
+							<li class="topImgs">
+								<a href="javascript:">
+									<img src="__PUBLIC__/Home/Images/0538827-1j201307051156146001.jpg" alt="">
+								</a>
+							</li>
+							<li class="topWord">
+								<p>
+									<span>1</span>
+								</p>
+								<p class="list_name">
+									<a href="javascript:">[VT]基础素色背心(女款..</a>
+								</p>
+								<span class="blank"></span>
+								<p class="Sprice">售价：￥9</p>
+							</li>
+						</ul>
+
+						<span class="blank"></span>
+						<ul>
+							<li class="topImgs">
+								<a href="javascript:">
+									<img src="__PUBLIC__/Home/Images/0538827-1j201307051156146001.jpg" alt="">
+								</a>
+							</li>
+							<li class="topWord">
+								<p>
+									<span>1</span>
+								</p>
+								<p class="list_name">
+									<a href="javascript:">[VT]基础素色背心(女款..</a>
+								</p>
+								<span class="blank"></span>
+								<p class="Sprice">售价：￥9</p>
+							</li>
+						</ul>
+
+						<span class="blank"></span>
+						<ul>
+							<li class="topImgs">
+								<a href="javascript:">
+									<img src="__PUBLIC__/Home/Images/0538827-1j201307051156146001.jpg" alt="">
+								</a>
+							</li>
+							<li class="topWord">
+								<p>
+									<span>1</span>
+								</p>
+								<p class="list_name">
+									<a href="javascript:">[VT]基础素色背心(女款..</a>
+								</p>
+								<span class="blank"></span>
+								<p class="Sprice">售价：￥9</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+
+			
+			<div class="left_order">
+				<div class="list_title">
+					<h2>
+						<span>您可能感兴趣的商品</span>
+					</h2>
+				</div>
+
+				<div class="list_detail">
+					<div>
+						<span class="blank"></span>
+						<ul>
+							<li class="topImgs">
+								<a href="javascript:">
+									<img src="__PUBLIC__/Home/Images/0538827-1j201307051156146001.jpg" alt="">
+								</a>
+							</li>
+							<li class="topWord">
+								<p>
+									<span>1</span>
+								</p>
+								<p class="list_name">
+									<a href="javascript:">[VT]基础素色背心(女款..</a>
+								</p>
+								<span class="blank"></span>
+								<p class="Sprice">售价：￥9</p>
+							</li>
+						</ul>
+
+						<span class="blank"></span>
+						<ul>
+							<li class="topImgs">
+								<a href="javascript:">
+									<img src="__PUBLIC__/Home/Images/0538827-1j201307051156146001.jpg" alt="">
+								</a>
+							</li>
+							<li class="topWord">
+								<p>
+									<span>1</span>
+								</p>
+								<p class="list_name">
+									<a href="javascript:">[VT]基础素色背心(女款..</a>
+								</p>
+								<span class="blank"></span>
+								<p class="Sprice">售价：￥9</p>
+							</li>
+						</ul>
+
+						<span class="blank"></span>
+						<ul>
+							<li class="topImgs">
+								<a href="javascript:">
+									<img src="__PUBLIC__/Home/Images/0538827-1j201307051156146001.jpg" alt="">
+								</a>
+							</li>
+							<li class="topWord">
+								<p>
+									<span>1</span>
+								</p>
+								<p class="list_name">
+									<a href="javascript:">[VT]基础素色背心(女款..</a>
+								</p>
+								<span class="blank"></span>
+								<p class="Sprice">售价：￥9</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="left_order">
+				<div class="list_title">
+					<h2>
+						<span>最近浏览过的商品</span>
+					</h2>
+				</div>
+
+				<div class="list_detail">
+					<div>
+						<span class="blank"></span>
+						<ul>
+							<li class="topImgs">
+								<a href="javascript:">
+									<img src="__PUBLIC__/Home/Images/0538827-1j201307051156146001.jpg" alt="">
+								</a>
+							</li>
+							<li class="topWord">
+								<p>
+									<span>1</span>
+								</p>
+								<p class="list_name">
+									<a href="javascript:">[VT]基础素色背心(女款..</a>
+								</p>
+								<span class="blank"></span>
+								<p class="Sprice">售价：￥9</p>
+							</li>
+						</ul>
+
+						<span class="blank"></span>
+						<ul>
+							<li class="topImgs">
+								<a href="javascript:">
+									<img src="__PUBLIC__/Home/Images/0538827-1j201307051156146001.jpg" alt="">
+								</a>
+							</li>
+							<li class="topWord">
+								<p>
+									<span>1</span>
+								</p>
+								<p class="list_name">
+									<a href="javascript:">[VT]基础素色背心(女款..</a>
+								</p>
+								<span class="blank"></span>
+								<p class="Sprice">售价：￥9</p>
+							</li>
+						</ul>
+
+						<span class="blank"></span>
+						<ul>
+							<li class="topImgs">
+								<a href="javascript:">
+									<img src="__PUBLIC__/Home/Images/0538827-1j201307051156146001.jpg" alt="">
+								</a>
+							</li>
+							<li class="topWord">
+								<p>
+									<span>1</span>
+								</p>
+								<p class="list_name">
+									<a href="javascript:">[VT]基础素色背心(女款..</a>
+								</p>
+								<span class="blank"></span>
+								<p class="Sprice">售价：￥9</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- 右边商品部分 -->
+		<div id="goods_rightList">
+			<!-- 工具栏部分 -->
+			<div id="toolbar">
+				<!-- 浮动div -->
+				<div id="floatDiv" style="background-color: rgb(255, 255, 255); z-index: 100; position: static; top: 0px;">
+					<div id="filterBox">
+						<div id="filter_top">
+							<div id="filter_top_left">
+								<h3>排序：</h3>
+								<div id="filter_order">
+									<a href="javascript:" class="order_more">默认</a>
+									<a href="javascript:" class="order_sales">销量</a>
+									<a href="javascript:" class="order_price">价格</a>
+									<a href="javascript:" class="order_reputation">好评</a>
+									<a href="javascript:" class="order_newest">最新</a>
+								</div>
+							</div>
+							<div id="filter_top_right">
+								<div id="pageDiv">
+									<span>相关产品<strong>1235</strong>款</span>
+									<span>
+										<a href="javascript:" class="page_prev"></a>
+									</span>
+									<span>1/234</span>
+									<span>
+										<a href="javascript:" class="page_next"></a>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div id="filter_bottom">
+							<div id="bottom_left">
+								配送方式：
+								<span>
+									<input type="radio" name="radio">全部
+								</span>
+								<span>
+									<input type="radio" name="radio">凡客配送
+								</span>
+								<span>
+									<input type="radio" name="radio">第三方配送
+								</span>
+							</div>
+
+							<div id="bottom_price">
+								<h3>价格：</h3>
+								<div id="price_input">
+									<div id="price_search">
+										<input type="text" title="按价格区间筛选 最低价">
+										<span>—</span>
+										<input type="text" title="按价格区间筛选 最高价">
+									</div>
+									<div id="price_foused">
+										<p>
+											<span class="searchbarBtnCommon">清空</span>
+											<span class="searchbarBtnStrong"></span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 商品详细列表部分 -->
+			<div id="productList">
+				<ul>
+					<li>
+						<strong>
+							<a href="javascript:">
+								<img src="http://p2.vanclimg.com/222/222/product/0/5/5/0553057/big/0553057-1j201307051144347341.jpg">
+							</a>
+						</strong>
+						<p class="product_name">
+							<a href="javascript:">[VT]印花T恤 lovely car(女款) 冰蓝色 冰蓝色 冰蓝色</a>
+						</p>
+						<p class="product_price">
+							<del>市场价 ￥128</del>
+							<strong>售价 ￥95</strong>
+						</p>
+						<p class="storeinfo">
+							<span></span>
+							<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+						</p>
+						<div></div>
+					</li>
+					<li>
+						<strong>
+							<a href="javascript:">
+								<img src="http://p2.vanclimg.com/222/222/product/0/5/5/0553057/big/0553057-1j201307051144347341.jpg">
+							</a>
+						</strong>
+						<p class="product_name">
+							<a href="javascript:">[VT]印花T恤 lovely car(女款) 冰蓝色 冰蓝色 冰蓝色</a>
+						</p>
+						<p class="product_price">
+							<del>市场价 ￥128</del>
+							<strong>售价 ￥95</strong>
+						</p>
+						<p class="storeinfo">
+							<span></span>
+							<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+						</p>
+						<div></div>
+					</li>
+					<li>
+						<strong>
+							<a href="javascript:">
+								<img src="http://p2.vanclimg.com/222/222/product/0/5/5/0553057/big/0553057-1j201307051144347341.jpg">
+							</a>
+						</strong>
+						<p class="product_name">
+							<a href="javascript:">[VT]印花T恤 lovely car(女款) 冰蓝色 冰蓝色 冰蓝色</a>
+						</p>
+						<p class="product_price">
+							<del>市场价 ￥128</del>
+							<strong>售价 ￥95</strong>
+						</p>
+						<p class="storeinfo">
+							<span></span>
+							<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+						</p>
+						<div></div>
+					</li>
+					<li>
+						<strong>
+							<a href="javascript:">
+								<img src="http://p2.vanclimg.com/222/222/product/0/5/5/0553057/big/0553057-1j201307051144347341.jpg">
+							</a>
+						</strong>
+						<p class="product_name">
+							<a href="javascript:">[VT]印花T恤 lovely car(女款) 冰蓝色 冰蓝色 冰蓝色</a>
+						</p>
+						<p class="product_price">
+							<del>市场价 ￥128</del>
+							<strong>售价 ￥95</strong>
+						</p>
+						<p class="storeinfo">
+							<span></span>
+							<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+						</p>
+						<div></div>
+					</li>
+					<li>
+						<strong>
+							<a href="javascript:">
+								<img src="http://p2.vanclimg.com/222/222/product/0/5/5/0553057/big/0553057-1j201307051144347341.jpg">
+							</a>
+						</strong>
+						<p class="product_name">
+							<a href="javascript:">[VT]印花T恤 lovely car(女款) 冰蓝色 冰蓝色 冰蓝色</a>
+						</p>
+						<p class="product_price">
+							<del>市场价 ￥128</del>
+							<strong>售价 ￥95</strong>
+						</p>
+						<p class="storeinfo">
+							<span></span>
+							<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+						</p>
+						<div></div>
+					</li>
+					<li>
+						<strong>
+							<a href="javascript:">
+								<img src="http://p2.vanclimg.com/222/222/product/0/5/5/0553057/big/0553057-1j201307051144347341.jpg">
+							</a>
+						</strong>
+						<p class="product_name">
+							<a href="javascript:">[VT]印花T恤 lovely car(女款) 冰蓝色 冰蓝色 冰蓝色</a>
+						</p>
+						<p class="product_price">
+							<del>市场价 ￥128</del>
+							<strong>售价 ￥95</strong>
+						</p>
+						<p class="storeinfo">
+							<span></span>
+							<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+						</p>
+						<div></div>
+					</li>
+					<li>
+						<strong>
+							<a href="javascript:">
+								<img src="http://p2.vanclimg.com/222/222/product/0/5/5/0553057/big/0553057-1j201307051144347341.jpg">
+							</a>
+						</strong>
+						<p class="product_name">
+							<a href="javascript:">[VT]印花T恤 lovely car(女款) 冰蓝色 冰蓝色 冰蓝色</a>
+						</p>
+						<p class="product_price">
+							<del>市场价 ￥128</del>
+							<strong>售价 ￥95</strong>
+						</p>
+						<p class="storeinfo">
+							<span></span>
+							<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+						</p>
+						<div></div>
+					</li>
+					<li>
+						<strong>
+							<a href="javascript:">
+								<img src="http://p2.vanclimg.com/222/222/product/0/5/5/0553057/big/0553057-1j201307051144347341.jpg">
+							</a>
+						</strong>
+						<p class="product_name">
+							<a href="javascript:">[VT]印花T恤 lovely car(女款) 冰蓝色 冰蓝色 冰蓝色</a>
+						</p>
+						<p class="product_price">
+							<del>市场价 ￥128</del>
+							<strong>售价 ￥95</strong>
+						</p>
+						<p class="storeinfo">
+							<span></span>
+							<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+						</p>
+						<div></div>
+					</li>
+					<li>
+						<strong>
+							<a href="javascript:">
+								<img src="http://p2.vanclimg.com/222/222/product/0/5/5/0553057/big/0553057-1j201307051144347341.jpg">
+							</a>
+						</strong>
+						<p class="product_name">
+							<a href="javascript:">[VT]印花T恤 lovely car(女款) 冰蓝色 冰蓝色 冰蓝色</a>
+						</p>
+						<p class="product_price">
+							<del>市场价 ￥128</del>
+							<strong>售价 ￥95</strong>
+						</p>
+						<p class="storeinfo">
+							<span></span>
+							<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+						</p>
+						<div></div>
+					</li>
+					<li>
+						<strong>
+							<a href="javascript:">
+								<img src="http://p2.vanclimg.com/222/222/product/0/5/5/0553057/big/0553057-1j201307051144347341.jpg">
+							</a>
+						</strong>
+						<p class="product_name">
+							<a href="javascript:">[VT]印花T恤 lovely car(女款) 冰蓝色 冰蓝色 冰蓝色</a>
+						</p>
+						<p class="product_price">
+							<del>市场价 ￥128</del>
+							<strong>售价 ￥95</strong>
+						</p>
+						<p class="storeinfo">
+							<span></span>
+							<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+						</p>
+						<div></div>
+					</li>
+					<li>
+						<strong>
+							<a href="javascript:">
+								<img src="http://p2.vanclimg.com/222/222/product/0/5/5/0553057/big/0553057-1j201307051144347341.jpg">
+							</a>
+						</strong>
+						<p class="product_name">
+							<a href="javascript:">[VT]印花T恤 lovely car(女款) 冰蓝色 冰蓝色 冰蓝色</a>
+						</p>
+						<p class="product_price">
+							<del>市场价 ￥128</del>
+							<strong>售价 ￥95</strong>
+						</p>
+						<p class="storeinfo">
+							<span></span>
+							<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+						</p>
+						<div></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="clears"></div>
+
+	<!-- 载入脚文件 -->
+	<include file="public/footer" />
+</body>
+</html>

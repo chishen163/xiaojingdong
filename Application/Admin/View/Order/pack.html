@@ -1,0 +1,40 @@
+<div class="modify_title">生成包装：</div>
+<form action="" class="modify_frm" id="pack_frm">
+	<p>订单编号：<input type="text" value="{$order_data.ordersn}" name="ordersn" class="pack_ordersn"><span class="pack_msg">系统提供，请勿更改</span></p>
+	<p>包装名称：<input type="text" value="{$pack_data.packname}" name="packname" class="pack_name"><span class="pack_msg"></span></p>
+	<p>包装费用：<input type="number" value="{$pack_data.packfee}" name="packfee" class="pack_fee" min="0"><span class="pack_msg">只允许数字</span></p>
+	<p>免费额度：<input type="number" value="{$pack_data.packfree}" name="packfree" class="pack_free" min="0"><span class="pack_msg">只允许数字</span></p>
+	<p><input type="hidden" name="userid" value="{$order_data.userid}" id="pack_userid"></p>
+	<p>包装描述：<br>
+		<textarea name="packdesc" id="pack_desc" cols="100" rows="5">{$pack_data.packdesc}</textarea><span class="pack_msg"></span>
+	</p>
+	<p><div id="sure_combine" onclick="combine()">确认生成</div></p>
+</form>
+<script>
+	function combine() {
+		
+		//简单判断这些值是否已经填写完毕
+		if ($('.pack_name').val() == '') {
+			$('.pack_msg').eq(1).text("需要输入包装名称");
+		} else if ($('.pack_fee').val() == '') {
+			$('.pack_msg').eq(2).text("需要提供包装费");
+		} else if ($('.pack_free').val() == '') {
+			$('.pack_msg').eq(3).text("需要提供免费额度值");
+		} else if ($('3pack_desc').val() == '') {
+			$('.pack_msg').eq(4).text("需要包装描述");
+		} else {
+
+			//获取这些输入值，以便于发送到控制器中
+			var ordersn = $('.pack_ordersn').val();
+			var pack_name = $('.pack_name').val();
+			var pack_fee = $('.pack_fee').val();
+			var pack_free = $('.pack_free').val();
+			var pack_desc = $('#pack_desc').val();
+			var pack_userid = $('#pack_userid').val();
+			
+			$.post("__CONTROLLER__/buildPack", {ordersn : ordersn, userid : pack_userid, name : pack_name, fee : pack_fee, free : pack_free, desc : pack_desc}, function(data) {
+				$('.order_main').html(data);
+			});
+		}
+	}
+</script>

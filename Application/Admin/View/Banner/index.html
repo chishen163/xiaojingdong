@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>广告设置</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/Css/f_banner.css">
+	<script src="__PUBLIC__/Home/Js/jquery.js"></script>
+</head>
+<body>
+	<div id="banner_box">
+		<div id="banner_title">广告列表</div>
+	</div>
+	<div>
+		<table border=1>
+			<tr>
+				<th>ID</th>
+				<th>图片地址</th>
+				<th>显示位置</th>
+				<th>链接地址</th>
+				<th>是否显示</th>
+				<th>打开方式</th>
+				<th>添加时间</th>
+				<th>排序</th>
+				<th>操作</th>
+			</tr>
+			<foreach name="list" item="list">
+				<tr>
+					<td>{$list['id']}</td>
+					<td>{$list['address']}</td>
+					<td>{$list['display']}</td>
+					<td>{$list['links']}</td>
+					<td>{$list['isshow']}</td>
+					<td>{$list['opentype']}</td>
+					<td>{$list['addtime']}</td>
+					<td>{$list['orders']}</td>
+					<td>修改 | 删除</td>
+				</tr>
+			</foreach>
+		</table>
+	</div>
+</body>
+</html>

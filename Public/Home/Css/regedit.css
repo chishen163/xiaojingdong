@@ -1,0 +1,194 @@
+*{
+	margin:0px;
+	padding:0px;
+}
+
+/*top部分*/
+#regedit_top{
+	width:980px;
+	height:35px;
+	margin:20px auto 20px;
+}
+
+
+/*middle部分*/
+#regedit_middle{
+	width:980px;
+	height:530px;
+	border:1px solid #cdcdcd;
+	margin:auto;
+}
+.regedit_middle_div1{
+	height:29px;
+	background:#f4f4f4;
+	text-indent:15px;
+	border-bottom:1px solid #cdcdcd;
+	line-height:29px;
+}
+.middle_left{
+	width:767px;
+	height:500px;
+	float:left;
+	border-right:1px solid #cdcdcd;
+}
+.middle_left>center{
+	width:685px;
+	height:440px;
+	margin:30px auto 30px;
+}
+.regedit_method{
+	height:45px;
+	width:685px;
+	line-height:45px;
+	padding-bottom:10px;
+	border-bottom:1px dashed #cdcdcd;
+}
+.method_selector{
+	height:45px;
+	width:145px;
+	float:left;
+	font-size:14px;
+	color:#666666;
+}
+.method_selector>img{
+	margin-top:10px;
+	display:block;
+	float:left;
+}
+.method_selector>p{
+	margin-left:15px;
+	width:120px;
+}
+.method_selector1{
+	height:45px;
+	width:500px;
+	float:left;
+}
+.method1>img,.method2>img{
+	margin-left:10px;
+	float:left;
+}
+
+/*填写信息部分*/
+#regedit_info{
+	overflow:hidden;
+	width:685px;
+}
+#write_info{
+	width:135px;
+	height:50px;
+	line-height:50px;
+	margin-top:20px;
+	float:left;
+	font-size:14px;
+	color:#666666;
+}
+#write_info>img{
+	display:block;
+	float:left;
+	margin-top:10px;
+}
+#user_info_first{
+	margin-top:20px;
+}
+.user_info{
+	height:60px;
+	width:550px;
+	float:right;
+}
+.titl{
+	height:60px;
+	width:100px;
+	line-height:30px;
+}
+.prompt_info{
+	height:37px;
+	width:445px;
+	text-align:left;
+	margin-left:5px;
+	line-height:37px;
+}
+.user_info>span{
+	display:block;
+	float:left;
+	font-size:13px;
+}
+.user_info>input{
+	margin-left:5px;
+	float:left;
+	height:23px;
+}
+.user_info>input{
+	width:230px;
+}
+
+/*验证码*/
+#code1{
+	height:25px;
+	width:130px;
+	margin-right:100px;
+}
+#ppt{
+	width:230px;
+}
+
+/*提交按钮部分*/
+.user_btn{
+	height:60px;
+	width:450px;
+	line-height:35px;
+	margin-left:50px;
+}
+.user_btn>p{
+	float:left;
+	margin-left:100px;
+	font-size:13px;
+}
+.user_btn>p>a{
+	text-decoration:none;
+	color:#900000;
+}
+.user_btn>p>a:hover{
+	text-decoration:underline;
+}
+.user_btn>input{
+	float:left;
+	margin-left:100px;
+	background:#900000;
+	border:1px solid #900000;
+	font-weight:bold;
+	color:white;
+}
+
+/*中间右侧部分*/
+.middle_right{
+	width:212px;
+	height:500px;
+	float:left;
+	background:#f4f4f4;
+	font-size:13px;
+}
+.middle_right>center>input{
+	width:50px;
+}
+.middle_right>center{
+	margin-top:150px;
+}
+
+/*bottom部分*/
+#regedit_bottom{
+	width:980px;
+	height:100px;
+	margin:20px auto auto;
+}
+#regedit_bottom>center>p{
+	margin:20px auto 25px;
+	color:#666666;
+	font-size:12px;
+}
+.bottom>a>img{
+	margin-left:15px;
+}
+.bottom>img{
+	margin-left:15px;
+}

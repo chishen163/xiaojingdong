@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<title>打印发货单</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/z_delivery.css">
+		<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+	</head>
+	<body>
+		<div id="delivery_main">
+			<div class="delivery_title">打印发货单：</div>
+			<div id="delivery_content">
+				<input type="hidden" name="id" value="{$delivery_data.id}">
+				<table class="delivery_modify">
+					<tr>
+						<th>收货人</th><td>{$delivery_data.consignee}</td><th>发货编号</th><td colspan="2">{$delivery_data.deliverysn}</td><th>送货方式</th><td>{$order_data.shiptype}</td>
+					</tr>
+					<tr>
+						<th>订单编号</th><td>{$order_data.ordersn}</td><th>开发票</th><td colspan="2"><if condition="$delivery_data['receiptid'] gt 0">有发票<else />无发票</if></td><th>付款方式</th><td>{$order_data.paytype}</td>
+					</tr>
+					<tr>
+						<th>包装编号</th><td>{$pack_data.ordersn}</td><th>包装费</th><td colspan="2">{$pack_data.packfee}</td><th>免费额</th><td>{$pack_data.packfree}</td>
+					</tr>
+					<tr>
+						<th>收货地址</th><td colspan="4">{$delivery_data.country} - {$delivery_data.pname} - {$delivery_data.cname} - {$delivery_data.county} - {$delivery_data.address}  {$delivery_data.zipcode} ({$delivery_data.consignee} 收) {$delivery_data.phone} </td><th>收货时间</th><td>{$order_data.besttime}</td>
+					</tr>
+					<tr>
+						<th colspan="2">商品名</th><th>数量</th><th>积分</th><th>促销价</th><th>商品价</th><th>小计</th>
+					</tr>
+
+					<foreach name="order_goods_data" item="goods">
+					<!-- 商品遍历开始 -->
+					<tr>
+						<td colspan="2">{$goods.name}</td>
+						<td>{$goods.num}</td>
+						<td>{$goods.integral}</td>
+						<td>{$goods.promoteprice}</td>
+						<td>{$goods.goodsprice}</td>
+						<td>{$goods['promoteprice'] * $goods['num']}</td>
+					</tr>
+					<assign name="total" value="$total += $goods['promoteprice'] * $goods['num']" />
+					<!-- 商品遍历结束 -->
+					</foreach>
+
+					<tr>
+						<th>发货备注</th><td colspan="6">{$delivery_data.desc}</td>
+					</tr>
+					<tr>
+						<th>总计</th><td colspan="4">商品总价格￥{$total}元 + 包装费￥{$pack_data['packfee']}元 - 免费额度￥{$pack_data['packfree']}元 = ￥{$total + $pack_data['packfee'] - $pack_data['packfree']}元</td><td colspan="2">发货单修改：{$delivery_data.starttime|date='Y-m-d H:i:s', ###}</td>
+					</tr>
+					<tr>
+						<th>发货开始时间</th><td colspan="2">{$delivery_data.starttime|date="Y-m-d H:i:s", ###}</td>
+						<th>发货结束时间</th><td colspan="2">{$delivery_data.endtime|date="Y-m-d H:i:s", ###}</td>
+						<td>处理者：{$delivery_data.adminname}</td>
+					</tr>
+				</table>
+				<div class="zl_sure">确认打印</div>
+			</div>
+		</div> 
+	</body>
+	<script>
+		$('.zl_sure').click(function() {
+			var did = $('input[name=id]').val();
+
+			$.post("__CONTROLLER__/subPrint", {id : did}, function(data) {
+				$('#delivery_main').html(data);
+			});
+		});
+	</script>
+</html>

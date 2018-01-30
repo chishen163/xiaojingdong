@@ -1,0 +1,102 @@
+<!-- 页面中加载的JS插件是大小写转换插件 -->
+<!doctype html>
+<html>
+	<head>
+		<title>完善发票单</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/z_delivery.css">
+		<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+		<script src="__PUBLIC__/Admin/Js/lower_upper.js"></script>
+	</head>
+	<body>
+		<div class="prefect">
+			<div class="receipt_title">完善发票：</div>
+			<form action="" class="prefect_frm" name="prefect_frm" id="form1">
+				<p><input type="hidden" value="{$receipt_data.id}" name="id"></p>
+				<p>发票编号：<input type="text" value="{$receipt_data.rec_sn}" name="rec_sn" size="50" disabled></p>
+				<p>订单编号：<input type="text" value="{$receipt_data.ordersn}" name="ordersn" disabled></p>
+				<p>用户姓名：<input type="text" value="{$user_data.username}" name="name" disabled></p>
+				<p>发票类型：<input type="text" value="{$receipt_data.user_type}" name="user_type"></p>
+				<p>发票标题：<input type="text" value="{$receipt_data.rec_title}" name="rec_title"></p>
+				<p>发票内容：<input type="text" value="{$receipt_data.rec_content}" name="rec_content" size="50"></p>
+				<p>
+					<table class="rceipt_list_table">
+						<tr>
+							<th>项目</th><th>单价</th><th>数量</th><th>金额</th>
+						</tr>
+
+						<!-- 商品遍历的开始 -->
+						<foreach name="order_goods_data" item="goods">
+						<tr>
+							<td>{$goods.name}</td>
+							<td class="td_center">￥{$goods.promoteprice}元</td>
+							<td class="td_center">{$goods.num}</td>
+							<td class="td_center">￥{$goods['promoteprice'] * $goods['num']}元</td>
+						</tr>
+						<assign name="total" value="$total += $goods['promoteprice'] * $goods['num']" />
+						</foreach>
+						<!-- 商品遍历的结束 -->
+					</table>
+				</p>
+				<p>收款单位：<input type="text" value="{$receipt_data.unit}" name="unit" size="50"></p>
+				<p>开票日期：
+					<input type="date" name="endtime" value="{$receipt_data.endtime}">
+				</p>
+				<p>开票人名：<input type="text" value="{$receipt_data.rec_name}" name="rec_name" size="50"></p>
+				<p>发票备注：<br>
+					<textarea name="rec_note" id="prefect_note" cols="80" rows="5">{$receipt_data.rec_note}</textarea>
+				</p>
+				<p>小写合计：<input type="text" value="{$total}" name="lower"></p>
+				<p>大写合计：<input type="text" value="" name="upper" size="50"></p>
+			</form>
+			<div class="prefect_change">确认修改</div>
+		</div>
+	</body>
+	<script>
+		//页面载入时将其大小写进行转化，并输入表单中
+		$(function() {
+
+			//获取小写合计，调用函数将其转化为人民币大写形式输入到页面中，同时存入数据库写入发票单里
+			var lower = $('input[name=lower]').val();
+			var upper = chineseNumber(lower);
+			$('input[name=upper]').val(upper);
+		})
+
+		$('.prefect_change').click(function() {
+
+			//获取发单id
+			var id = $('input[name=id]').val();
+
+			//获取发票类型
+			var user_type = $('input[name=user_type]').val();
+
+			//获取发票标题
+			var rec_title = $('input[name=rec_title]').val();
+
+			//获取发票内容
+			var rec_content= $('input[name=rec_content]').val();
+
+			//获取发票备注
+			var rec_note = $('textarea[name=rec_note]').val();
+
+			//获取收款单位
+			var unit = $('input[name=unit]').val();
+
+			//获取开票日期
+			var endtime = $('input[name=endtime]').val();
+
+			//获取开票人姓名
+			var rec_name= $('input[name=rec_name]').val();
+
+			//获取小写合计
+			var lower = $('input[name=lower]').val();
+
+			//获取大写合计
+			var upper = $('input[name=upper]').val();
+
+			$.post("__CONTROLLER__/endReceipt", {id : id, user_type : user_type, rec_title : rec_title, rec_content : rec_content, rec_note : rec_note, unit : unit, endtime : endtime, rec_name : rec_name, lower : lower, upper : upper}, function(data) {
+				$('.prefect').html(data);
+			});
+		});
+	</script>
+</html>

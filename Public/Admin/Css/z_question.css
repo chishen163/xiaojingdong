@@ -1,0 +1,223 @@
+#question_list {
+	float:left;
+	width:100%;
+}
+
+.z_question_search {
+	float:left;
+	width:100%;
+}
+
+.z_question_search > div {
+	float:left;
+	width:400px;
+	height:30px;
+	margin:10px 0 0 300px;
+}
+
+.z_question_search > div > div {
+	float:left;
+	width:300px;
+	height:30px;
+}
+
+.z_question_search > div > div  > span {
+	float:left;
+	width:100px;
+	height:30px;
+	font-size:12px;
+	line-height:30px;
+	text-align:right;
+}
+
+.z_question_search > div > div > input {
+	float:left;
+	width:200px;
+	height:20px;
+	margin:5px 0 0 0;
+}
+
+.z_question_search > div > button {
+	float:left;
+	width:50px;
+	height:22px;
+	margin:4px 0 0 0;
+	font-size:12px;
+}
+
+.question_skim {
+	float:left;
+	width:100%;
+	margin-top:10px;
+}
+
+.qt_table {
+	font-size:12px;
+}
+
+/*框架分页样式的修改开始*/
+.question_page {
+	text-align:right;
+}
+
+.question_page  a {
+	width:20px;
+	height:20px;
+	margin-left:10px;
+}
+
+.question_page span {
+	width:20px;
+	height:20px;
+	margin-left:10px;
+}
+/*框架分页样式的修改结束*/
+
+/*管理员回答提问和咨询页面*/
+.answer_show {
+	float:left;
+	width:100%;
+}
+
+.answer_title {
+	float:left;
+	width:100%;
+	height:30px;
+	margin:10px 0 0 0;
+	font-size:14px;
+	font-weight:bold;
+	text-indent:32px;
+	line-height:30px;
+	color:#6FA205;
+}
+
+.answer_frm {
+	float:left;
+	margin:10px 0 0 32px;
+	font-size:12px;
+	text-indent:32px;
+}
+
+.answer_text {
+	float:left;
+	margin-left:64px;
+}
+
+.answer_sub {
+	clear:left;
+	float:left;
+	width:120px;
+	height:30px;
+	margin:10px 0 32px 64px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:30px;
+	color:#ffffff;
+	text-align:center;
+	background:#a10000;
+}
+
+.answer_sub:hover {
+	cursor:pointer;
+}
+
+/*回复提问页面样式表*/
+.reply_list {
+	float:left;
+	width:100%;
+	background:url("../Images/w70.png");
+}
+
+.reply_title {
+	float:left;
+	width:100%;
+	height:30px;
+	margin-top:22px;
+	border-bottom:1px solid #cccccc;
+}
+
+.reply_title > span {
+	float:left;
+	width:100px;
+	height:30px;
+	margin-left:32px;
+	font-size:14px;
+	font-weight:bold;
+	color:#72A403;
+	line-height:30px;
+	border-bottom:2px solid #a10000;
+}
+
+.reply_con {
+	float:left;
+	width:100%;
+	min-height:100px;
+}
+
+.reply_tab {
+	float:left;
+	width:100%;
+	margin-top:10px;
+	font-size:12px;
+}
+
+.content_con {
+	width:300px;
+}
+
+.set_pass {
+	border-bottom:1px solid #cccccc;
+}
+
+.fpg {
+	float:right;
+	min-width:100px;
+	margin:10px 30px 0 0;
+	font-size:12px;
+	line-height:20px;
+	text-align:center;
+	border:1px solid #cccccc;
+}
+
+.fpg a {
+	float:left;
+	height:20px;
+	margin-left:10px;
+	text-align:center;
+}
+
+.fpg a:hover {
+	color:#a10000;
+	font-weight:bold;
+}
+
+.fpg span {
+	float:left;
+	width:20px;
+	height:20px;
+	margin-left:10px;
+}
+
+/*
+	回复详情样式表
+*/
+.reply_text {
+	margin-left:64px;
+}
+
+.bar_num {
+	font-size:12px;
+	font-weight:bold;
+	color:#a10000;
+}
+
+/*
+	商品评价样式表
+*/
+.gname {
+	width:200px;
+}
+
+.gcon {
+	width:200px;
+}

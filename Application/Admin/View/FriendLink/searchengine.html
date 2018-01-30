@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>链接搜索</title>
+ 			<style type="text/css">
+			body{
+				background:url('__PUBLIC__/Admin/Images/w70.png') repeat;
+			}
+			tr{
+				height:40px;
+				border-top:2px solid #f9f0e1;
+			}
+			table{
+				border-collapse:collapse;
+			}
+			tr:hover{
+				background:#f9f0e1;
+			}
+			.num{
+				font-size:20px;
+				margin-left:8px;
+			}
+			.current{
+				font-size:23px;
+				color:#d3a567;
+				margin-left:8px;
+			}
+			th{
+				color:#d39c59;
+			}
+		</style>
+	</head>
+	<body>
+		<center style="height:40px;line-height:40px;"><b style="color:#d39c59;font-size:30px;">链接搜索页</b></center>
+		<center>
+			<form action="__CONTROLLER__/delall" method="post">
+				<table width="1100" style="font-size:14px;">
+					<tr>
+						<th></th>
+						<th>ID</th>
+						<th>链接名称</th>
+						<th>链接URL</th>
+						<th>网站描述</th>
+						<th>排序值</th>
+						<th>是否显示</th>
+						<th>是否审核</th>
+						<th>打开方式</th>
+						<th>网站类型</th>
+						<th>网站管理员</th>
+						<th>操作</th>
+					</tr>
+					<foreach name="link" item="lk">
+						<tr>
+							<td><input type="checkbox" name="sel[]" class="selectorlink" value="{$lk.id}" /></td>
+							<td align="center">{$lk.id}</td>
+							<td>{$lk.linkname}</td>
+							<td>{$lk.url}</td>
+							<td>{$lk.introduction}</td>
+							<td align="center">{$lk.linkorder}</td>
+							<td align="center">{$lk.isshow}</td>
+							<td align="center">{$lk.passed}</td>
+							<td>{$lk.linktype}</td>
+							<th>{$lk.sitetype}</th>
+							<td align="center">{$lk.webadmin}</td>
+							<td align="center" width="80"><a href="__CONTROLLER__/mod/id/{$lk.id}">修改</a>|<a href="__CONTROLLER__/del/id/{$lk['id']}">删除</a></td>
+						</tr>
+					</foreach>
+					<tr>
+						<td colspan="9">
+							<input type="button" onclick="sel(1)" value="全选" />
+							<input type="button" onclick="sel(2)" value="反选" />
+							<input type="button" onclick="sel(3)" value="全不选" />
+							<input type="submit" value="批量删除" />
+							<!-- <input type="submit" value="批量修改" /> -->
+			</form>
+							<form action="" method="post" style="width:430px;float:right;">
+								<span style="margin-left:20px;">
+									<input type="search" name="keywords" style="width:230px;height:22px;margin-right:0px;" />
+									<input type="submit" value="搜索" style="height:22px;width:60px;margin-left:0px;background:#d7a769;border:1px solid #a9a9a9;cursor:pointer;margin-left:-8px;" />
+								</span>
+							</form>
+						</td>
+						<td colspan="3" align="center">{$page}</td>
+					</tr>				
+				</table>
+			
+		</center>
+	</body>
+	<script type="text/javascript">
+		var inp = document.getElementsByClassName("selectorlink");		
+		
+		function sel(args) {
+			var len = inp.length;
+
+			//当args =1时;设为全选状态
+			if (args == 1) {
+				for (var i = 0; i < len; i++) {
+					inp[i].checked = true;
+				}
+			}
+
+			//当args = 2时,设为反选状态
+			if (args == 2) {
+				for (var i = 0; i < len; i++) {
+				inp[i].checked = !inp[i].checked;
+				}
+			}
+
+			//当args = 3时,设为全不选状态
+			if (args == 3) {
+				for (var i = 0; i < len; i++) {
+					inp[i].checked = false;
+				}
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+	<head>
+		<title>发货单列表</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/bootstrap.css">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/z_delivery.css">
+		<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("tr:odd").addClass("odd");  /* 奇数行添加样式*/
+				$("tr:even").addClass("even"); /* 偶数行添加样式*/
+			})
+		</script>
+		<style>
+			.even { 
+				background:#FFF38F;
+			}  /* 偶数行样式*/
+			.odd { 
+				background:#FFFFEE;
+			}  /* 奇数行样式*/
+		</style>
+	</head>
+	<body>
+		<div id="delivery_main">
+			<div class="delivery_search">
+				<div class="delivery_search_left">
+					<span>请输入发货单编号：</span>
+					<input type="text" name="keywords" value="">
+				</div>
+				<button onclick="search()">搜索</button>
+			</div>
+			<div class="delivery_title">发货单：</div>
+			<div class="delivery_quick">
+				<button onclick="select('shipped')">已发货</button>
+				<button onclick="select('notship')">未发货</button>
+				<button>全部</button>
+			</div>
+			<div id="delivery_list">
+				<table class="table table-hover  delivery_table">
+					<tr>
+						<th>选择</th><th>发货单编号</th><th>订单编号</th><th>发票编号</th><th>收货人</th><th>处理人</th><th>生成时间</th><th>状态</th><th>操作</th>
+					</tr>
+
+					<foreach name="delivery_data" item="delivery">
+					<!-- 发货单遍历的开始 -->
+					<tr>
+						<td><input type="checkbox" value="{$delivery.id}" class="delivery_status"></td>
+						<td><a href="javascript:look('{$delivery.id}')">{$delivery.deliverysn}</a></td>
+						<td>{$delivery.ordersn}</td>
+						<td>{$delivery.rec_sn}</td>
+						<td>{$delivery.consignee}</td>
+						<td>{$delivery.adminname}</td>
+						<td>{$delivery.addtime|date="Y-m-d H:i:s", ###}</td>
+						<td>
+							<input type="checkbox" value="已处理" <if condition="$delivery['status'] eq 1">checked</if>>已处理
+							<input type="checkbox" value="已完成" <if condition="$delivery['finished'] eq 1">checked</if>>发货完成
+						</td>
+						<td><a href="javascript:modify('{$delivery.id}')">修改</a>|<a href="javascript:del('{$delivery.id}')">删除</a></td>
+					</tr>
+					<!-- 发货单遍历的结束 -->
+					</foreach>
+				</table>
+				<div class="delivery_operate">
+					<input type="button" value="全选" onclick="qx()">
+					<input type="button" value="反选" onclick="fx()">
+					<input type="button" value="全不选" onclick="qbx()">
+					<input type="button" value="删除" onclick="dels()">
+					<input type="button" value="设为已处理" onclick="action()">
+					<input type="button" value="设为发货完成" onclick="finished()">
+				</div>
+				<div class="delivery_fpage delivery_quick">{$page}</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		/*
+			定义一个函数，用来局部动态请求该页面，每次点击页码时都是局部刷新操作，
+			注意，不要自动调用一次该函数，否则会无限循环调用下去
+			但是修改了框架中的分页类，重新改名为Page_ajax.class.php
+			原分页类仍然是原名，不受影响
+		*/
+		function setPage(url) {
+			$.get(url, function(data) {
+				$('#delivery_main').html(data);
+			});
+		}
+
+		/*
+			全选，反选，全不选函数集合
+			选中元素的方式$('input[type=checkbox].delivery_status')，过滤掉后面的状态按钮
+		*/
+
+		//全选函数
+		function qx() {
+			$('input[type=checkbox].delivery_status').attr('checked', 'true');
+		}
+
+		//反选函数
+		function fx() {
+			var length = $('input[type=checkbox].delivery_status').length;
+			for(var i = 0; i < length; i++) {
+				$('input[type=checkbox].delivery_status').eq(i).attr('checked', !$('input[type=checkbox].delivery_status').eq(i).attr('checked')) ;
+			}
+		}
+
+		//全不选函数
+		function qbx() {
+			$('input[type=checkbox].delivery_status').removeAttr('checked');
+		}
+
+		//点击发货单编号时触发的方法
+		function look(id) {
+
+			//需要将该发货单的id号传递过去
+			$.post("__CONTROLLER__/look", {id : id}, function(data) {
+				$('#delivery_main').html(data);
+			});
+		}
+
+		//点击修改按钮时触发的方法
+		function modify(id) {
+
+			//需要将该发货单的id号传递过去
+			$.post("__CONTROLLER__/modify", {id : id}, function(data) {
+				$('#delivery_main').html(data);
+			});
+		}
+
+		function getIds() {
+
+			/*
+				此时需要通过js方式获取所有复选框的选中状态，并且获得其value值传递到控制器中去
+				算法是：先获取满足条件input输入框的个数
+				声明一个空数组用来存取每个输入框的id值
+				通过for循环遍历出所有满足条件的id值
+				注意要使用eq()来过滤，下标从0开始读取
+				然后使用jQuery中的ajax请求控制器中的方法，将订单表中的字段修改为已付款状态
+			*/
+			var length = $('input[type=checkbox].delivery_status:checked').length;
+			var ids = new Array();
+			for(var i = 0; i < length; i++) {
+				ids[i] = $('input[type=checkbox].delivery_status:checked').eq(i).val();
+			}
+
+			//返回一个数组给调用处
+			return ids;
+		}
+
+		//点击设为已处理时触发的方法
+		function action() {
+
+			//通过自定义函数获取选中项的id号
+			var ids = getIds();
+
+			$.post("__CONTROLLER__/action", {ids : ids, status : 'action'}, function(data) {
+				$('#delivery_main').html(data);
+			});
+		}
+
+		//点击设为已完成时触发的方法
+		function finished() {
+
+			//通过自定义函数获取选中项的id号
+			var ids = getIds();
+
+			$.post("__CONTROLLER__/action", {ids : ids, status : 'finished'}, function(data) {
+				$('#delivery_main').html(data);
+			});
+		}
+
+		/*
+			点击批量删除操作快捷方式时触发该函数，该函数将只删除发货单操作，
+			从底层删除，不能删除父级或同级关联数据，只有底层删除才会连同关联下级数据一并删除
+		*/
+		function dels() {
+
+			//调用自定义函数获得所有发货单id值
+			var ids = getIds();
+
+			if (confirm("你确认要删除发货单吗？")) {
+
+				$.post("__CONTROLLER__/dels", {ids : ids}, function(data) {
+					$('#delivery_main').html(data);
+				});
+			}
+		}
+
+		//点击操作选择中的单条删除操作，只是批量操作中的一种简单形式，请求同样的控制器方法即可
+		function del(id) {
+
+			if (confirm("你确认要删除发货单吗？")) {
+
+				$.post("__CONTROLLER__/dels", {id : id}, function(data) {
+					$('#delivery_main').html(data);
+				});
+			}
+		}
+
+		//点击搜索时触发该函数
+		function search() {
+			var sn = $('input[name=keywords]').val();
+
+			$.post("__CONTROLLER__/search", {sn : sn}, function(data) {
+				$('#delivery_main').html(data);
+			});
+		}
+
+		//点击筛选按钮已发货和未发货
+		function select(status) {
+
+			$.post("__CONTROLLER__/select", {status : status}, function(data) {
+				$('#delivery_main').html(data);
+			});
+		}
+	</script>
+</html>

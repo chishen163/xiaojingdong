@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加商品</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/Css/Goods/addslide.css">
+	<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+     <script src='__PUBLIC__/jquery.uploadify.min.js'></script>
+</head>
+<body>
+	<div id="content_box">
+		<table border=1>
+		<form id="slide_form">
+			<!-- <caption>添加广告</caption> -->
+			<tr>
+				<td>广告位置：</td>
+				<td>
+					<select id="category" name="cid">
+
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td>链接地址：</td>
+				<td><input id="links" name="links" type="text" required="required"></td>
+			</tr>
+
+			<tr>
+				<td>是否显示：</td>
+				<td>
+					<label for="displays1"><input name="display" id="displays1" required="required" type="radio" checked value="1">显示</label>
+					<label for="displays2"><input name="display" id="displays2" required="required" type="radio" value="2">不显示</label>
+				</td>
+			</tr>
+
+			<tr>
+				<td>打开方式：</td>
+				<td>
+					<select name="opentype" id="opentype">
+						<option value="1">新窗口打开</option>
+						<option value="2">父窗口打开</option>
+						<option value="3">当前窗口打开</option>
+						<option value="4">顶级窗口打开</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td>广告排序：</td>
+				<td>
+					<input name="orders" type="text" required="required">
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="3" style="text-align:center;">
+					<input id="subbtn" type="button" value="提交">
+				</td>
+			</tr>
+		</form>
+		</table>
+
+		<div id="img_right" onfocus="this.blur();">
+			<img src="__PUBLIC__/Admin/Images/ico.ooopic.com.png" class="img_logo" title="" border="0" onfocus="this.blur();">
+			<input id="file_upload" name="file_upload" type="file" value="" onfocus="this.blur();" border="0">
+		</div>
+	</div>
+</body>
+<script>
+	$.get("__CONTROLLER__/getBanner",function(data){
+		add_options(data);
+	},"json");
+
+	$("#category").change(function(){
+		alert($(this).val());
+	});
+
+	function add_options(data){
+		var options = "";
+		options += "<option value='0'>首页</option>";
+		for(var i=0;i<data.length;i++){
+			options += "<option value=\""+data[i]['id']+"\">"+data[i]['name']+"</option>";
+		}
+		$("#category").empty().append(options);
+	}
+
+
+
+//----------------------------------------------------------------------------------------------
+
+	for(var i=0;i<$("input[type='text']").length;i++){
+		$("input[type='text']")[i].index = i;
+		$("input[type='text']").eq(i).blur(function(){
+			if($(this).val() == ""){
+				$(this).css("border-bottom-color","red");
+				$(this).attr("placeholder","此项为必填项");
+			}else{
+				$(this).css("border-bottom-color","#A8732F");
+			}
+		});
+	}
+
+
+	// $("#category").change(function(){
+	// 	if($(this).val() == 0){
+	// 		$("#plate").empty().append("<option>请选择</option>");
+	// 	}
+	// 	$.get("__CONTROLLER__/getPlate",{id:$("#category").attr("value")},function(data){
+	// 		var options = "";
+	// 			options += "<option value=\"0\">请选择</option>";
+	// 		for(var i=0;i<data.length;i++){
+	// 			options += "<option value="+data[i]['id']+">"+data[i]['listName']+"</option>";
+	// 		}
+	// 		$("#plate").empty().append(options);
+	// 	},"json");
+	// });
+
+
+	// 提交按钮
+	$("#subbtn").click(function(){
+		var v_data = $("#slide_form").serialize()+"&address="+$(".img_logo").attr("title");
+		if($(".img_logo").attr("title") == ""){
+			alert("请选择商品图片！");
+			return false;
+		}else{
+			if($("input[type='text']").val() != ""){
+				$.ajax({
+		               url: "getAdd",     
+		               data: v_data,  
+		               type:"post",  
+		               async: false,
+		               success: function(data) {
+		                   alert(data['info']);
+		                   location.href = "__CONTROLLER__/" + data['url'];
+		               },
+		               error: function(data) {
+		               	alert("添加广告失败，请重试！");
+		               }
+		           });
+			}else{
+				alert("亲,请将广告信息填写完整！^_^");
+			}	
+		}
+	});
+
+
+		$('#file_upload').uploadify({
+	        	'swf'      : '__PUBLIC__/uploadify.swf',
+	        	'uploader' : '{:U("AddSlide/upload")}',
+	        	'buttonText' : '',
+	        	 'multi'    : false,
+	        	'onUploadSuccess' : function(file, data, response) {
+	            $(".img_logo").attr("src","__PUBLIC__/Home/Images/slide/"+data.substring(0,17));
+	            $(".img_logo").attr("title",data.substring(0,17));
+        	}
+    	});
+
+
+	//设置flash插件属性
+	$("#chajian").css({"position":"relative","overflow":"hidden"});
+	$("#SWFUpload_0").attr("height",$(".img_logo").height());
+	$("#SWFUpload_0").attr("width",$(".img_logo").width());
+	$("#SWFUpload_0").removeAttr("style");
+	$("#SWFUpload_0").css({"position":"absolute","top":"50px","right":"90px","cursor":"pointer"});
+	$("#file_upload").removeAttr("style");
+	$("#file_upload").css({"background":"red","overflow":"hidden"});
+	$("#file_upload-button").removeAttr("style");
+	$("#file_upload-button").css("display","none");
+	$("#file_upload-queue").removeAttr("class");
+	$("#file_upload-queue").removeAttr("id");
+	$("#SWFUpload_0").attr("onfocus","this.blur()");
+		
+</script>
+</html>

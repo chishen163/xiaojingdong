@@ -1,0 +1,15 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+
+.the_same_style{
+	font-size:14px;
+	margin-top:10px;
+	height:30px;
+	line-height:30px;
+}
+.user_all_inp{
+	height:20px;
+	width:200px;
+}

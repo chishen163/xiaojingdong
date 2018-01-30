@@ -1,0 +1,479 @@
+a {
+	text-decoration:none;
+}
+
+.z_myorder_main {
+	width:1200px;
+	height:auto;
+	overflow:hidden;
+	margin:0px auto;
+}
+
+/*重置进度条*/
+.z_status_rleft {
+	width:190px;
+	background:url("../Images/z_step_status.png") 0px -30px no-repeat;
+	background-color:#EEEEEE;
+}
+
+.z_status_rmiddle {
+	width:183px;
+	color:white;
+	background:url("../Images/z_step_status.png") -190px -30px no-repeat;
+	background-color:#EEEEEE;
+}
+
+.z_status_rright {
+	width:180px;
+	background:url("../Images/z_step_status.png")  -370px -30px no-repeat;
+	background:#EEEEEE;
+}
+
+/*收货地址*/
+.myorder_address {
+	float:left;
+	width:1198px;
+	min-height:300px;
+	margin-top:10px;
+	color:#656565;
+	border:1px solid #DCDFE5;
+}
+
+/*增加新的收货地址*/
+.myorder_address > div {
+	float:left;
+	width:1140px;
+	height:auto;
+	overflow:hidden;
+	margin-top:10px;
+}
+
+.myorder_address > div > span {
+	float:left;
+	display:block;
+	width:150px;
+	min-height:30px;
+	font-size:16px;
+	font-weight:bold;
+	line-height:30px;
+	text-indent:16px;
+}
+
+.add_order_address {
+	float:left;
+	width:1140px;
+	min-height:80px;
+	margin-left:20px;
+	border:1px solid #DCDFE5;
+	background:#FAFAFA;
+}
+
+/*地址表单*/
+.z_new_address {
+	float:left;
+	width:1180px;
+	text-indent:64px;
+	font-size:12px;
+}
+
+.select_exists_place {
+	height:40px;
+	padding-top:10px;
+	background:#F9E1E1;
+}
+
+.is_write {
+	display:none;
+	float:left;
+	width:1000px;
+	min-height:200px;
+}
+
+.z_msg {
+	float:left;
+	width:500px;
+	height:auto;
+	overflow:hiddn;
+	margin-left:200px;
+}
+
+.z_new_address  p {
+	float:left;
+	width:1180px;
+	margin-top:10px;
+}
+
+/*保存并配送到这个地址*/
+.address_save {
+	float:left;
+	width:180px;
+	height:30px;
+	margin-left:70px;
+	color:#FFFFFF;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+	background:#A10000;
+}
+
+.address_save:hover {
+	cursor:pointer;
+}
+
+/*详细地址信息填写*/
+.detial_address {
+	width:400px;
+}
+
+/*配送方式*/
+.add_option {
+	float:left;
+	width:1100px;
+	height:auto;
+	overflow:hidden;
+}
+
+.z_msg_content {
+	font-size:12px;
+	line-height:30px;
+}
+
+.z_modify {
+	float:right;
+	font-size:12px;
+	line-height:30px;
+}
+
+#position_info {
+
+}
+
+/*选择配送方式的表格*/
+.z_table {
+	float:left;
+	width:1000px;
+	line-height:20px;
+	margin-left:100px;
+	border:1px solid #cccccc;
+}
+
+.z_table tr {
+	margin-top:10px;
+}
+
+.z_table th {
+	width:100px;
+	height:20px;
+	font-size:12px;
+}
+
+.z_table td {
+	font-size:12px;
+}
+
+.z_table input {
+	vertical-align:middle;
+}
+
+.z_table button {
+	width:100px;
+	height:20px;
+	background:#a10000;
+	font-size:12px;
+	font-weight:bold;
+	color:white;
+}
+
+.z_table button:hover {
+	cursor:pointer;
+}
+
+/*选择付款方式的表格*/
+.z_table_pay {
+	float:left;
+	width:1000px;
+	line-height:20px;
+	margin-left:100px;
+	font-size:12px;
+	border:1px solid #cccccc;
+}
+
+.z_table_pay th {
+	text-align:left;
+	text-indent:16px;
+}
+
+.z_pay_select {
+	text-indent:16px;
+}
+
+.z_pay_select  > input {
+	vertical-align:middle;
+}
+
+.z_table_pay  button {
+	width:100px;
+	height:20px;
+	background:#a10000;
+	font-size:12px;
+	font-weight:bold;
+	color:white;
+}
+
+.z_table_pay button:hover {
+	cursor:pointer;
+}
+
+/*在使用礼品卡下面出现的占位符*/
+.z_space {
+	float:left;
+	width:1200px;
+	height:30px;
+}
+
+/*使用礼品卡*/
+.use_card {
+	float:left;
+	width:1000px;
+	height:30px;
+	padding-left:150px;
+	font-size:12px;
+	line-height:30px;
+	text-align:center;
+}
+
+/*卡号和密码*/
+.use_card > div {
+	float:left;
+	width:210px;
+	height:30px;
+}
+
+/*使用礼品卡*/
+.use_card > button {
+	float:left;
+	width:80px;
+	height:20px;
+	margin-top:5px;
+	color:white;
+	font-weight:bold;
+	background:#A10000;
+}
+
+.use_card >button:hover {
+	cursor:pointer;
+}
+
+/*商品清单信息*/
+.myorder_order_info {
+	float:left;
+	width:1200px;
+	min-height:100px;
+	margin-top:10px;
+}
+
+.mygoods_order {
+	float:left;
+	width:1200px;
+	height:20px;
+}
+
+.mygoods_o {
+	float:left;
+	width:100px;
+	height:20px;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+	color:#656565;
+	line-height:20px;
+}
+
+.mygoods_back_cart {
+	float:right;
+	width:200px;
+	height:20px;
+	font-size:12px;
+	line-height:20px;
+	color:#A10000;
+	text-align:right;
+}
+
+.myorder_info {
+	float:left;
+	width:1200px;
+	height:20px;
+	font-size:12px;
+	margin-top:10px;
+	line-height:20px;
+	text-indent:32px;
+}
+
+.myorder_content {
+	float:left;
+	width:1200px;
+	font-size:12px;
+	margin-top:10px;
+	border:1px solid #DCDFE5;
+}
+
+.myorder_content > p {
+	float:left;
+	width:1198px;
+	height:20px;
+	line-height:20px;
+	text-indent:32px;
+}
+
+.myorder_list {
+	float:left;
+	width:1198px;
+	text-align:center;
+	border-collapse:collapse;
+}
+
+.myorder_th {
+	width:1198px;
+	height:30px;
+	background:#7A7F89;
+}
+
+.myorder_tr {
+	width:1198px;
+	height:30px;
+}
+
+.myorder_td {
+	text-indent:32px;
+	text-align:left;
+}
+
+.myorder_total {
+	height:30px;
+	line-height:30px;
+	border-top:1px solid #7A7F89;
+	text-align:right;
+}
+
+/*订单备注、开发票和提交订单*/
+.myorder_order_note {
+	float:left;
+	width:1200px;
+	min-height:100px;
+	margin-top:10px;
+}
+
+.myorder_order_note > div {
+	float:left;
+	width:1200px;
+	margin-top:10px;
+}
+
+.myorder_order_note > div > span {
+	float:right;
+	width:700px;
+	height:30px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:30px;
+	text-align:right;
+	color:#A10000;
+}
+
+/*订单备注*/
+.order_note_vote {
+	float:left;
+	width:150px;
+}
+
+#z_order_sign:hover {
+	cursor:pointer;
+}
+
+.order_note_vote  > div {
+	float:left;
+	width:120px;
+	min-height:20px;
+	font-size:12px;
+	line-height:20px;
+	margin-top:10px;
+}
+
+#frm_sign {
+	display:none; 
+	float:left;
+	width:498px;
+}
+
+#note_place {
+	font-size:12px;
+	resize:none;
+}
+
+/*开发票*/
+#z_frm_vote {
+	display:none;
+	float:left;
+	width:498px;
+	height:140px;
+	font-size:12px;
+	text-indent:8px;
+	border:1px solid #cccccc;
+}
+
+#give_vote:hover {
+	cursor:pointer;
+}
+
+#z_frm_vote input {
+	vertical-align:middle;
+}
+
+#z_frm_vote p {
+	float:left;
+	width:498px;
+	height:20px;
+	margin-top:5px;
+}
+
+.frm_title {
+	font-weight:bold;
+}
+
+.sub_myorder {
+	float:right;
+	width:120px;
+	height:30px;
+	font-size:20px;
+	font-weight:bold;
+	color:white;
+	text-align:center;
+	line-height:30px;
+	background:#870120;
+}
+
+.sub_myorder:hover {
+	cursor:pointer;
+}
+
+.save_receipt {
+	width:50px;
+	height:30px;
+	font-size:12px;
+	font-weight:bold;
+	line-height:20px;
+	color:white;
+	background:#a10000;
+}
+
+.save_receipt:hover {
+	cursor:pointer;
+}
+
+.sign_vote {
+	float:left;
+	font-size:12px;
+	height:auto;
+	overflow:hidden;
+	white-space:nowrap;
+}

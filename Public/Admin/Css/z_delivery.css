@@ -1,0 +1,367 @@
+/*
+	delivery.html列样式表
+*/
+#delivery_main {
+	float:left;
+	width:100%;
+	height:auto;
+	text-indent:32px;
+	background:url("../Images/w70.png");
+}
+
+.delivery_title {
+	float:left;
+	width:100%;
+	height:30px;
+	margin-top:20px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:30px;
+	color:#666600;
+	border-bottom:1px solid #ACBE81;
+}
+
+#delivery_list {
+	float:left;
+	width:100%;
+	height:auto;
+	overflow:hidden;
+}
+
+.delivery_table {
+	float:left;
+	height:auto;
+	overflow:hidden;
+	font-size:12px;
+}
+
+#delivery_content {
+	float:left;
+	width:100%;
+	height:400px;
+	margin-top:10px;
+	overflow:hidden;
+}
+
+.delivery_search {
+	float:left;
+	width:900px;
+	height:32px;
+	margin-top:10px;
+	border-bottom:1px solid #ACBE81;
+}
+
+.delivery_search_left {
+	float:left;
+	width:360px;
+	height:30px;
+	margin-left:300px;
+}
+
+.delivery_search_left > span {
+	float:left;
+	width:150px;
+	height:30px;
+	font-size:12px;
+	line-height:30px;
+}
+
+.delivery_search_left input {
+	float:left;
+	width:200px;
+	height:20px;
+	padding:0px;
+	margin:5px 0 0 5px;
+	border:1px solid #ACBE81;
+}
+
+.delivery_search > button {
+	float:left;
+	font-size:12px;
+	margin:4px 0 0 5px;
+}
+
+.delivery_quick {
+	float:right;
+	font-size:12px;
+	text-align:right;
+}
+
+.delivery_quick button:hover {
+	cursor:pointer;
+}
+
+.delivery_operate {
+	float:left;
+	height:30px;
+	font-size:12px;
+}
+
+.delivery_operate input:hover {
+	cursor:pointer;
+}
+
+.delivery_fpage {
+	float:left;
+	height:30px;
+	font-size:12px;
+	text-align:right;
+	line-height:30px;
+}
+
+.zl_sure {
+	clear:left;
+	float:left;
+	width:120px;
+	height:30px;
+	margin:10px 0 0 32px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:30px;
+	text-align:left;
+	color:#ffffff;
+	background:#a10000;
+}
+
+.zl_sure:hover {
+	cursor:pointer;
+}
+
+/*修改发货单*/
+.delivery_modify {
+	float:left;
+	width:1000px;
+	height:auto;
+	margin-left:32px;
+	font-size:12px;
+	text-align:left;
+	text-indent:8px;
+	border-collapse:collapse;
+}
+
+.delivery_modify  th {
+	width:50px;
+	height:30px;
+	border:1px solid #DEEAB6;
+}
+
+.delivery_modify  td {
+	width:50px;
+	height:30px;
+	border:1px solid #DEEAB6;
+}
+
+/*修改发货单页面样式表*/
+.z_delivery_modify {
+	float:left;
+	width:100%;
+	height:auto;
+	background:url("../Images/w70.png");
+}
+
+.zd_title {
+	float:left;
+	width:100%;
+	height:30px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:30px;
+	color:#666600;
+}
+
+.zd_content {
+	float:left;
+	width:100%;
+	height:auto;
+}
+
+.zd_frm {
+	float:left;
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	font-size:12px;
+}
+
+.zd_frm span {
+	margin-left:30px;
+	height:30px;
+	line-height:30px;
+	font-size:12px;
+	font-weight:bold;
+	color:#0A246A;
+}
+
+#zd_textarea {
+	margin-left:32px;
+}
+
+.z_delivery_sub {
+	float:left;
+	width:120px;
+	height:30px;
+	margin:10px 0 32px 32px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:30px;
+	color:#ffffff;
+	background:#a10000;
+}
+
+.z_delivery_sub:hover {
+	cursor:pointer;
+}
+
+/*发票页样式表*/
+#receipt {
+	float:left;
+	width:100%;
+	background:url("../Images/w70.png");
+}
+
+/*顶部搜索样式表开始*/
+.receipt_search {
+	float:left;
+	width:100%;
+	height:30px;
+}
+
+.receipt_search > div {
+	float:left;
+	width:400px;
+	height:30px;
+	margin-left:350px;
+}
+
+.receipt_search > div > div {
+	float:left;
+	width:290px;
+	height:30px;
+}
+
+.receipt_search > div > div > span {
+	float:left;
+	width:100px;
+	height:30px;
+	font-size:12px;
+	line-height:30px;
+}
+
+.receipt_search > div > div > input {
+	float:left;
+	width:180px;
+	height:20px;
+	padding:0px;
+	margin-top:4px;
+}
+
+.receipt_search > div > button {
+	float:left;
+	width:50px;
+	height:20px;
+	margin:6px 0 0 0;
+}
+/*顶部搜索样式表结束*/
+
+.receipt_title {
+	float:left;
+	width:100%;
+	height:30px;
+	padding-top:10px;
+	font-size:14px;
+	font-weight:bold;
+	color:#73A603;
+	text-indent:32px;
+}
+
+.receipt_content {
+	float:left;
+	width:100%;
+}
+
+.receipt_table {
+	float:left;
+	width:100%;
+	font-size:12px;
+	text-align:center;
+}
+
+.receipt_quick {
+	text-align:left;
+}
+
+.del_page {
+	float:right;
+	height:20px;
+	margin:10px 50px 0 0;
+	text-align:right;
+	font-size:12px;
+}
+
+.del_page a {
+	float:left;
+	height:20px;
+	margin-left:10px;
+	text-decoration:none;
+}
+
+.del_page span {
+	float:left;
+	height:20px;
+	margin-left:10px;
+}
+
+/*发票单列表分页样式*/
+
+
+/*完善发票表*/
+.prefect {
+	float:left;
+	width:100%;
+}
+
+.prefect_frm {
+	float:left;
+	width:100%;
+	font-size:12px;
+	text-indent:32px;
+}
+
+.rceipt_list_table {
+	width:600px;
+	margin-left:32px;
+	border-collapse:collapse;
+}
+
+.rceipt_list_table  th {
+	border:1px solid #699C03;
+}
+
+.rceipt_list_table  td {
+	border:1px solid #699C03;
+}
+
+.td_center {
+	text-align:center;
+}
+
+#prefect_note {
+	margin-left:32px;
+}
+
+.prefect_change {
+	float:left;
+	width:120px;
+	height:30px;
+	margin:10px 0 32px 32px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:30px;
+	text-align:center;
+	color:#ffffff;
+	background:#a10000;
+}
+
+.prefect_change:hover {
+	cursor:pointer;
+}

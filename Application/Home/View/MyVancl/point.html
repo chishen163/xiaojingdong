@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+	<head>
+		<title>发表评论商品</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="__PUBLIC__/Home/Css/skim_order.css">
+		<script src="__PUBLIC__/Home/Js/jquery.js"></script>
+	</head>
+	<body>
+		<div class="say">
+			<div class="say_tit">
+				<span>我要评价：</span>
+			</div>
+			<div class="say_con">
+				<div class="con_left">
+					<div>
+						<p>订单号：{$order_data.ordersn}</p>
+						<p>购买时间：{$order_data.addtime|date="Y-m-d", ###}</p>
+					</div>
+				</div>
+				<div class="con_right">
+
+					<foreach name="order_goods_data" item="goods">
+					<!-- 已购买商品遍历的开始 -->
+					<div>
+						<img src="__PUBLIC__/Home/Images/goods/{$goods.goodsimg}" alt="">
+						<div class="test_con">
+							<p>{$goods.name}</p>
+							<p>{$goods.color}</p>
+							<p>{$goods.size}</p>
+						</div>
+
+						<input type="hidden" name="id" value="{$goods.goodsid}">
+	
+						<foreach name="goods['have']" item="have">
+						<!-- 遍历评论和查看评论图标开始 -->
+						<div class="test_btn">
+							<if condition="$have eq 1">
+								<img src="__PUBLIC__/Home/Images/tplBTN.jpg" alt="查看评论" width="77" height="25" id="look_mycom">
+							<else />
+								<img src="__PUBLIC__/Home/Images/pjBTN.jpg" alt="发表评论" width="97" height="27" onclick="location.href='__CONTROLLER__/say/id/{$goods.goodsid}'">
+							</if>
+						</div>
+						<!-- 遍历评论和查看评论图标结束 -->
+						</foreach>
+
+					</div>
+					<!-- 已购买商品遍历的结束 -->
+					</foreach>
+
+				</div>
+
+				<!-- 查看我的全部评价 -->
+				<div class="mycom">
+					
+				</div>
+
+			</div>
+		</div>
+	</body>
+	<script>
+		//点击查看评论时触发的函数，该函数请求该商品的用户评论表，重新加载
+		$('#look_mycom').click(function() {
+
+			//通过影藏表单获得该商品的id号
+			var id = $('input[name=id]').val();
+
+			$.post("__CONTROLLER__/myCom", {id : id}, function(data) {
+				$('.mycom').html(data);
+			});
+		});
+	</script>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>友情链接</title>
+		<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+		<style type="text/css">
+			body{
+				background:url('__PUBLIC__/Admin/Images/w70.png') repeat;
+			}
+			.add_link_inp{
+				width:230px;
+				height:20px;
+			}
+			#add_link_btn{
+				height:30px;
+				width:100px;
+				font-weight:bold;
+			}
+			table{
+				border-collapse:collapse;
+			}
+			td{
+				height:50px;
+				text-indent:20px;
+			}
+			tr{
+				border-top:2px solid #f9f0e1;
+			}
+			tr:hover{
+				background:#f9f0e1;
+			}
+			th{
+				color:#d39c59;
+			}
+		</style>
+	</head>
+	<body>
+		<center style="width:980px;height:40px;line-height:40px;">
+			<strong style="color:#d39c59;;font-size:30px;">修改链接</strong>
+		</center>
+		<center>
+
+			<!-- 添加链接表单 -->
+			<form action="__CONTROLLER__/upd/id/{$link.id}" method="post" enctype="multipart/form-data">
+				<table style="width:900px;min-height:500px;">
+
+					<!-- 修改链接名称 -->
+					<tr>
+						<th>链接名称:</th>
+						<td><input type="text" name="linkname" class="add_link_inp" value="{$link.linkname}" /></td>
+					
+					<!-- 修改链接URL -->
+						<th>链接URL:</th>
+						<td><input type="text" name="url" class="add_link_inp" value="{$link.url}" /></td>
+					</tr>
+					<!-- 修改网站的管理员 -->
+					<tr>
+						<th>网站管理员:</th>
+						<td><input type="text" name="webadmin" class="add_link_inp" value="{$link.webadmin}" /></td>
+					<!-- 修改联系电话 -->
+					
+						<th>联系电话:</th>
+						<td><input type="tel" name="telphone" class="add_link_inp" value="{$link.telphone}" /></td>
+					</tr>
+
+					<!-- 修改链接的显示顺序 -->
+					<tr>
+						<th>显示顺序: </th>
+						<td><input type="number" name="linkorder" class="add_link_inp" value="{$link.linkorder}" style="width:60px;" /></td>
+						<!-- 修改Email地址 -->
+						<th>Email地址:</th>
+						<td><input type="email" name="email" value="{$link.email}" style="height:23px;width:230px;"/></td>
+					</tr>
+					
+					<!-- 审核链接 -->
+					<tr>
+						<th>是否审核:</th>
+						<td>
+							<input type="radio" value="1" <if condition="$link.passed eq 1">checked</if> name="passed" /> 是 
+							<input type="radio" value="0" <if condition="$link.passed eq 0">checked</if> name="passed" /> 否
+						</td>
+						<!-- 设置链接是否显示 -->
+						<th>是否显示:</th>
+						<td>
+							<input type="radio" value="1" <if condition="$link.isshow eq 1">checked</if> name="isshow" /> 是 
+							<input type="radio" value="0" <if condition="$link.isshow eq 0">checked</if> name="isshow" /> 否
+						</td>
+					</tr>
+
+					<!-- 修改网站类型 -->
+					<tr>
+						<th>网站类型:</th>
+						<td>
+							<select name="sitetype" style="height:25px;width:120px;" id="sitetype">
+								<option value="政府网站">政府网站</option>
+								<option value="企业网站">企业网站</option>
+								<option value="商业网站">商业网站</option>
+								<option value="教育科研网站">教育科研网站</option>
+								<option value="个人网站">个人网站</option>
+								<option value="其他">其他</option>
+							</select>
+						</td>
+						<!-- 修改链接方式 -->
+						<th>链接方式:</th>
+						<td>
+							<select name="linktype" id="linktype" style="height:25px;width:120px;">
+								<option value="1">新窗口打开</option>
+								<option value="2">当前窗口打开</option>
+								<option value="3">父级窗口打开</option>
+								<option value="4">顶级窗口打开</option>
+							</select>
+						</td>
+					</tr>
+
+					<!-- 修改链接网站的描述说明 -->
+					<tr>
+						<th>链接介绍:</th>
+						<td colspan="3"><textarea name="introduction" cols="80" rows="4">{$link.introduction}</textarea></td>
+					</tr>
+
+					<!-- 修改链接的提交按钮 -->
+					<tr>
+						<td style="height:60px;line-height:60px;text-align:center;" colspan="4"><input type="submit" value="修改链接" id="add_link_btn" style="color:#d39c59;"/></td>
+					</tr>
+				</table>
+			</form>
+		</center>
+	</body>
+
+	<script>
+		$("#linktype").find("option[value = {$link.linktype}]").attr("selected","selected");
+		$("#sitetype").find("option[value = {$link.sitetype}]").attr("selected","selected");
+	</script>
+</html>

@@ -1,0 +1,178 @@
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<html>
+	<head>
+		<title>admin</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/Public/Admin/Css/bootstrap.css">
+		<link rel="stylesheet" href="/Public/Admin/Css/z_admin.css">
+		<script src="/Public/Admin/Js/jquery.js"></script>
+	</head>
+	<body>
+		<!-- 顶级导航栏 -->
+		<div id="z_admin_nav">
+
+			<!-- 网站logo位置 -->
+			<div class="z_logo">
+				VANCL后台管理系统
+			</div>
+
+			<!-- 欢迎信息和快速菜单按钮 -->
+			<div class="z_nav_cat">
+
+				<!-- 快速进入菜单区 -->
+				<div class="z_quick_cat">
+					<ul>
+						<li><a href="">网站首页</a></li>
+						<span>|</span>
+						<li><a href="/admin.php/Admin/Index/loginout">注销</a></li>
+					</ul>
+				</div>
+
+				<!-- 登录信息提示 -->
+				<div class="z_login_notice">您好：<b><?php echo ($user["username"]); ?></b> , 欢迎使用Vancl管理系统 
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- 页面主体内容 -->
+		<div id="z_admin_content">
+
+			<!-- 左边快速菜单选项 -->
+			<div class="z_content_left">
+				<div class="z_content_card">
+					<div onclick="sel(this, 1)" id="menu_goods_h">商品</div>
+					<div onclick="sel(this, 2)">订单</div>
+					<div onclick="sel(this, 3)">会员</div>
+					<div onclick="sel(this, 4)">评论</div>
+					<div onclick="sel(this, 5)">配置</div>
+				</div>
+
+				<!-- 菜单选项添加栏目，按格式添加即可 -->
+				<div class="z_content_menu">
+
+					<!-- 系统 -->
+					<!-- 一个核心区块的显示控制，该区块默认显示 -->
+					<div class="z_controller">
+
+						<!-- 一个区块的菜单遍历开始 -->
+						<!-- 具体栏目的标题和图片区域 -->
+
+						<!-- 菜单遍历结束 -->
+
+					<!-- 一个核心菜单的结束 -->
+					</div>
+
+					<!-- 商品 -->
+					<!-- 模块区块的显示控制 -->
+					<div class="z_controller">
+
+						<!-- 一个区块的菜单遍历开始 -->
+						<div class="z_frm_content">
+							<span><a href="/admin.php/Admin/Goods/index" target="my_main">商品列表</a></span>
+							<span><a href="/admin.php/Admin/AddGoods/index" target="my_main" id="add_goods_h">添加商品</a></span>
+						</div>
+						<!-- 菜单遍历结束 -->
+
+					</div>
+
+					<!-- 订单 -->
+					<div class="z_controller">
+
+						<!-- 一个区块的菜单遍历开始 -->
+						<div class="z_frm_content">
+							<span><a href="/admin.php/Admin/Order/order" target="my_main">订单列表</a></span>
+							<span><a href="/admin.php/Admin/Delivery/receipt" target="my_main">发票列表</a></span>
+							<span><a href="/admin.php/Admin/Delivery/delivery" target="my_main">发货单表</a></span>
+						</div>
+						<!-- 菜单遍历结束 -->
+
+					</div>
+
+					<!-- 会员 -->
+					<div class="z_controller">
+						<!-- 一个区块的菜单遍历开始 -->
+						<div class="z_frm_content">
+							<span><a href="/admin.php/Admin/User/index" target="my_main">会员列表</a></span>
+							<span><a href="/admin.php/Admin/User/adduser" target="my_main">添加会员</a></span>
+							<span><a href="/admin.php/Admin/Group/index" target="my_main">用户组</a></span>
+						</div>
+						<!-- 菜单遍历结束 -->
+					</div>
+
+					<!-- 评论 -->
+					<div class="z_controller">
+
+						<!-- 一个区块的菜单遍历开始 -->
+						<div class="z_frm_content">
+							<span><a href="/admin.php/Admin/Question/comment" target="my_main">评论列表</a></span>
+							<span><a href="/admin.php/Admin/Question/question" target="my_main">提问列表</a></span>
+							<span><a href="/admin.php/Admin/Question/reply" target="my_main">回复提问</a></span>
+						</div>
+						<!-- 菜单遍历结束 -->
+
+					</div>
+
+					<!-- 辅助 -->
+					<div class="z_controller">
+
+						<!-- 一个区块的菜单遍历开始 -->
+						<div class="z_frm_content">
+							<span><a href="/admin.php/Admin/Slide/index" target="my_main">广告列表</a></span>
+							<span><a href="/admin.php/Admin/AddSlide/index" target="my_main">添加广告</a></span>
+							<span><a href="/admin.php/Admin/FriendLink/index" target="my_main">友情链接</a></span>
+							<span><a href="/admin.php/Admin/FriendLink/addlink" target="my_main">添加链接</a></span>
+							<span><a href="/admin.php/Admin/WebSet/index" target="my_main">网站配置</a></span>
+						</div>
+						<!-- 菜单遍历结束 -->
+					</div>
+				</div>
+			</div>
+			<center>
+			<!-- 导入框架-->
+			<iframe src="/admin.php/Admin/Goods/index" name="my_main" frameborder="0" id="my_main_frame" ></iframe>
+			</center>
+		</div>
+	</body>
+	<script>
+		$(document).ready(function() {
+			$("#menu_goods_h").css({"background-image" : 'url(/Public/Admin/Images/w70.png)', color : '#8C5434'});
+			$(".z_controller").eq(1).css('display', 'block');
+			var scrollH = $(document).height();
+			var scrollW = $(document).width();
+			$("#z_admin_nav").width(scrollW - 20);
+			var left = $(".z_content_left").width();
+			$("#z_admin_content").height(scrollH - $("#z_admin_nav").height() - 35);
+			var contentH = $("#z_admin_content").height();
+			$(".z_content_left").height(contentH);
+			$("#my_main_frame").width(scrollW - left - 20);
+			$("#my_main_frame").height(scrollH - $("#z_admin_nav").height() - 35);
+			$(".z_content_menu").height(contentH);
+			$(".z_controller").height($(".z_content_menu").height());
+		});
+
+		/*
+			函数的作用：控制导航菜单的显示与影藏
+		*/
+		function sel(obj, num) {
+
+			//使用json格式动态修改div的样式，同时去除接下来需要设置的两个值
+			$('.z_content_card div').css({background : '', color : ''});
+
+			//给当前元素动态加上背景和字体样式
+			$(obj).css({"background-image": 'url(/Public/Admin/Images/w70.png)', "color" : '#8C5434'});
+
+			//该类所有div将被影藏
+			$('.z_controller').css('display', 'none');
+
+			//当前idv元素呈显示状态
+			$('.z_controller').eq(num).css('display', 'block');
+		}
+
+		//当点击菜单下面的具体栏目时，动态给该选项增加高亮显示
+		$('.z_frm_content a').click(function() {
+			$('.z_frm_content a').css({background : '', color : ''});
+			$(this).css({"background-image" : 'url(/Public/Admin/Images/btn_bg.png)', color : '#222222',"background-position":"-207px -415px"});
+		});	
+	</script>
+</html>

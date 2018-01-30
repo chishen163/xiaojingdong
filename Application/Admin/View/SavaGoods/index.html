@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加商品</title>
+	<link rel="stylesheet" href="__PUBLIC__/Admin/Css/Goods/savaGoods.css">
+	<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+     <script src='__PUBLIC__/jquery.uploadify.min.js'></script>
+     <script src="__PUBLIC__/Home/Js/GetRequest.js"></script>
+</head>
+<body>
+	<table border=1>
+	<form id="goods_form">
+		<caption>修改商品</caption>
+		<tr>
+			<td>商品种类：</td>
+			<td>
+				<select id="category" name="pid">
+					<foreach name="category" item="category">
+						<option value="{$category['id']}">{$category['name']}</option>
+					</foreach>
+				</select>
+			</td>
+
+			<td>商品分类：</td>
+			<td>
+				<select name="cid" id="plate">
+
+				</select>
+			</td>
+			<td rowspan=6 style="text-align:center;" id="chajian">
+				<img width="350" height="350" src="__PUBLIC__/Admin/Images/upload_btn.png" class="img_logo" title="">
+				<input id="file_upload" name="file_upload" type="file" value="">
+			</td>
+		</tr>
+
+		<tr>
+			<td>商品名称：</td>
+			<td><input id="goodsname" name="goodsname" type="text" required="required"></td>
+			<td>商品款式：</td>
+			<td>
+				<label for="leixing1"><input name="goodstype" id="goodstype1" required="required" type="radio" value="1">上装</label>
+				<label for="leixing2"><input name="goodstype" id="goodstype2" required="required" type="radio" value="2">下装</label>
+				<label for="leixing3"><input name="goodstype" id="goodstype3" required="required" type="radio" value="3">鞋类</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td>商品描述：</td>
+			<td>
+				<input name="goodsdesc" id="goodsdesc" type="text" required="required">
+			</td>
+			<td>关键字：</td>
+			<td>
+				<input name="keywords" id="keywords" type="text" required="required">
+			</td>
+		</tr>
+
+		<tr>
+			<td>商品价格：</td>
+			<td><input name="goodsprice" id="goodsprice" type="text" required="required"></td>
+			<td>促销价：</td>
+			<td><input name="promoteprice" id="promoteprice" type="text" required="required"></td>
+		</tr>
+
+		<tr>
+			<td>商品颜色：</td>
+			<td><input name="goodsColor" id="goodsColor" type="text" required="required"></td>
+			<td>商品尺码：</td>
+			<td><input name="goodsSize" id="goodsSize" type="text" required="required"></td>
+		</tr>
+
+		<tr>
+			<td>赠送积分：</td>
+			<td><input name="giveintegral" id="giveintegral" type="text" required="required"></td>
+			<td>库存量：</td>
+			<td><input name="goodsnumber" id="goodsnumber" type="text" required="required"></td>
+		</tr>
+		<tr>
+			<td colspan="5" style="text-align:center;">
+				<input id="subbtn" type="button" value="提交">
+			</td>
+		</tr>
+	</form>
+	</table>
+</body>
+<script>
+
+	var infoId = Request['id'];
+
+	// alert(Request['id']);
+
+	$.get("__CONTROLLER__/getInfo?id="+infoId,function(info){
+		// alert(info['id']);
+		getPlate(info);
+
+		$("#goodsname").val(info.goodsname);
+
+		switch(parseInt(info.goodstype)){
+			case 1:$("#goodstype1").attr("checked",true);break;
+			case 2:$("#goodstype2").attr("checked",true);break;
+			case 3:$("#goodstype3").attr("checked",true);break;
+		}
+
+		$("#goodsdesc").val(info.goodsdesc);
+
+		$("#keywords").val(info.keywords);
+
+		$("#goodsprice").val(info.goodsprice);
+
+		$("#promoteprice").val(info.promoteprice);
+
+		$("#goodsColor").val(info.goodsColor);
+
+		$("#goodsSize").val(info.goodsSize);
+
+		$("#giveintegral").val(info.giveintegral);
+
+		$("#goodsnumber").val(info.goodsnumber);
+
+		$(".img_logo").attr("src","__PUBLIC__/Home/Images/Goods/"+info.goodsimg);
+
+		$(".img_logo").attr("title",info.goodsimg);
+	},"json");
+
+
+	//获取plate分类菜单
+	function getPlate(plateId){
+		$.get("__CONTROLLER__/getPlate?id="+plateId['id'],function(plate){
+			// alert(plate);
+			var options = "";
+			for(var i=0;i<plate.length;i++){
+				options += "<option value=\""+plate[i]['id']+"\">"+plate[i]['listName']+"</option>";
+			}
+			//设置种类的选中项
+			$("#category").find("option[value='"+plateId['pid']+"']").attr("selected",true);
+
+			$("#plate").empty().append(options);
+			//设置分类的选中项
+			$("#plate").find("option[value='"+plateId['cid']+"']").attr("selected",true);
+		},"json");
+	}
+
+
+	$("#category").change(function(){
+		if($(this).val() == 0){
+			$("#plate").empty().append("<option>请选择</option>");
+		}
+		$.get("__CONTROLLER__/Plate",{id:$("#category").attr("value")},function(data){
+			var options = "";
+				options += "<option value=\"0\">请选择</option>";
+			for(var i=0;i<data.length;i++){
+				options += "<option value="+data[i]['id']+">"+data[i]['listName']+"</option>";
+			}
+			$("#plate").empty().append(options);
+		},"json");
+	});
+
+
+	// 提交按钮
+	$("#subbtn").click(function(){
+		var v_data = $("#goods_form").serialize()+"&goodsimg="+$(".img_logo").attr("title") +"&id="+Request['id'];
+		if($(".img_logo").attr("title") == ""){
+			$(".img_logo").css("border","1px solid red");
+			alert("请选择商品图片！");
+			return false;
+		}else{
+
+			if($("input[type='text']").val() != ""){
+				$.ajax({
+		               url: "getUpdate",     
+		               data: v_data,  
+		               type:"post",  
+		               async: false,
+		               success: function(data) {
+		                   alert(data['info']);
+		                   location.href = "__APP__/Admin" + data['url'];
+		               },
+		               error: function(data) {
+		               	alert(data['info']);
+		               }
+		           });
+			}else{
+				alert("亲,请将商品信息填写完整！^_^");
+			}	
+		}
+	});
+
+
+		$('#file_upload').uploadify({
+	        	'swf'      : '__PUBLIC__/uploadify.swf',
+	        	'uploader' : '{:U("AddGoods/upload")}',
+	        	'buttonText' : '',
+	        	 'multi'    : false,
+	        	'onUploadSuccess' : function(file, data, response) {
+	            $(".img_logo").attr("src","__PUBLIC__/Home/Images/goods/"+data.substring(0,17));
+	            $(".img_logo").attr("title",data.substring(0,17));
+        	}
+    	});
+
+
+	//设置flash插件属性
+	$("#chajian").css({"position":"relative","overflow":"hidden"});
+	$("#SWFUpload_0").attr("height",$(".img_logo").height());
+	$("#SWFUpload_0").attr("width",$(".img_logo").width());
+	$("#SWFUpload_0").removeAttr("style");
+	$("#SWFUpload_0").css({"position":"absolute","top":"30px","right":"20px","cursor":"pointer"});
+	$("#file_upload").removeAttr("style");
+	$("#file_upload").css({"background":"red","overflow":"hidden"});
+	$("#file_upload-button").removeAttr("style");
+	$("#file_upload-button").css("display","none");
+	$("#file_upload-queue").removeAttr("class");
+	$("#file_upload-queue").removeAttr("id");
+	$("#SWFUpload_0").attr("onfocus","this.blur()");
+		
+</script>
+</html>

@@ -1,0 +1,84 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+
+/*主体部分*/
+#nav{
+	width:1200px;
+	height:30px;
+	line-height:30px;
+	color:#666666;
+	margin:auto;
+}
+#main_middle{
+	height:auto;
+	overflow:hidden;
+	width:1200px;
+	margin:auto;
+}
+
+/*左侧菜单栏*/
+#main_left{
+	height:530px;
+	width:198px;
+	float:left;
+	margin:20px 30px auto auto;
+}
+#main_left_top{
+	width:200px;
+	height:30px;
+	border:1px solid #c8c8c8;
+	text-align:center;
+	line-height:30px;
+	margin-bottom:20px;
+}
+#main_left_top>img{
+	display:block;
+	float:left;
+	margin:5px 5px auto 60px;
+}
+#main_left_top>b{
+	float:left;
+}
+
+/*左侧菜单项*/
+#main_left_bottom{
+	width:198px;
+	border:1px solid #c8c8c8;
+}
+#main_left_bottom>ul>h3{
+	width:198px;
+	height:35px;
+	text-align:center;
+	color:white;
+	line-height:35px;
+	font-size:14px;
+	background:#7e7e7e;
+}
+#main_left_bottom>ul>li{
+	height:25px;
+	text-indent:50px;
+	line-height:20px;
+	letter-spacing:1px;
+	border-top:1px dashed #cdcdcd;
+}
+
+/*右侧内容栏*/
+#main_right{
+	/*overflow:hidden;*/
+	width:964px;
+	float:left;
+	border:3px solid #f1f1f1;
+	border-radius:7px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+/*空白行*/
+#blank_n{
+	height:20px;	
+	width:1200px;
+	margin:auto;
+	clear:both;
+}

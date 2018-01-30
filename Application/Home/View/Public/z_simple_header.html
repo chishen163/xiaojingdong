@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/z_simple_header.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/z_mycart.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/z_order.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/z_simple_footer.css">
+		<script src="__PUBLIC__/Home/Js/jquery.js"></script>
+		<script src="__PUBLIC__/Home/Js/PCASClass.js"></script>
+	</head>
+	<body>
+		<div class="z_simple_head">
+			<div class="z_simple_logo">
+				<img src="__PUBLIC__/Home/Images/z_vancl_logo.png" alt="" onclick="location.href='__APP__/Home/Index/index'">
+			</div>
+			<div class="z_simple_quick">
+				<if condition="$user_info['id'] gt 0">
+				<div class="z_wellcom">
+					<p>您好{$user_info['username']}，欢迎光临凡客诚品</p>
+				</div>
+				<else />
+				<div class="z_login_register">
+					<p><a href="">登录</a>|<a href="">注册</a></p>
+				</div>
+				</if>
+				<div class="z_help">
+					<p><a href="">帮助中心</a></p>
+				</div>
+			</div>
+		</div>

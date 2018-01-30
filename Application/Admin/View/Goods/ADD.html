@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<script type="text/javascript">
+			window.UEDITOR_HOME_URL = "__PUBLIC__/Admin/Js/ueditor/";
+		</script>
+		<script type="text/javascript" src="__PUBLIC__/Admin/Js/ueditor/ueditor.config.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/Admin/Js/ueditor/ueditor.all.js"></script>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/Goods/ADD.css">
+	</head>
+	<body style="width:980px;height:auto;overflow:hidden;">
+		<center style="height:30px;line-height:30px;margin-top:10px;">
+			<strong style="color:#900000;font-size:30px;">添加商品</strong>
+		</center>
+		<form action="__CONTROLLER__/insert" method="post" enctype="multipart/form-data" id="my_add_goods">
+			
+			<!-- 填写商品类别信息 -->
+			<div id="goods_sort">
+				<p>商品类别:</p>
+				<div id="goods_Sort">
+					<div id="goods_sort1">
+						<span>系统分类:</span>
+						<select name="systemsort" style="height:20px;width:80px;">
+							<option value="女装">女装</option>
+							<option value="男装">男装</option>
+							<option value="男鞋/女鞋">男鞋/女鞋</option>
+							<option value="运动/户外">运动/户外</option>
+							<option value="内衣/配饰">内衣/配饰</option>
+							<option value="童装">童装</option>
+							<option value="箱包">箱包</option>
+							<option value="家居">家居</option>
+						</select>
+					</div>
+					<div id="goods_sort2">
+						<span>商品分类:</span>
+						<input type="text" name="goodssort" id="" />
+					</div>
+				</div>
+			</div>
+
+			<!-- 填写商品名称 -->
+			<div id="goods_name" class="common_style">
+				<span>商品名称:</span>
+				<input type="text" name="goodsname" id="" />
+			</div>
+
+			<!-- 规定商品价格 -->
+			<div id="goods_price" class="common_style">
+				<span>商品价格:</span>				
+				<span>商场价:</span>
+				<input type="text" name="goodsprice" id="" />
+				<span>会员价:</span>
+				<input type="text" name="vipprice" id="" />
+				<span>促销价:</span>
+				<input type="text" name="promoteprice" />
+
+			</div>
+
+			<!-- 上传商品的图片 -->
+			<div id="goods_photo" class="common_style">
+				<span>商品图片:</span>
+				<input type="file" name="goodsimg" style="color:#800000;" />
+			</div>
+
+			<!-- 选择商品的规格大小  -->
+			<div id="goods_specification">
+				<p>商品规格:</p>
+				<select name="specification" style="color:#800000;">
+					<option value="规格1" selected>规格1</option>
+					<option value="规格2">规格2</option>
+					<option value="规格3">规格3</option>
+					<option value="规格4">规格4</option>
+					<option value="规格5">规格5</option>
+				</select>
+			</div>
+
+			<!-- 设置检索商品的关键词 -->
+			<div id="goods_keywords" class="common_style">
+				<span>关键词:</span>
+				<input type="text" name="keywords" id="" />
+			</div>
+
+			<!-- 描述商品的内容 -->
+			<div id="goods_introduction">
+				<p>商品介绍:</p>
+				<textarea name="introduction" id="introduction" cols="" rows=""></textarea>
+			</div>
+			<div class="common_style">
+				<input type="submit" value="添加商品" style="width:100px;height:25px;color:#800000;font-weight:bold;">
+			</div>
+		</form>
+	</body>
+	<script type="text/javascript">
+
+		//初始化编辑器，设定显示的按钮
+		UE.getEditor('introduction',{initialFrameHeight:120,initialFrameWidth:976,toolbars:[
+	            ['fullscreen', 'source', '|', 'undo', 'redo', '|',
+	                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+	                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+	                'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+	                'directionalityltr', 'directionalityrtl', 'indent', '|',
+	                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+	                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+	                'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe','insertcode', 'webapp', 'pagebreak']
+	        ] });
+	</script>
+</html>

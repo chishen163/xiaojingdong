@@ -1,0 +1,67 @@
+<div class="pack_title">生成发货单：</div>
+<form action="" class="delivery_frm">
+	<table class="delivery_table">
+		<tr>
+			<th>用户名</th><td>{$user_data.username}</td><th>订单编号</th><td colspan="2" id="delivery_ordersn">{$order_data.ordersn}</td><th>送货方式</th><td>{$order_data.shiptype}</td>
+		</tr>
+		<tr>
+			<th>收货人</th><td>{$order_data.consignee}</td><th>发票</th><td colspan="2"><if condition="$order_data['receiptid'] gt 0">有发票<else />无发票</if></td><th>付款方式</th><td>{$order_data.paytype}</td>
+		</tr>
+		<tr>
+			<th>包装名</th><td>{$pack_data.packname}</td><th>包装费</th><td colspan="2">{$pack_data.packfee}</td><th>免费额</th><td>{$pack_data.packfree}</td>
+		</tr>
+		<tr>
+			<th>收货地址</th><td colspan="4">{$user_address_data.country} - {$user_address_data.pname} - {$user_address_data.cname} - {$user_address_data.county} - {$user_address_data.address}    {$user_address_data.zipcode}  ({$user_address_data.name}  收)  {$user_address_data.phone}</td><th>收货时间</th><td>{$order_data.besttime}</td>
+		</tr>
+		<tr>
+			<th>商品名</th><th class="g_com">数量</th><th class="g_com">尺寸</th><th class="g_com">积分</th><th class="g_com">促销价</th><th class="g_com">商品价</th><th class="g_com">小计</th>
+		</tr>
+
+		<foreach name="order_goods_data" item="goods">
+		<!-- 一个订单中每件商品遍历的开始 -->
+		<tr>
+			<td>{$goods.name}</td>
+			<td>{$goods.num}</td>
+			<td>{$goods.size}</td>
+			<td>{$goods.integral}</td>
+			<td>{$goods.promoteprice}</td>
+			<td>{$goods.goodsprice}</td>
+			<td>{$goods['goodsprice'] * $goods['num']}</td>
+			<assign name="total" value="$total += $goods['goodsprice'] * $goods['num']" />
+		</tr>
+		<!-- 一个订单中每件商品遍历的结束 -->
+		</foreach>
+
+		<tr>
+			<th>包装描述</th><td colspan="6">{$pack_data.packdesc}</td>
+		</tr>
+		<tr>
+			<th>发货描述</th>
+			<td colspan="6">
+				<textarea name="order_desc" cols="100" rows="5" class="delivery_order_desc"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<th>订单备注</th><td colspan="6">{$order_data.desc}</td>
+		</tr>
+		<tr>
+			<th>总计</th><td colspan="2">商品总价￥{$total}元 + 包装费￥{$pack_data['packfee']}元 - 免费额度￥{$pack_data['packfree']}元 = 发货单总价￥{$total + $pack_data['packfee'] - $pack_data['packfree']}元</td><th>包装生成时间</th><td colspan="3">{$pack_data.addtime|date="Y-m-d H:i:s", ###}</td>
+		</tr>
+		<tr>
+			<td colspan="7"><div class="sure_delivery">确认生成</div></td>
+		</tr>
+	</table>
+</form>
+<script>
+	//获取订单编号，传递到控制器中的生成发货单方法
+	$('.sure_delivery').click(function() {
+		var ordersn = $('#delivery_ordersn').text();
+
+		//获取订单描述，也是该页面中可能需要手动输入的值
+		var desc = $('.delivery_order_desc').val();
+
+		$.post("__CONTROLLER__/subDelivery", {ordersn : ordersn, desc : desc}, function(data) {
+			$('.order_main').html(data);
+		});
+	});
+</script>

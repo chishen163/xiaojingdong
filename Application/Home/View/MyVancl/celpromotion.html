@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>促销信息退订</title>
+		<style type="text/css">
+			*{
+				padding:0px;
+				margin:0px;
+			}
+			#cel_promotion_head{
+				margin-bottom:20px;
+				border-bottom:2px solid #f1f1f1;
+			}
+			#cel_promotion_head>span{
+				font-size:14px;
+				font-weight:bold;
+				letter-spacing:1px;
+				color:#333333;
+				height:25px;
+				line-height:25px;
+				display:block;
+				width:100px;
+				text-align:center;
+				border-bottom:2px solid #910000;
+			}
+			.cel_email{
+				margin-bottom:20px;
+				font-size:13px;
+				color:#333333;
+			}
+			.cel_email>span{
+				margin-right:10px;
+			}
+			.cel_put_email{
+				padding:10px 100px 50px 25px;
+				font-size:13px;
+				color:#333333;
+				overflow:hidden;
+				border-bottom:1px dashed #cdcdcd;
+			}
+			.cel_put_email>span{
+				display:block;
+				width:120px;
+				float:left;
+				margin-top:2px;
+			}
+			.email_addr{
+				height:20px;
+				width:300px;
+				margin-left:10px;
+				margin-right:30px;
+				display:block;
+				float:left;
+				border:1px solid #7f9dbf;
+			}
+			.cel_btn_icon{
+				display:block;
+				float:left;
+				margin-top:-4px;
+			}
+		</style>
+		<script type="text/javascript" src="__PUBLIC__/Home/Js/jquery.js"></script>
+	</head>
+	<body>
+		<div id="cel_promotion_head">
+			<span>促销信息退订</span>
+		</div>
+		<div class="cel_email">
+			<span>1.</span>退订邮件
+		</div>
+		<div class="cel_put_email">
+			<span>请输入Email地址:</span>
+			<input type="email" name="email" class="email_addr">
+			<input type="image" src="__PUBLIC__/Home/Images/cel_btn_icon.jpg" id="email_cancel"class="cel_btn_icon">
+		</div>
+		<div class="cel_email" style="margin-top:30px;">
+			<span>2.</span>退订短信
+		</div>
+		<div class="cel_put_email">
+			<span>请输入手机号:</span>
+			<input type="text" name="telphone" class="email_addr">
+			<input type="image" src="__PUBLIC__/Home/Images/cel_btn_icon.jpg" id="phone_cancel"class="cel_btn_icon">
+		</div>
+	</body>
+	<script>
+		// 单击事件
+		$("#email_cancel").click(function() {
+			var emailv = $("input[name=email]").val();
+			confirm("您退订的邮箱是:"+emailv+"请确认是否退订?");
+			alert("退订成功");
+		});
+
+		//单击事件
+		$("#phone_cancel").click(function() {
+			var phonev = $("input[name=telphone]").val();
+			confirm("您退订的手机号码是:"+phonev+"请确认是否退订?");
+			alert("退订成功");
+		});
+	</script>
+</html>

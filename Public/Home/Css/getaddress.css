@@ -1,0 +1,121 @@
+
+*{
+	padding:0px;
+	margin:0px;
+}
+
+/*收贷地址的头部样式*/
+#get_head{
+	margin-bottom:20px;
+	padding-top:10px;
+	border-bottom:2px solid #e4e4e4;
+}
+#get_head>span{
+	font-size:14px;
+	font-weight:bold;
+	letter-spacing:1px;
+	height:26px;
+	padding-bottom:1px;
+	color:#333333;
+	width:70px;
+	text-align:center;
+	border-bottom:2px solid #910000;
+}
+
+/*收贷地址的主体部分样式*/
+#get_main{
+	border:1px solid #e5e5e5;
+	min-height:180px;
+	overflow:hidden;
+	height:auto;
+	width:878px;
+}
+.get_main_up{
+	height:30px;
+	border:1px solid #e5e5e5;
+	border-bottom:2px solid #910000;
+	margin-top:25px;
+	overflow:hidden;
+	background:#f8f8f8;
+}
+.get_main_up>p{
+	float:left;
+	font-size:13px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+}
+.get_main_middle{
+	min-height:35px;
+	text-align:center;
+	padding-top:5px;
+	font-size:14px;
+	border-left:1px solid #e5e5e5;
+	border-right:1px solid #e5e5e5;
+	overflow:hidden;
+}
+.get_address_list{
+	height:30px;
+	line-height:30px;
+	width:878px;
+	background:#FCD4D4;
+	margin-bottom:5px;
+}
+.get_address_list:hover{
+	background:#ffffff;
+}
+.get_address_list>p{
+	float:left;
+	font-size:13px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+}
+
+/*添加新收贷地址样式*/
+.get_add_address{
+	clear:both;
+	height:35px;
+	background:#f8f8f8;
+	border-top:1px solid #e5e5e5;
+	border-bottom:1px solid #e5e5e5;
+}
+.get_add_address>a{
+	height:35px;
+	line-height:35px;
+	margin-left:50px;
+	font-size:14px;
+	font-weight:bold;
+	color:#910000;
+	text-decoration:none;
+}
+
+/*添加收货新地址样式*/
+#add_addr_form{
+	height:252px;
+}
+.addr_info_put{
+	margin-top:8px;
+	padding-left:60px;
+	height:30px;
+	width:760px;
+	font-size:13px;
+	color:#666666;
+}
+.addr_info_put>span{
+	color:#910000;
+	margin-right:6px;
+}
+
+
+/*隐藏的地址编辑窗口*/
+#hidden_edit_addr{
+	display:none;
+	width:878px;
+	background:white;
+	border:1px solid #cdcdcd;
+	position:absolute;
+	top:20%;
+	left:0;
+	z-index:100;
+}

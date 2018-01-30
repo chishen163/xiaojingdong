@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<title>提问详情</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/z_question.css">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/bootstrap.css">
+		<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+	</head>
+	<body>
+		<div class="answer_show">
+			<div class="answer_title">
+				提问详情：
+			</div>
+			<form action="" class="answer_frm">
+				<p><input type="hidden" name="id" value="{$question_data.id}"></p>
+				<p>商品名称：<input type="text" value="{$question_data.name}" name="name"></p>
+				<p>提问类型：<input type="text" value="{$question_data.type}" name="type"></p>
+				<p>提问内容：<br>
+					<textarea id="question_text" class="answer_text" name="content" cols="100" rows="5">{$question_data.content}</textarea>
+				</p>
+				<p>提问邮箱：<input type="text" value="{$question_data.email}" name="email"></p>
+				<p>提问时间：<input type="text" value="{$question_data.ctime|date="Y-m-d H:i:s", ###}"></p>
+				<p>管理回答：<br>
+					<textarea id="answer_text" class="answer_text" name="answer" cols="100" rows="5">{$question.data.answer}</textarea>
+				</p>
+
+				<foreach name="reply_data" item="reply">
+				<assign name="i" value="$i = $i + 1" />
+				<!-- 回复内容数据遍历的开始 -->
+				<p class="bar_num">第{$i}条回复</p>
+				<p>回复邮箱：<input type="text" value="{$reply.email}"></p>
+				<p>回复时间：<input type="text" value="{$reply.addtime|date="Y-m-d H:i:s", ###}"></p>
+				<p>回复内容：<br>
+					<textarea class="reply_text" name="re_content" cols="100" rows="5">{$reply.content}</textarea>
+				</p>
+				<!-- 回复内容数据遍历的结束 -->
+				</foreach>
+			</form>
+			<div class="answer_sub" onclick="location.href='__CONTROLLER__/reply'">返回</div>
+		</div>
+	</body>
+</html>

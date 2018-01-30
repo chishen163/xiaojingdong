@@ -1,0 +1,247 @@
+#main_content{
+	width:1200px;
+	/*height:1500px;	debug 这里不能有高度*/
+	margin:0 auto;
+	margin-top:6px;
+}
+#main_picSlide{
+	width:966px;
+	height:489px;
+	float:right;
+	position:relative;
+	overflow:hidden;
+}
+#play_slide>li{
+	width:966px;
+	height:489px;
+}
+#play_btn_box{
+	width:auto;
+	height:auto;
+	position:absolute;
+	right:100px;
+	bottom:50px;
+}
+#play_btn_box>li{
+	width:15px;
+	height:15px;
+	float:left;
+	margin:5px;
+	border-radius:10px;
+	background:#9E9D9D;
+	cursor:pointer;
+}
+
+
+/*清除浮动*/
+.clear{
+	clear:both;
+	display:block;
+	font-size:1px;
+	height:10px;
+	overflow:hidden;
+}
+
+#main_tabImg{
+	width:1200px;
+	height:340px;
+	margin-bottom:24px;
+	overflow:hidden;
+}
+#main_tabImg>ul{
+	width:1210px;
+}
+.first_tabImg{
+	margin-right:11px;
+	display:block;
+	float:left;
+}
+
+
+/*板块*/
+.main_plate{
+	width:1200px;
+	height:auto;
+}
+.main_Board{
+	width:1200px;
+	height:auto;
+	margin-bottom:24px;
+	overflow:hidden;
+}
+
+.Board_title{
+	width:1200px;
+	height:26px;
+	position:relative;
+}
+.Board_title_left{
+	width:190px;
+	height:26px;
+	line-height:26px;
+	background:#D7060E;
+	position:absolute;
+	left:0;
+	top:0;
+	display:block;
+	text-align:center;
+}
+.Board_title_left>a{
+	width:190px;
+	height:26px;
+	display:block;
+	font-size:16px;
+	font-weight:bold;
+	color:white;
+	letter-spacing:5px;
+}
+.Board_title>div{
+	width:1010px;
+	height:24px;
+	float:right;
+	border:1px solid #CACACA;
+	border-left:none;
+	background:none repeat scroll 0 0 #f5f5f5;
+}
+.Board_title>div>a{
+	width:13px;
+	height:19px;
+	display:inline-block;
+	float:right;
+	margin:1px 10px 0 0;
+	background:url("../Images/vancl0114bg.png") no-repeat scroll 0 -282px rgba(0, 0, 0, 0);
+}
+
+.Board_left{
+	/*width:215px;*/
+	/*height:340px;*/
+	width:1200px;
+	height:auto;
+	float:left;
+	/*margin-right:5px;*/
+}
+.left_content{
+	margin-bottom:2px;
+	overflow:hidden;
+}
+.left_content>dl{
+	width:205px;
+	height:77px;
+	padding:8px 0 0 10px;
+	background:#f2f2f2;
+}
+.left_content>dl>dt{
+	color:#d7060e;
+	line-height:24px;
+	font-weight:bold;
+	font-size:14px;
+	font-family:"微软雅黑";
+}
+.left_content>dl>dd>a{
+	color:#211a19;
+	line-height:20px;
+	display:inline-block;
+	margin-right:2px;
+}
+.left_content>a{
+	width:205;
+	height:70px;
+	display:block;
+	background:red;
+}
+.left_catelink>a{
+	width:215px;
+	height:22px;
+	line-height:20px;
+	color:#fff;
+	background:#777676;
+	display:block;
+	font-weight:bold;
+	font-family:"微软雅黑";
+	font-size:14px;
+	text-align:center;
+}
+
+
+
+.img_plate{
+	width:1300px;
+	height:auto;
+}
+
+.nvzhuang_img{
+	overflow:visible;
+}
+
+.nvzhuang_img>li{
+	width:187px;
+	height:200px;
+	display:block;
+	float:left;
+	margin-right:13px;
+	margin-bottom:10px;
+	position:relative;
+	border:1px solid #E8E8EA;
+	overflow:hidden;
+}
+.nvzhuang_img>li>a>img{
+	width:200px;
+	height:200px;
+	position:absolute;
+}
+.nvzhuang_img>li>a>div{
+	position:absolute;
+	left:0;
+	bottom:0;
+	width:187px;
+	height:30px;
+	font-size:14px;
+	font-weight:400;
+	text-indent:10px;
+	line-height:30px;
+	background:none repeat scroll 0 0 rgba(255, 255, 255, 0.8);
+}
+
+
+.img_goods_left{
+	width:70%;
+	height:auto;
+	float:left;
+	overflow:hidden;
+}
+.img_goods_right{
+	width:30%;
+	height:auto;
+	float:right;
+	display:block;
+	overflow:hidden;
+	color:#DC000C;
+	text-align:left;
+}
+.img_goods_right>b{
+	width:100%;
+	font-size:18px;
+	color:#DC000C;
+	text-align:left;
+}
+
+
+/*首页遮罩广告*/
+#screenAdPop{
+	width:auto;
+	overflow:hidden;
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:999999;
+}
+#screenClose{
+	width:18px;
+	height:18px;
+	display:block;
+	position:absolute;
+	right:14px;
+	top:14px;
+	cursor:pointer;
+	background:url("../Images/close.png") no-repeat scroll left top rgba(0, 0, 0, 0);
+}

@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>搜索</title>
+	<link rel="stylesheet" href="__PUBLIC__/Home/Css/header.css">
+	<link rel="stylesheet" href="__PUBLIC__/Home/Css/search.css">
+	<link rel="stylesheet" href="__PUBLIC__/Home/Css/goodsDetail.css">
+	<link rel="stylesheet" href="__PUBLIC__/Home/Css/footer.css">
+	<script src="__PUBLIC__/Home/Js/jquery.js"></script>
+	<script src="__PUBLIC__/Home/Js/GetRequest.js"></script>
+	<script src="__PUBLIC__/Home/Js/getDate.js"></script>
+</head>
+<body>
+	<!-- 载入头文件 -->
+	<include file="Header/index" />
+
+	<!-- 主页内容部分 -->
+	<div id="main_content">
+		
+		<!-- 主页左边部分 -->
+		<div id="content_left">
+			
+			<!-- 工具栏部分开始 -->
+			<div id="toolbar">
+				<!-- 浮动div -->
+				<div id="floatDiv" style="background-color: rgb(255, 255, 255); z-index: 100; position: static; top: 0px;">
+					<div id="filterBox">
+						<div id="filter_top">
+							<div id="filter_top_left">
+								<h3>排序：</h3>
+								<div id="filter_order">
+									<a class="getDefault checked">默认</a>
+									<a class="getSales" onclick="actions('getSales')">销量</a>
+									<a class="getPriceOrder" onclick="actions('getPriceOrder')">价格</a>
+									<a class="getIsGood" onclick="actions('getIsGood')">好评</a>
+									<a class="getNew" onclick="actions('getNew');">最新</a>
+								</div>
+							</div>
+							<div id="filter_top_right">
+								<div id="pageDiv">
+									<span>找到相关商品<strong>{$page['count']}</strong>款</span>
+									<span onclick="page_prev();">
+										<a href="javascript:" class="page_prev"></a>
+									</span>
+									<span>{$page['page']}/{$page['pagecount']}</span>
+									<span onclick="page_next();">
+										<a href="javascript:" class="page_next"></a>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div id="filter_bottom">
+							<!-- 搜索排序 -->
+							<ul id="search_ul">
+								<li id="search_text">
+									<input type="text" style="color: #000000;" class="text" maxlength="50" id="searchkey">
+								</li>
+								<li id="search_button">
+									<input type="button"  id="selectsearchkey">
+								</li>
+							</ul>
+
+							<!-- 价格排序 -->
+							<div id="bottom_price">
+								<h3>价格：</h3>
+								<div id="price_input">
+									<div id="price_search">
+										<input type="text" title="按价格区间筛选 最低价" id="price_low">
+										<span>—</span>
+										<input type="text" title="按价格区间筛选 最高价" id="price_high">
+									</div>
+									<div id="price_foused">
+										<p>
+											<span class="searchbarBtnCommon">清空</span>
+											<a class="searchbarBtnStrong"></a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 工具栏部分结束 -->
+
+			<!-- 商品列表开始 -->
+			<div id="productList">
+				<ul id="listDetail">
+					<if condition="$goods eq 'null'">
+						<!-- 商品不存在 -->
+						<div id="noresult">
+							<p>抱歉！没有找到符合你要求的产品，</p>
+							<p>
+								您可以
+								<span style="color:#a10000">改变或减少筛选条件</span>
+								的限制试试。
+							</p>
+						</div>
+						<else />
+						<foreach name="goods" item="goods">
+							<li>
+								<strong>
+									<a href="__APP__/Home/Detial/Detial.html?id={$goods.id}">
+										<img class="popup_detail" src="__PUBLIC__/Home/Images/goods/{$goods.goodsimg}" alt="{$goods.id}">
+									</a>
+								</strong>
+								<p class="product_name">
+									<a href="__APP__/Home/Detial/Detial.html?id={$goods.id}">{$goods.goodsname}　{$goods.goodsColor}　{$goods.goodsdesc}</a>
+								</p>
+								<p class="product_price">
+									<del>市场价 ￥{$goods.goodsprice}</del><br>
+									<strong>售价 ￥{$goods.promoteprice}</strong>
+								</p>
+								<p class="storeinfo">
+									<span></span>
+									<a href="javascript:">VANCL 凡客诚品旗舰店</a>
+								</p>
+								<div></div>
+							</li>
+						</foreach>
+					</if>
+				</ul>
+			</div>
+			<!-- 商品列表结束 -->		
+	
+		</div>
+
+			
+
+		<!-- 主页右边部分 -->
+		<div id="content_right">
+			<!-- 商品推荐 -->
+			<div class="right_box">
+				<div class="banner_box">
+					<h2>为你挑选</h2>
+					<div class="goods_top">
+						<ul>
+						<foreach name="sales" item="sales">
+							<li>
+								<div class="g_img">
+									<a href="__APP__/Home/Detial/Detial.html?id={$sales.id}">
+										<img src="__PUBLIC__/Home/Images/goods/{$sales.goodsimg}" alt="">
+									</a>
+								</div>
+								<div class="g_title">
+									<div style="width:106px">
+										<a href="__APP__/Home/Detial/Detial.html?id={$sales.id}" title="{$sales.goodname}">{$sales.goodsname}</a>
+									</div>
+									<div style="color:#a10000;font-weight:hold;line-height:25px;text-align:left;"> 售价：￥{$sales.promoteprice}</div>
+								</div>
+							</li>
+							</foreach>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- 清除浮动 -->
+	<div class="clear_01"></div>
+
+	<!-- 底部分页菜单开始 -->
+	<div id="page_box">
+		<div id="bottom_page">
+			<input type="button" id="page_Okbtn" />
+			<strong>页</strong>
+			<input type="text" id="page_text" value="1" />
+			<strong>到第</strong>
+			<em id="page_count">共{$page['pagecount']}页</em>
+			<span id="page_next" onmouseout="$(this).css('background-position', '46px -1954px');" onmouseover="$(this).css('background-position', '46px -1976px');" style="background-position: 46px -1954px;" onclick="page_next();">
+				<a>下一页</a>
+			</span>
+			<ul id="page_ul">
+				
+			</ul>
+			<span id="page_prev" onmouseout="$(this).css('background-position', '3px -1996px');" onmouseover="$(this).css('background-position', '3px -2018px');" style="background-position: 3px -1996px;" onclick="page_prev();">
+				<a>上一页</a>
+			</span>
+		</div>
+	</div>
+	<!-- 底部分页菜单结束 -->
+
+
+	<!-- 清除浮动 -->
+	<div class="clear_01"></div>	
+
+
+	<!-- 载入商品详细页面 -->
+	<include file="public/goodsDetail" />
+
+	<!-- 载入脚文件 -->
+	<include file="public/footer" />
+</body>
+<script>
+	//搜索按钮
+	$("#selectsearchkey").click(function(){
+		if($("#searchkey").val() == ""){
+			location.href = "__APP__/Home/Search/index";
+		}else{
+			location.href = "__APP__/Home/Search/index?key="+$("#searchkey").val();
+		}
+	});
+
+	//设置两个搜索框的值
+	$("#searchkey").val("{$keys}");
+	$(".search_input").val("{$keys}");
+
+	//根据接收到的总页数来动态添加分页按钮的数量
+	var count = 0;
+	//设置分页按钮的最大个数
+	if({$page['pagecount']} >= 10 ){
+		count = 10;
+	}else{
+		count = {$page['pagecount']};
+	}
+	var addLi = "";
+	for(var i=1;i<=count;i++){
+		if(i == {$page['page']}){
+			addLi += "<li class=\"page_current\">"+i+"</li>";
+		}else{
+			addLi += "<li>"+i+"</li>";
+		}
+	}
+	$("#page_ul").empty().append(addLi);
+
+	// 下一页
+	function page_next()
+	{
+		if({$page['page']} != count && $("#searchkey").val() != ""){
+			location.href = "__APP__/Home/Search/index?key="+$("#searchkey").val()+"&page="+(parseInt({$page['page']})+1);
+		}
+		if({$page['page']} != count && $("#searchkey").val() == ""){
+			location.href = "__APP__/Home/Search/index?page="+(parseInt({$page['page']})+1);
+		}
+	}
+
+	//上一页
+	function page_prev(){
+		if(parseInt({$page['page']}) != 1 && $("#searchkey").val() != ""){
+			location.href = "__APP__/Home/Search/index?key="+$("#searchkey").val()+"&page="+(parseInt({$page['page']})-1);
+		}
+		if(parseInt({$page['page']}) != 1 && $("#searchkey").val() == ""){
+			location.href = "__APP__/Home/Search/index?page="+(parseInt({$page['page']})-1);
+		}
+	}
+
+	//单击页码
+	$("#page_ul li").click(function(){
+		if($("#searchkey").val() != ""){
+			location.href = "__APP__/Home/Search/index?key="+$("#searchkey").val()+"&page="+parseInt($(this).html());
+		}else{
+			location.href = "__APP__/Home/Search/index?page="+parseInt($(this).html());
+		}
+	});
+
+	// 单击确定按钮跳转
+	$("#page_Okbtn").click(function(){
+		if($("#page_text").val() < count && $("#searchkey").val() != ""){
+			location.href = "__APP__/Home/Search/index?key="+$("#searchkey").val()+"&page="+parseInt($("#page_text").val());
+		}
+		if($("#page_text").val() < count && $("#searchkey").val() == ""){
+			location.href = "__APP__/Home/Search/index?page="+parseInt($("#page_text").val());
+		}
+	});
+
+	// 工具栏定位
+	$(window).scroll(function(){
+		if($(document).scrollTop() > $("#filterBox").offset().top){
+			$("#filterBox").css({"position":"fixed","top":"0"});
+		}
+		if($(document).scrollTop() < 186){
+			$("#filterBox").css("position","relative");
+		}
+	});
+
+	$("." + Request['act']).addClass("checked").siblings().removeClass("checked");
+
+	// 默认按钮
+	$(".getDefault").click(function(){
+		if($(".search_input").val() ==""){
+			location.href = "__CONTROLLER__/index";
+		}else{
+			location.href = "__CONTROLLER__/index?key="+$(".search_input").val();
+		}
+	});
+
+	// 价格查询
+	// 清除按钮
+	$(".searchbarBtnCommon").click(function(){
+		$("#price_low,#price_high").val("");
+	});
+	//确定按钮
+	$(".searchbarBtnStrong").click(function(){
+		var url = "__CONTROLLER__/index";
+		// var low = "&low="+$("#price_low").val();
+		// var high = "&high="+$("#price_high").val();
+		var t_low = $("#price_low").val();
+		var t_high = $("#price_high").val();
+
+		if(t_low && t_high && $(".search_input").val() != ""){
+			location.href = url+"?key="+$(".search_input").val()+"&low="+t_low+"&high="+t_high;
+		}
+		if(t_low != "" && t_high == "" && $(".search_input").val() != ""){
+			location.href = url + "?key="+$(".search_input").val() + "&low=" + t_low;
+		}
+		if(t_low == "" && t_high != "" && $(".search_input").val() != ""){
+			location.href = url + "?key="+$(".search_input").val() + "&high="+t_high;
+		}
+		if(t_low && t_high != ""){
+			location.href = url + "?low="+t_low+"&high="+t_high;
+		}
+		if(t_low != "" && t_high == ""){
+			location.href = url + "?low="+t_low;
+		}
+		if(t_low == "" && t_high != ""){
+			location.href = url + "?high=" +t_high;
+		}
+	});
+
+	// 工具栏排序按钮
+	function actions(act){
+		if($(".search_input").val() != ""){
+			location.href = "__CONTROLLER__/index?key="+$(".search_input").val()+"&act=" + act;
+		}else{
+			location.href = "__CONTROLLER__/index?act="+act;
+		}
+	}
+
+	// 商品详情信息(以下代码是判断弹出框的位置以及请求数据库的代码)
+	var popup_detail = $(".popup_detail");
+	popup_detail.hover(function(event){
+		var eve = event || window.event;
+		$(this).css("border","1px solid #B33333");
+		$("#arrowIcon").css("display","block");
+		$("#popup").css("display","block");
+		$("#arrowIcon").css("left",$(this).offset().left + $(this).width());
+		$("#popup").css("left",$(this).offset().left + $(this).width() + $("#arrowIcon").width());
+		$("#arrowIcon").css("top",eve.pageY);
+
+		if(eve.pageY > $(this).offset().top + $(this).height() / 2){
+			$("#arrowIcon").css("top",eve.pageY - 25);
+		}
+
+		var screenHeight = $(window).height();
+		if(eve.clientY > screenHeight / 2){
+			$("#popup").css("top",screenHeight - $("#popup").height() - 5);
+		}else{
+			$("#popup").css("top",(screenHeight / 10) - 60);
+		}
+
+		if($(this).offset().left > $(document).width() / 2){
+			$("#arrowIcon").css({"background-position":"0 -28px","left":$(this).offset().left - $("#arrowIcon").width()});
+			$("#popup").css("left",$(this).offset().left - $("#popup").width() - $("#arrowIcon").width()-1);
+		}else{
+			$("#arrowIcon").css("background-position","0 0");
+		}
+
+
+			// ajax请求数据
+			$.get("__CONTROLLER__/getGoods",{"id":$(this).attr("alt")},function(data){
+				$(".pop_pic").html('<img src="__PUBLIC__/Home/Images/goods/' + data.goodsimg + '">');
+				$(".pop_title span").html(data.goodsname);
+				$(".pop_title em").html("总销量："+data.goodssales);
+				$(".isgood").html("好评：" + data.isGood);
+				$(".ispoor").html("差评：" + data.isPoor);
+
+				$(".market").html("上架时间："+getDate(data.addtime));
+				$(".price1 strong").html("售价：￥"+data.promoteprice);
+				$(".price2 del").html("￥"+data.goodsprice);
+				var sum = (parseInt(data.isGood) + parseInt(data.isPoor));
+				var result = Math.round(parseInt(data.isGood) / parseInt(sum) * 100) + "%";
+				if(result == "NaN%"){
+					result = "100%";
+				}
+				$(".pop_praise em").html(result);
+			},"json");
+
+		},function(){
+			$(this).css("border","1px solid #DCDCDC");
+			$("#pop_pic_detail").attr("src"," ");
+			$("#arrowIcon").css("display","none");
+			$("#popup").css("display","none");
+		});
+</script>
+</html>

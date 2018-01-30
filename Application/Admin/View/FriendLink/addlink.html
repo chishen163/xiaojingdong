@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>友情链接</title>
+		<style type="text/css">
+			body{
+				background:url('__PUBLIC__/Admin/Images/w70.png') repeat;
+			}
+			.add_link_inp{
+				width:230px;
+				height:20px;
+			}
+			#add_link_btn{
+				height:30px;
+				width:100px;
+				font-weight:bold;
+			}
+			table{
+				border-collapse:collapse;
+			}
+			td{
+				height:60px;
+				text-indent:20px;
+			}
+			tr{
+				border-top:2px solid #f9f0e1;
+			}
+			tr:hover{
+				background:#f9f0e1;
+			}
+			th{
+				color:#d39c59;
+			}
+		</style>
+	</head>
+	<body>
+		<center style="width:980px;height:50px;line-height:50px;"><strong style="color:#d39c59;font-size:30px;">添加友情链接</strong></center>
+		<center>
+
+			<!-- 添加链接表单 -->
+			<form action="__CONTROLLER__/ADD" method="post" enctype="multipart/form-data">
+				<table width="900">					
+					<tr>
+						<!-- 输入链接名称 -->
+						<th>链接名称:</th>
+						<td><input type="text" name="linkname" class="add_link_inp" /></td>
+						<!-- 输入链接URL -->
+						<th>链接URL:</th>
+						<td><input type="text" name="url" class="add_link_inp" /></td>
+					</tr>				
+					<tr>
+						<!-- 输入网站的管理员 -->
+						<th>网站管理员:</th>
+						<td><input type="text" name="webadmin" class="add_link_inp" /></td>
+						<!-- 输入联系电话 -->
+						<th>联系电话:</th>
+						<td><input type="tel" name="telphone" class="add_link_inp" /></td>
+					</tr>
+					<tr>
+						<!-- 邮箱地址 -->
+						<th>Email地址:</th>
+						<td><input type="email" name="email" class="add_link_inp" /></td>
+						<!-- 设置链接的显示顺序 -->
+						<th>显示顺序: </th>
+						<td><input type="number" name="linkorder" class="add_link_inp" /></td>
+					</tr>				
+					<tr>
+						<!-- 设置是否前台显示 -->
+						<th>是否显示:</th>
+						<td>
+							<input type="radio" name="isshow" value="1" />是
+							<input type="radio" name="isshow" value="0" checked />否
+						</td>
+						<!-- 设置是否已经审核过 -->
+						<th>是否审核:</th>
+						<td>
+							<input type="radio" name="passed" value="1" />是
+							<input type="radio" name="passed" value="0" checked />否
+						</td>
+					</tr>
+
+					<!-- 选择链接方式 -->
+					<tr>
+						<th>链接方式:</th>
+						<td>
+							<select name="linktype" style="height:25px;width:150px;">
+								<option value="1" selected>新窗口打开</option>
+								<option value="2">当前窗口打开</option>
+								<option value="3">父级窗口打开</option>
+								<option value="4">顶级窗口打开</option>
+							</select>
+						</td>
+						<!-- 网站类型设置 -->
+						<th>网站类型:</th>
+						<td>
+							<select name="sitetype" style="height:25px;width:150px;">
+								<option value="政府网站" selected>政府网站</option>
+								<option value="企业网站">企业网站</option>
+								<option value="商业网站">商业网站</option>
+								<option value="教育科研网站">教育科研网站</option>
+								<option value="个人网站">个人网站</option>
+								<option value="其他">其他</option>
+							</select>
+						</td>
+					</tr>
+
+					<!-- 输入链接网站的描述说明 -->
+					<tr>
+						<th>链接介绍:</th>
+						<td colspan="3"><textarea name="introduction" cols="80" rows="4"></textarea></td>
+					</tr>
+
+					<!-- 添加链接的提交按钮 -->
+					<tr>
+						<td colspan="4" style="height:80px;line-height:80px;text-align:center;"><input type="submit" value="添加链接" id="add_link_btn" style="color:#d39c59;"/></td>
+					</tr>
+				</table>
+			</form>
+		</center>
+	</body>
+	<script type="text/javascript">
+		var TR = document.getElementsByName("tr");
+		TR.mouseover = function() {
+			this.sytle.background = "#cdcdcd";
+		}
+	</script>
+</html>

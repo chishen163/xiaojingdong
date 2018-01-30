@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+	<head>
+		<title>评价列表</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/bootstrap.css">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/z_question.css">
+		<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+	</head>
+	<body>
+		<div class="reply_list">
+			<div class="reply_title">
+				<span>评价列表：</span>
+			</div>
+			<div class="reply_con">
+				<table class="reply_tab">
+					<tr>
+						<th>选择</th>
+						<th class="gname">商品名</th>
+						<th>邮箱</th>
+						<th style="width:300px;">评论</th>
+						<th>外观</th>
+						<th>舒适</th>
+						<th>透气</th>
+						<th>色差</th>
+						<th>厚度</th>
+						<th>匹配</th>
+						<th>时间</th>
+						<th>IP</th>
+						<th>状态</th>
+					</tr>
+
+					<!-- 回复数据遍历开始 -->
+					<foreach name="comment_data" item="comment">
+					<tr>
+						<td><input type="checkbox" value="{$comment.id}" name="ids[]" class="comment_status"></td>
+						<td>{$comment.goodsname}</td>
+						<td>{$comment.email}</td>
+						<td style="overflow:hidden;width:300px;white-space:nowrap;word-wrap:break-word;text-overflow:ellipsis;">{$comment.content}</td>
+						<td>{$comment.watch}</td>
+						<td>{$comment.comfort}</td>
+						<td>{$comment.freely}</td>
+						<td>{$comment.color}</td>
+						<td>{$comment.thick}</td>
+						<td>{$comment.prefect}</td>
+						<td>{$comment.addtime|date="Y-m-d H:i:s", ###}</td>
+						<td>{$comment.ip}</td>
+						<td>
+							<input type="checkbox" value="已处理" name="" <if condition="$comment.status eq 1">checked</if>>已处理<br>
+							<input type="checkbox" value="未处理" name="" <if condition="$comment.status eq 0">checked</if>>未处理<br>
+							<input type="checkbox" value="不可见" name="" <if condition="$comment.hidden eq 1">checked</if>>不可见
+						</td>
+					</tr>
+					</foreach>
+					<!-- 回复数据遍历结束 -->
+
+					<tr>
+						<td colspan="9" class="set_pass">
+							<input type="button" value="全选" onclick="qx()">
+							<input type="button" value="反选" onclick="fx()">
+							<input type="button" value="全不选" onclick="qbx()">
+							<input type="button" value="删除" onclick="dels()">
+							<input type="button" value="设为已处理状态" onclick="action()">
+							<input type="button" value="设为可见状态" onclick="show()">
+							<input type="button" value="设为不可见状态" onclick="hid()">
+						</td>
+					</tr>
+				</table>
+				<div class="fpg" >{$page}</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		/*
+			定义一个函数，用来局部动态请求该页面，每次点击页码时都是局部刷新操作，
+			注意，不要自动调用一次该函数，否则会无限循环调用下去
+			但是修改了框架中的分页类，重新改名为Page_ajax.class.php
+			原分页类仍然是原名，不受影响
+		*/
+		function setPage(url) {
+			$.get(url, function(data) {
+				$('.reply_list').html(data);
+			});
+		}
+
+		function getIds() {
+
+			/*
+				此时需要通过js方式获取所有复选框的选中状态，并且获得其value值传递到控制器中去
+				算法是：先获取满足条件input输入框的个数
+				声明一个空数组用来存取每个输入框的id值
+				通过for循环遍历出所有满足条件的id值
+				注意要使用eq()来过滤，下标从0开始读取
+				然后使用jQuery中的ajax请求控制器中的方法，将订单表中的字段修改为已付款状态
+			*/
+			var length = $('input[type=checkbox].comment_status:checked').length;
+			var ids = new Array();
+			for(var i = 0; i < length; i++) {
+				ids[i] = $('input[type=checkbox].comment_status:checked').eq(i).val();
+			}
+
+			//返回一个数组给调用处
+			return ids;
+		}
+
+		/*
+			全选，反选，全不选函数集合
+			选中元素的方式$('input[type=checkbox].order_status')，过滤掉后面的状态按钮
+		*/
+
+		//全选函数
+		function qx() {
+			$('input[type=checkbox].comment_status').attr('checked', 'true');
+		}
+
+		//反选函数
+		function fx() {
+			var length = $('input[type=checkbox].comment_status').length;
+			for(var i = 0; i < length; i++) {
+				$('input[type=checkbox].comment_status').eq(i).attr('checked', !$('input[type=checkbox].comment_status').eq(i).attr('checked')) ;
+			}
+		}
+
+		//全不选函数
+		function qbx() {
+			$('input[type=checkbox].comment_status').removeAttr('checked');
+		}
+
+		//点击设为已处理状态时触发的函数，该函数请求控制器中的方法将评论表中的状态字段修改为1
+		function action() {
+
+			//通过自定义函数获得批量操作的id值
+			ids = getIds();
+
+			$.post("__CONTROLLER__/comInfo", {ids : ids, status : 'action'}, function(data) {
+				$('.reply_list').html(data);
+			});
+		}
+
+		//点击设为可见状态时触发该函数，该函数将修改评价表hidden字段的值
+		function show() {
+
+			//通过自定义函数获得批量操作的id值
+			ids = getIds();
+			
+			$.post("__CONTROLLER__/comInfo", {ids : ids, status : 'show'}, function(data) {
+				$('.reply_list').html(data);
+			});
+		}
+
+		//点击设为不可见状态时触发该函数，该函数将修改评价表hidden字段的值
+		function hid() {
+
+			//通过自定义函数获得批量操作的id值
+			ids = getIds();
+			
+			$.post("__CONTROLLER__/comInfo", {ids : ids, status : 'hidden'}, function(data) {
+				$('.reply_list').html(data);
+			});
+		}
+
+		//点击删除时触发的方法，该方法属于批量操作处理流程，支持单条删除
+		function dels() {
+
+			//通过自定义函数获得批量操作的id值
+			ids = getIds();
+
+			if (confirm("你确认要删除该评论吗？！")) {
+
+				//不需要返回值，删除成功后直接跳转到评论首页
+				$.post("__CONTROLLER__/dels", {ids : ids}, function(data) {
+					$('.reply_list').html(data);
+				});
+			}
+		}
+	</script>
+</html>

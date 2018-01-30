@@ -1,0 +1,292 @@
+<!-- 对该商品的提问和回答区域 -->
+<div id="z_answer">
+
+	<!-- 最新提问，总体条数等 -->
+	<div id="z_answer_top">
+		<div class="z_answer_top_left"> 最新提问 共{$newcount}条</div>
+		<div class="z_answer_top_right">
+			<div class="z_answer_sort">
+				<span class="z_sort_word">排序方式:</span>
+				<select name="">
+					<option value="">更新时间</option>
+					<option value="">回复次数</option>
+				</select>
+			</div>
+			<div class="z_myquestion">我要提问</div>
+		</div>
+	</div>
+
+	<!-- 提问和回答区域，对话实现 -->
+
+	{/* 
+		首先判断一下该商品是否已有提问，如果没有输出暂时还没有针对该商品的提问信息 
+		使用<empty name=""></empty>标签判断变量是否为空，注意变量名不要加$符号 
+	*/}
+	<empty name="question_data">
+		<div class="z_dt_dd"><span class="noquestion_notice">该商品暂时还没有提问</span></div>
+	</empty>
+
+	<foreach name="question_data" item="question">
+	<!-- 遍历开始 -->
+	<div class="z_dt_dd">
+		<div class="z_dd z_dt_top">
+			<span class="z_dt_padding">{$question.email}问：</span>
+			<span class="z_dt_common">{$question.ctime|date="Y/m/d H:i:s", ###}</span>
+			<span class="z_dt_myre" name="{$question.id}">我要回复</span>
+		</div>
+		<div class="z_dd z_dt_second">{$question.content}</div>
+		<div class="z_dd z_dt_middle">管理员{$question.adminname}回答：</div>
+		<div class="z_dd z_dt_end">{$question.answer}</div>
+	</div>
+
+	<!-- 定义一个锚点位置，用于表单处理完毕后返回到此处 -->
+	<a href="" name="myreply"></a>
+
+	<!-- 展示回复区域位置 -->
+	<div class="show_reply" name="{$question.id}">
+		<!-- <div class="sr_title">
+			<div class="name_say"><b>1234回复说：</b></div>
+			<div class="reply_time">1234</div>
+		</div>
+		<div class="sr_content">
+			<p>234567</p>
+		</div> -->
+	</div>
+
+	<!-- 我要回复操作 -->
+	<form method="post" action="">
+	<div class="myrequest" name="{$question.id}">
+		<input type="hidden" name="authorid" value="{$question.id}">
+		<div class="my_tit">发表回复</div>
+		<textarea name="content" class="re_con" id="{$question.id}" cols="30" rows="10"></textarea>
+		<div class="re_btn">
+			<input type="button" value="回复" class="ajax_reply">
+			<input type="button" value="关闭" class="close_frm">
+		</div>
+	</div>
+	</form>
+	<!-- 遍历结束 -->
+	</foreach>
+
+	<!-- 用来显示分页的盒子 -->
+	<div class="q_page">{$page}</div>
+</div>
+
+<!-- 这里是我要提问的内容录入框，默认影藏该框 -->
+<div id="z_myquestion_edit">
+	<form action="" method="post" id="question_frm">
+	<div id="z_question_title">
+		<div id="question_img">
+				<div></div>
+				<span>提问：</span>
+		</div>
+		<div id="question_gname">
+			{$goods.goodsname}
+		</div>
+	</div>
+	<div id="z_question_container">
+		<div id="question_con_left">
+			<div>提问类型：</div>
+			<div>提问内容：</div>
+		</div>
+		<div id="question_con_right">
+			<div>
+				<span><input type="radio" name="question" value="商品提问">商品提问</span>
+				<span><input type="radio" name="question" value="促销活动提问">促销活动提问</span>
+				<span><input type="radio" name="question" value="库存及物流提问">库存及物流提问</span>
+				<span><input type="radio" name="question" value="售后提问">售后提问</span>
+				<span id="qt_msg"></span>
+			</div>
+			<span>
+				<textarea name="question_content" id="q_editor" cols="80" rows="5"></textarea>
+				<span id="qc_msg"></span>
+				<div onclick="question()"></div>
+				<span id="q_result">取消关闭</span>
+			</span>
+		</div>
+	</div>
+	</form>
+</div>
+<!-- 我要提问部分结束 -->
+
+<script>
+	//将该字段声明为全局，整个脚本有效的变量
+	var name = null;
+
+	//点击我要回复时，获取到该条提问信息的id值，作为name变量的值，在所有遍历出来的盒子中，暂时只有它是惟一的，通过他可以找到具体的盒子
+	$('.z_dt_myre').click(function() {
+		
+		//获取当前被点击元素的name值，用来确定需要显示的回复区域框位置
+		name= $(this).attr('name');
+
+		/*
+			属性值是可以通过变量的方式来指定的
+			这里根据每一条提问的id号来定位和我要回复相对应的回复区域框
+			获取方式是通过指定两个盒子的name值，并且该值是提问的id值
+			方式是alert($('.myrequest[name='+name+']').attr('name'));
+			然后让相应的回复区域框显示出来就可以了
+		*/
+		$('.myrequest').css('display', 'none');
+		$('.myrequest[name='+name+']').css('display', 'block');
+	});
+
+	//必须使用ajax请求来动态更新数据，该方法发送数据去控制器中，写入数据表储存起来
+	$('.ajax_reply').click(function() {
+
+		//获取到影藏表单的value值，即是该条提问信息的id值
+		var questionid = $('input[value='+name+']').val();
+
+		//获得提问内容
+		var content = $('textarea[id='+name+']').val();
+
+		$.post("__CONTROLLER__/myReply", {authorid: questionid, content : content}, function(data) {
+			if (data == 'yes') {
+
+				//调用函数，将信息读取出来显示在列表中
+				getMsg();
+			} else {
+
+				//回复失败
+				alert('回复失败');
+			}
+		});
+	});
+
+	//自定义一个函数用来显示回复数据的信息
+	function getMsg() {
+
+		//获取到影藏表单的value值，即是该条提问信息的id值，该id值是回复表中的父类id值，通过它可以判断每一条回复信息的显示
+		var questionid = $('input[value='+name+']').val();
+
+		$.post("__CONTROLLER__/getReply", {authorid : questionid}, function(data) {
+
+			//每一次都要让它已有的数据清空
+			$('.show_reply[name='+name+']').html('');
+
+			//请求大数据量时需要使用循环遍历json格式的数据
+			var length = data.length;
+			for (var i = 0; i < length; i++) {
+				$('.show_reply[name='+name+']').append('<div class="sr_title"><div class="name_say">'+(i+1)+'、<b>'+data[i].email+'回复说：</b></div><div class="reply_time">'+data[i].addtime+'</div></div><div class="sr_content"><p>'+data[i].content+'</p></div>');
+			}			
+		}, 'json');
+	}
+
+	//增加一个周期性事件，用于动态获取回复数据信息，每隔两秒钟获取一次数据
+	/*setInterval(function() {
+		getMsg();		
+	}, 2000);*/
+
+	//关闭弹出的表单输入区域
+	$('.close_frm').click(function() {
+		$('.myrequest').css('display', 'none');
+	});
+
+	/*
+		一个简单的算法，通过JS字符串函数split()将字符串分割成数组和
+		数组函数pop()弹出数组最后一个元素进行浏览器地址的分割处理
+		最后得到浏览器地址中的id值，用于jQuery向控制器进行异步请求
+	*/
+	function goodsid() {
+		var str = location.pathname;
+		str = str.split('/');
+		str = str.pop();
+
+		return str;
+	}
+
+	var goodsid = goodsid();
+
+	//用户提问处代码，显示提问编辑区域
+	$('.z_myquestion').click(function() {
+		$('#z_myquestion_edit').css('display', 'block');
+	});
+
+	/*
+		用户点击提交问题时触发的函数，该 函数将判断编辑区域中的内容
+		符合要求后发送到PHP端进行处理，一个用户对同一个商品可以有多个提问
+	*/
+	function question() {
+
+		//声明一个变量，用来作为用户是否修改该字段的标志，默认为假值
+		var qt = false;
+
+		//获取提问类型中被选中的项的val值
+		var q_type = $('#question_frm input:checked').val();
+
+		//判断该值是否已被定义，如果未被定义，则输出提示信息
+		if (typeof(q_type) == 'undefined') {
+
+			$('#qt_msg').css({color : 'red'});
+			$('#qt_msg').text("请选择提问类型");
+		} else {
+
+			//否则该值已被定义，去除样式，并把标志值修改为真值
+			$('#qt_msg').css({color : ''});
+			$('#qt_msg').text("");
+			qt = true;
+		}
+
+		//声明一个标志变量，用来确认提问内容的输入情况，默认为假
+		var qc = false;
+
+		//获取提问内容
+		var q_content = $('#q_editor').val();
+
+		//判断，如果提问内容不为空，就认为是输入了提问，否则输出提示信息
+		if (q_content == '') {
+
+			$('#qc_msg').css({color : 'red'});
+			$('#qc_msg').text("请输入提问内容");
+		} else {
+
+			//说明有提问内容，清除样式，将标志值修改为真值
+			$('#qc_msg').css({color : ''});
+			$('#qc_msg').text("");
+			qc = true;
+		}
+
+		/*
+			如果提问类型和提问内容均有值存在，再执行提交功能
+		*/
+		if (qt == true && qc == true) {
+
+			//通过JS自定义函数获取商品id,提问类型和内容传递给控制器处理，使用json格式
+			$.post("__CONTROLLER__/question", {goodsid : goodsid, q_type : q_type, q_content : q_content}, function(data) {
+				if (data != '1') {
+					alert(data);
+				}
+			});
+		}
+
+		//提问完成，此时将提问编辑区影藏
+		$('#z_myquestion_edit').css('display', 'none');
+
+		//点击取消提问时，将提问区域影藏起来
+		$('#q_result').click(function() {
+			$('#z_myquestion_edit').css('display', 'none');
+		});
+	}
+
+	/*
+		找到问题所在了，即是分页的页码不变，只要页码变化，请求就成功了
+		捣鼓了一个下午，最后实现了一步刷新请求这个功能，鸡肋的是居然需要点击两次才能
+		触发成功。也就是说，第一次点击请求a标签，第二次请求才发送数据到控制器中去
+		暂时先这样
+	*/
+
+	function setPage(url) {
+		
+		$('.q_page a').mouseup(function() {
+			
+			var p = $(this).text();
+			var str = location.pathname;
+			str = str.split('/');
+			str = str.pop();
+
+			$.get("__CONTROLLER__/qpage",{id : str, p : p}, function(data) {
+				$('.question_include').html(data);
+			});
+		});
+	}
+
+</script>

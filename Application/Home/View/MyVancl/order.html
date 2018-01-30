@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+	<head>
+		<title>我的订单</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="__PUBLIC__/Home/Css/skim_order.css">
+		<script type="text/javascript" src="__PUBLIC__/Home/Js/jquery.js"></script>
+	</head>
+	<body>
+		<div class="order_main">
+			<div class="order_title">
+				<span>我的订单</span>
+			</div>
+			<div class="order_list">
+				<div class="list_title_top">
+					<div>全部订单</div>
+					<div class="common_left">进行中</div>
+					<div class="common_left">已完成</div>
+					<div class="common_left">无效</div>
+				</div>
+
+				<foreach name="order_data" item="order">
+				<!-- 循环遍历的开始 -->
+				<div class="order_table">
+					<div class="table_title">
+						<p class="order_total">订单总金额￥{$order.total}元</p>
+						<p class="none_order"><if condition="$order.isuse eq 1">有效订单<else />无效订单</if></p>
+						<p class="order_time">{$order.addtime|date="Y-m-d H:i:s", ###}</p>
+					</div>
+					<div class="table_list">
+						<div class="tl_name">
+							<span><a href="__CONTROLLER__/detail/id/{$order.id}">{$order.ordersn}</a></span>
+
+							<foreach name="order['goodsimg']" item="img">
+								<img src="__PUBLIC__/Home/Images/goods/{$img}" alt="" width="50" heihgt="50">
+							</foreach>
+
+						</div>
+						<div class="tl_extr">
+							<div class="tl_info">
+								<p>应付：￥{$order.total}</p>
+								<p>{$order.paytype}</p>
+								<p>{$order.consignee}</p>
+							</div>
+						</div>
+						<div class="tl_extr">
+							<div class="tl_info">
+								<p><if condition="($order.isnew eq 1) AND ($order.orderstatus eq 0)">等待收货<elseif condition="$order.orderstatus eq 1" />送达成功</if></p>
+								<p><if condition="$order.isuse eq 1">有效订单<else />无效订单</if></p>
+								<a href="__CONTROLLER__/detail/id/{$order.id}#pro_status"><p><if condition="$order.isnew eq 1">订单跟踪<elseif condition="$order.orderstatus eq 1" />订单跟踪</if></p></a>
+							</div>
+						</div>
+						<div class="tl_extr">
+							<div class="tl_info">
+								<p><if condition="($order.isnew eq 1) AND ($order.orderstatus eq 0) AND ($order.packid eq 0)"><a href="__APP__/Home/Cart/cart/orderid/{$order.id}" target="_blank">修改订单</a><elseif condition="($order.isnew eq 1) AND ($order.orderstatus eq 0) AND ($order.packid gt 0)" />正在配送<elseif condition="$order.orderstatus eq 1" /><a href="__CONTROLLER__/point/id/{$order.id}">发表评论</a></if></p>
+								<p><if condition="$order.isuse eq 0"><a href="__APP__/Home/Cart/cart/orderid/{$order.id}" target="_blank">购买</a></if></p>
+								<p><if condition="($order.isnew eq 1) AND ($order.orderstatus eq 0)"><a href="__APP__/Home/myVancl/cancl/id/{$order.id}">取消订单</a><elseif condition="$order.orderstatus eq 1" /><a href="__APP__/Home/Cart/cart/orderid/{$order.id}" target="_blank">再次购买</a> </if></p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="space"></div>
+				<!-- 循环遍历的结束 -->
+				</foreach>
+	
+				<!-- 分页信息显示 -->
+				<div class="order_fpage">{$page}</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		/*
+		定义一个函数，用来局部动态请求该页面，每次点击页码时都是局部刷新操作，
+		注意，不要自动调用一次该函数，否则会无限循环调用下去
+		但是修改了框架中的分页类，重新改名为Page_ajax.class.php
+		原分页类仍然是原名，不受影响
+		*/
+		function setPage(url) {
+			$.get(url, function(data) {
+				$('.order_main').html(data);
+			});
+		}
+	</script>
+</html>

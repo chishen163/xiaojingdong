@@ -1,0 +1,140 @@
+<!-- 该商品评论的总体信息，快速浏览，具体信息在下面 -->
+<div id="z_comment">
+	<div id="z_comment_top">
+		<a href="" class="zc_good_comm">商品评论（共{$count}名用户）</a>
+		<a href=""> 我要评论</a>
+		<a href="" class="zc_right">所有打分及评论均来自已购买本产品的用户</a>
+	</div>
+	<div id="z_comment_middle">
+		<div id="z_cmiddle_left">评价</div>
+		<div id="z_cmiddle_right">
+		<!-- 	<div  class="z_cmr_st">尺码</div>
+		<div class="z_cmr_sr">86%的用户认为尺码<合适></div>
+		<div class="z_cmr_sr">1%的用户认为尺码<偏小></div>
+		<div class="z_cmr_sr">13%的用户认为尺码<偏大></div> -->
+		</div>
+	</div>
+	<div id="z_comment_bottom">
+		<div id="zb_left">
+			<span>大家都在说：</span>
+		</div>
+		<div id="zb_right">
+			<div>挺好看的</div>
+			<div>快递很快</div>
+			<div>穿着挺舒服</div>
+			<div>颜色漂亮</div>
+			<div>尺码正好</div>
+			<div>手感很好</div>
+			<div>质量没得挑</div>
+			<div>价格便宜</div>
+			<div>性价比一般</div>
+			<div>颜色不喜欢</div>
+		</div>
+	</div>
+</div>
+
+<!-- 商品评价的三个选项：好评、中评和差评 -->
+<div id="comment_option">
+	<span class="new_com">最新评论({$count})</span>
+	<span>好评()</span>
+	<span>中评()</span>
+	<span>差评()</span>
+</div>
+
+<a href="" name="anchor_comment"></a>
+
+<div class="need_ajax">
+<!-- 商品评论信息遍历区域，限制10个 -->
+<foreach name="comment_data" item="comment">
+<!-- 遍历开始 -->
+<div class="z_discuss">
+	<div class="z_discuss_left">
+		<!-- 默认头像 -->
+		<img class="zdl_image" src="__PUBLIC__/Home/Images/z_comment_vancl.jpg" alt="" />
+		<span>{$comment.email}</span>
+		<span><if condition="$user.userrank eq 0">普通会员<else />{$user.userrank}</if></span>
+		<span>省份</span>
+		<span><a href="javascript:ourCom('{$comment.email}', '{$comment.goodsid}')">该用户的评论>></a></span>
+	</div>
+	<div class="z_discuss_right">
+		<div class="z_dright_top">
+			
+				<div class="score_font">评分：</div>
+				<div class="raty_place"></div>
+				<!-- <img src="__PUBLIC__/Home/Images/z_fav.gif" alt="">
+				<img src="__PUBLIC__/Home/Images/z_fav.gif" alt="">
+				<img src="__PUBLIC__/Home/Images/z_fav.gif" alt="">
+				<img src="__PUBLIC__/Home/Images/z_fav.gif" alt="">
+				<img src="__PUBLIC__/Home/Images/z_fav.gif" alt=""> -->
+			
+			<p>颜色：浅花灰  尺码：L</p>
+			<p>身高：{$comment.height}	体重：{$comment.weight}    该用户认为实际尺码：[{$comment.comfort}]</p>
+		</div>
+		<div class="z_dright_middle">
+			<div class="zdright_mleft">评价:</div>
+			<div class="zdright_mright">
+				<p>
+					{$comment.content}
+				</p>
+			</div>
+		</div>
+		<div class="z_dright_bottom">
+			<div class="zbottom_left">这条评论对我：</div>
+			<div class="zbottom_middle">
+				<span><a href="">有用(0)</a></span>
+				<span><a href="">没用(0)</a></span>
+				<span><a href="">我要回复(0)</a></span>
+			</div>
+			<div class="zbottom_right">评论时间 {$comment.addtime|date="Y/m/d H:i:s", ###}</div>
+		</div>
+	</div>
+</div>
+<!-- 遍历结束 -->
+</foreach>
+</div>
+
+<!-- 针对评价部分的分页控制信息 -->
+<div id="z_page">
+	<div class="comment_page">{$cpage}</div>
+</div>
+<script>
+	/*
+		一个简单的算法，通过JS字符串函数split()将字符串分割成数组和
+		数组函数pop()弹出数组最后一个元素进行浏览器地址的分割处理
+		最后得到浏览器地址中的id值，用于jQuery向控制器进行异步请求
+	*/
+	function goodsid() {
+		var str = location.pathname;
+		str = str.split('/');
+		str = str.pop();
+
+		return str;
+	}
+
+	var goodsid = goodsid();
+
+	//点击查看我所有的评论时请求的函数
+	function ourCom(email, id) {
+		$.post("__CONTROLLER__/ourCom", {email : email, id : id}, function(data) {
+			$('.comment_include').html(data);
+		});
+	}
+
+	var cid = $('input[type=hidden]').val();
+	//加载星级插件时使用的方法
+	$('.raty_place').raty(
+		{path: '__PUBLIC__/Home/Images/img'}
+	);
+
+	//星级插件的默认宽度是100px，但有时候是无法堆叠在一起，需要使用jQuery的方式动态修改星级插件的div宽度
+	$('.raty_place').css('width', '110px');
+
+	/*
+		找到问题所在了，即是分页的页码不变，只要页码变化，请求就成功了
+		捣鼓了一个下午，最后实现了一步刷新请求这个功能，鸡肋的是居然需要点击两次才能
+		触发成功。也就是说，第一次点击请求a标签，第二次请求才发送数据到控制器中去
+		暂时先这样
+	*/
+
+	
+</script>

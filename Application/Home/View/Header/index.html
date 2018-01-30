@@ -1,0 +1,319 @@
+	<!-- 回到顶部 -->
+	<div style="right: 10px; bottom: 10px; position: fixed; z-index: 9999; display: block;">
+		<a href="#">
+			<div style="cursor: pointer;background-image:url(__PUBLIC__/Home/Images/go2top.png);background-color:transparent;background-repeat:no-repeat;width:25px;height:90px"></div>
+		</a>
+	</div>
+
+	<!-- 顶部信息栏 -->
+	<div id="top">
+		<div id="top_box">
+			<!-- 左边登陆部分 -->
+			<div id="top_box_left">
+
+				<!-- 判断SESSION的值是否为空,若为空则未登录,否则为登录 -->
+				<if condition="$user.username eq null">
+					<span>您好, 欢迎光临凡客诚品!</span>
+					<a href="__APP__/Home/User/login" class="login_reg">[&nbsp;&nbsp;登陆&nbsp;&nbsp;</a>|
+					<a href="__APP__/Home/User/regedit" class="login_reg">&nbsp;&nbsp;注册&nbsp;&nbsp;]</a>
+				<elseif condition="$user.username neq null" />
+					<span>您好,&nbsp;{$user.username}</span>
+					<a href="__APP__/Home/Index/loginout" class="login_reg">&nbsp;退出登录</a> | <a href="__APP__/Home/User/login" class="login_reg">更换用户&nbsp;</a>
+				</if>
+				　　
+				<a href="__APP__/Home/myVancl/myvancl" target="_blank">我的订单</a>　
+				<a href="javascript:void(0);" onclick="AddFavorite('我的网站',location.href)">收藏本站</a>
+			</div>
+			
+			<!-- 右边部分 -->
+			<div id="top_box_right">
+				<!-- 我的凡客 -->
+				<div class="my_vancl">
+					<!-- //判断是否为登录用户 -->
+					<if condition="$user eq null">
+						<a href="__APP__/Home/MyVancl/login"class="mapDropTitle" target="_blank">我的凡客</a>
+					<else />
+						<a href="__APP__/Home/MyVancl/myvancl"class="mapDropTitle" target="_blank">我的凡客</a>
+					</if>
+
+					<div class="my_vancl_list">
+						<ul class="mapDropList">
+							<li onclick="location.href='__APP__/Home/myVancl/myvancl'">我的订单</li>
+							<li onclick="location.href='__APP__/Home/myVancl/myvancl'">我的收藏</li>
+							<li>积分管理</li>
+						</ul>
+					</div>
+					<div class="vancl_list_img"></div>
+				</div>
+
+				<!-- 网站导航 -->
+				<div class="my_vancl">
+					<a href="javascript::" class="mapDropTitle">网站导航</a>
+					<div class="my_vancl_list">
+						<ul class="mapDropList">
+							<li>网站联盟</li>
+							<li>礼品卡</li>
+							<li>资讯中心</li>
+							<li>达人提现</li>
+						</ul>
+					</div>
+					<div class="vancl_list_img"></div>
+				</div>
+
+				<!-- 帮助中心 -->
+				<div class="my_vancl">
+					<a href="javascript::" class="mapDropTitle">帮助中心</a>
+					<div class="my_vancl_list">
+						<ul class="mapDropList">
+							<li>购物指南</li>
+							<li>配送方式</li>
+							<li>支付方式</li>
+							<li>售后服务</li>
+							<li>投诉建议</li>
+							<li>在线客服</li>
+						</ul>
+					</div>
+					<div class="vancl_list_img"></div>
+				</div>
+				<!-- 网站公告 -->
+				<div class="my_vancl">
+					<a href="javascript::" class="mapDropTitle">网站公告</a>
+					<div class="my_vancl_list">
+						<ul class="mapDropList">
+							<li>网站公告</li>
+							<li>重要提示</li>
+						</ul>
+					</div>
+					<div class="vancl_list_img"></div>
+				</div>
+				
+				<!-- 手机凡客 -->
+				<div class="sjvancl">
+					<a href="javascript:"></a>
+				</div>
+
+				<!-- 新浪 -->
+				<div class="xinlang">
+					<a href="javascript:"></a>
+				</div>
+
+				<!-- 微信 -->
+				<div class="weixin">
+					<a href="javascript:">
+						<b></b>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- logo部分 -->
+	<div id="logo">
+		<div id="logo_left">
+			<a href="__APP__"></a>
+		</div>
+		<div id="logo_center">
+			<div class="logo_nav">
+				<ul>
+					<li class="check">凡客成品</li>
+					<li class="">V+商城</li>
+				</ul>
+			</div>
+			<div class="logo_search">
+				<input type="text" class="search_input" name="search_input" placeholder="搜“牛津纺衬衫”，经典再升级">
+				<input type="button" id="search_key">
+			</div>
+		</div>
+		<div id="logo_right">
+			<div class="shopping">
+				<p>
+					<a href="__APP__/Home/Cart/cart" class="shopping_link">
+						购物车 (
+							<span class="shopping_count">
+								<if condition="$gcount eq null">
+								0
+								<else />
+								{$gcount}
+								</if>
+							</span>
+						) 件
+					</a>
+					<s></s>
+				</p>
+
+				<div class="shoppingList">
+					<!-- 购物车为空时显示 -->
+					<if condition="$cart_info eq null">
+					<div class="shopru">
+						<div class="shopPageNo">你的购物车中没有任何物品</div>
+						<div class="shopPageImg"></div>
+					</div>
+					<else />
+					<!-- 购物车有值时显示商品信息 -->
+					<div class="look_mygoods">
+						<div class="last_add">最近加入商品：</div>
+						<foreach name="cart_info" item="cart">
+						<assign name="total" value="$total += $cart['goodsprice'] * $cart['num']" />
+						<div class="one_good" alt="{$cart.id}">
+							<img src="__PUBLIC__/Home/Images/goods/{$cart.goodsimg}" alt="">
+							<div>
+								<p>{$cart.goodsname}</p>
+								<br>
+								<p>￥<b>{$cart.goodsprice}</b>元</p>
+							</div>
+							<!-- <span><a class="delGoods">删除</a></span> -->
+						</div>
+						</foreach>
+						<div class="total_price">
+							<span>共计(未计算促销折扣)</span>
+							<span>￥<b>{$total}</b>元</span>
+							<a href="__APP__/Home/Cart/cart" target="_blank">去购物车</a>
+						</div>
+					</div>
+					</if>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 导航部分 -->
+	<div id="nav_box">
+		<div class="nav_left">
+			<h2>
+				<a>
+					所有商品分类
+				</a>
+			</h2>
+		</div>
+
+		<div class="nav_sortBox">
+			<ul>
+				<foreach name="food" item="cate">
+					<li class="sortItem">
+						<h3>
+							<em class="itemIcon"></em>
+							<s></s>
+							<a href="__APP__/Home/Plate/index.html?id={$cate.id}">{$cate.navName}</a>
+						</h3>
+						<p class="allBox">
+							<foreach name="cate['menu']" item="menu">
+								<a href="__APP__/Home/GoodsList/getDefault.html?id={$menu['id']}">{$menu['listName']}</a>
+							</foreach>
+						</p>
+					</li>
+				</foreach>
+			</ul>
+		</div>
+
+
+
+		<div class="nav_center">
+			<ul class="main_nav">
+				<!-- 循环遍历导航菜单 -->
+				<li><a href="__APP__">首页</a></li>
+				<foreach name="nav" item="nav">
+					<li><a href="__APP__/Home/GoodsList/getDefault.html?id={$nav.id}">{$nav.listName}</a></li>
+				</foreach>
+			</ul>
+		</div>
+		<div class="nav_right">
+			<ul>    
+    				<li><a href="javascript:">V码</a></li>
+				<li><a href="javascript:">特惠</a></li>
+				<li><a href="javascript:">团购</a></li>
+				<li><a href="javascript:">限时抢</a></li>
+				<li class="shop_V">
+					<a href="javascript:"><span>V+商城</span><s></s></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<script>
+		//判断购物车商品是否删除成功
+		// $(".delGoods").click(function(){
+		// 	$.get("__APP__/Home/Header/delGoods?delId="+$(".one_good").attr("alt"),function(data){
+		// 		if(data > 0){
+		// 			$(".one_good[alt='"+data+"']").fadeOut(500);
+		// 		}else{
+		// 			alert("删除失败！");
+		// 		}
+		// 	},"json");
+		// });
+
+		$.get("__APP__/Home/Header/getWeb",function(data){
+			// alert(data);
+			$("title").html(data['title']);
+			$("meta[name='keywords']").attr("content",data['keywords']);
+			$("meta[name='description']").attr("content",data['description']);
+			$(".search_input").attr("placeholder",data["hotsearch"]);
+			$(".footer-middle").html(data['copy']);
+		},"json");
+
+		//按下回车键
+		$('.search_input').keypress(function(event){  
+		    var keycode = (event.keyCode ? event.keyCode : event.which);  
+		    if(keycode == 13){  
+		        searchKey();    
+		    }  
+		}); 
+
+		// 搜索选项菜单
+		$(".logo_nav ul li").click(function(){
+			$(this).addClass('check').siblings().removeClass('check');
+		});
+
+		// 搜索框选择
+		$("input[name=search_input]").mouseover(function(){
+			this.select();
+		});
+
+
+		var nav = $(".nav_sortBox");
+
+		nav_show();
+
+		$(".nav_left").hover(function(){
+			nav.css("display","block");
+		},function(){
+			nav_show();
+		});
+
+		function nav_show(){
+			$("title").attr("alt") == '1' ? nav.css("display","block") : sortBox();
+		}
+
+		function sortBox(){
+			nav.hover(function(){
+				nav.css("display","block");
+			},function(){
+				nav.css("display","none");
+			});
+		}
+
+
+		// 收藏本站
+		function AddFavorite(title, url) {
+  			try {
+				window.external.addFavorite(url, title);
+			} catch (e) {
+				try {
+					window.sidebar.addPanel(title, url, "");
+				} catch (e) {
+						alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请使用Ctrl+D进行添加");
+					}
+				}
+		}
+
+		$("#search_key").click(function(){
+			searchKey();
+		});
+
+		function searchKey(){
+			if($(".search_input").val() == ""){
+				location.href = "__APP__/Home/Search/index";
+			}else{
+				location.href = "__APP__/Home/Search/index?key="+$(".search_input").val();
+			}
+		}
+	</script>

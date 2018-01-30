@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>user</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/Css/adduser.css">
+		<script type="text/javascript" src="__PUBLIC__/Admin/Js/jquery.js"></script>
+		<style>
+			*{
+				padding:0px;
+				margin:0px;
+			}
+			body{
+				background:url('__PUBLIC__/Admin/Images/w70.png') repeat;
+			}
+			.user_all_inp{
+				height:20px;
+				width:230px;
+			}
+			#add_user_h tr{
+				height:35px;
+			}
+			.alt_info{
+				height:35px;
+				line-height:35px;
+				width:80px;
+				font-size:13px;
+			}
+			.info_type{
+				width:100px;
+			}
+			table{
+				border-collapse:collapse;
+			}
+			td{
+				height:60px;
+				text-indent:100px;
+			}
+			tr{
+				border-top:2px solid #f9f0e1;
+			}
+			tr:hover{
+				background:#f9f0e1;
+			}
+			th{
+				color:#d39c59;
+				text-align:right;
+				width:180px;
+			}
+		</style>
+	</head>
+	<body>
+		<center style="height:60px;line-height:60px;font-size:30px;"><strong style="color:#d39c59;">添加用户</strong></center>
+		<center id="my_user_parent">
+			<form action="__CONTROLLER__/insert" method="post" onsubmit="return fun()">
+				<table width="650" id="add_user_h">
+					<!-- 添加用户所属组 -->
+					<tr>
+						<th>所属组名:</th>
+						<td>
+							<select name="gid" id="" style="height:23px;">
+								<option value="">---</option>
+								<foreach name="groups" item="gp">
+									<option value="{$gp.id}">{$gp.groupname}</option>
+								</foreach>							
+							</select>
+						</td>
+					</tr>
+					<!-- 输入用户名 -->
+					<tr>
+						<th class="info_type">用&nbsp;户&nbsp;名:</th>
+						<td>
+							<input type="email" name="username" id="my_user_name" class="user_all_inp"/>
+							<span class="alt_info"></span>
+						</td>
+					</tr>
+
+					<!-- 输入用户密码 -->
+					<tr>
+						<th class="info_type">用户密码:</th>
+						<td>
+							<input type="password" name="passpwd" id="my_user_pwd" class="user_all_inp" />
+							<span class="alt_info"></span>
+						</td>
+					</tr>
+
+					<!-- 再次输入密码 -->
+					<tr>
+						<th class="info_type">确认密码:</th>
+						<td>
+							<input type="password" name="repwd" id="my_user_repwd" class="user_all_inp" />
+							<span class="alt_info"></span>
+						</td>
+					</tr>
+					
+					<!-- 用户性别 -->
+					<tr>
+						<th class="info_type">用户性别:</th>
+						<td>
+							<input type="radio" name="sex" value="0" checked />女
+							<input type="radio" name="sex" value="1"  />男
+							<span class="alt_info"></span>
+						</td>
+					</tr>
+					
+					<!-- 输入邮箱地址 -->
+					<tr>
+						<th class="info_type">用户邮箱:</th>
+						<td>
+							<input type="email" name="email" id="my_user_email" class="user_all_inp" />
+							<span class="alt_info"></span>
+						</td>
+					</tr>
+
+					<!-- 提交按钮 -->
+					<tr>
+						<th class="info_type"></th>
+						<td>
+							<input type="submit" value="添加用户" id="btn_sub" style="font-weight:bold;height:26px;width:70px;color:#d39c59;"/>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</center>
+	</body>
+	<script type="text/javascript">
+		//输入框获取焦点事件
+		$("#my_user_name").focus(function() {
+			$(this).next().html("");
+		});
+		$("#my_user_pwd").focus(function() {
+			$(this).next().html("");
+		});
+		$("#my_user_repwd").focus(function() {
+			$(this).next().html("");
+		});
+
+
+		//当用户名输入框失去焦点时的事件
+		$("#my_user_name").blur(function() {
+			var name = $(this).val();
+			if (name != '') {
+
+				//Ajax验证用户名是否可用,
+				$.post("__CONTROLLER__/checkName",{'username':name}, function(data) {
+					$(this).next().html(data);
+				});
+			} else {
+				$(this).next().html("用户名不能为空");
+			}
+		});
+
+		//当用户密码输入框失去焦点时的事件
+		$("#my_user_pwd").blur(function() {
+			var pwd = $(this).val();
+			if (pwd == '') {
+				$(this).next().html("密码不能为空");
+			}
+		});
+
+		//当用户确认密码输入框失去焦点时的事件
+		$("#my_user_repwd").blur(function() {
+			var pwd = $("#my_user_pwd").val();
+			var repwd = $(this).val();
+			if (repwd != '') {
+				if (pwd !== repwd) {
+					$(this).next().html("两次密码输入不一致");
+				}
+			} else {
+				$(this).next().html("密码不能为空");;
+			}
+		});
+
+	</script>
+</html>

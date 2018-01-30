@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+	<head>
+		<title>订单详情</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/bootstrap.css">
+		<link rel="stylesheet" href="__PUBLIC__/Home/Css/skim_order.css">
+		<script src="__PUBLIC__/Home/Js/jquery.js"></script>
+		<script src="__PUBLIC__/Home/Js/EV_Mode.js"></script>
+	</head> 
+	<body>
+		<div class="detail_order">
+			<div class="ordersn">
+				<p>订单号：{$order_data.ordersn}</p>
+				<if condition="($order_action_data.is_delivery eq 1) AND ($order_data.orderstatus eq 0)">
+					<div class="sure_col">确认收货</div>
+				<elseif condition="$order_data.orderstatus eq 1" />
+					<div class="sure_col">送货完成</div>
+				<else />
+					<a href="__APP__/Home/Cart/cart/orderid/{$order_data.id}" target="_blank"><img src="__PUBLIC__/Home/Images/ddxgsubmit.jpg"></a>
+				</if>
+			</div>
+
+			<!-- 支付窗口弹出 -->
+			<div class="rollback" id="rollback_plug">
+				<div class="pay_container">
+					<div class="pay_info">订单号：{$order_data.ordersn}</div>
+					<input type="hidden" name="o_sn" value="{$order_data.ordersn}">
+					<div class="order_detial">
+						<table class="quick_goodtab">
+								<tr>
+									<th>商品名称</th>
+									<th>单位</th>
+									<th>尺寸</th>
+									<th>数量</th>
+									<th>单价</th>
+								</tr>
+
+								<foreach name="order_goods_data" item="goods">
+								<!-- 商品详情遍历 -->
+								<tr>
+									<td class="td_border td_height ">{$goods.name}</td>
+									<td class="td_border td_height td_center">件</td>
+									<td class="td_border td_height td_center">{$goods.size}</td>
+									<td class="td_border td_height td_center">{$goods.num}</td>
+									<td class="td_border td_height td_center">￥{$goods.promoteprice}</td>
+								</tr>
+								<!-- 商品详情遍历 -->
+								<assign name="total" value="$total += $goods['promoteprice'] * $goods['num']" />
+								</foreach>
+
+							</table>
+					</div>
+					<div class="inp_pay">你需要支付<b class="f_b">￥{$total}</b>元</div>
+					<div class="inp_pay">请输入付款额<input type="text" size="20" name="inp_pay" value=""></div>
+					<div class="canpay" id="can_pay">确认付款</div>
+					<div class="canpay" onclick="EV_closeAlert()">点击关闭</div>
+				</div>
+			</div>
+			<!-- 支付窗口结束 -->
+
+			<div class="progess">
+				<div class="pro_left">总体进度：</div>
+				<div class="pro_right">
+					<div class="vt">
+						<if condition="$order_action_data['is_sub'] eq 1" >
+						<div class="start"></div>
+						<else />
+						<div class="next"></div>
+						</if>
+
+						<if condition="$order_action_data['is_pack'] eq 1" >
+						<div class="start"></div>
+						<else />
+						<div class="next"></div>
+						</if>
+
+						<if condition="$order_action_data['is_delivery'] eq 1" >
+						<div class="start"></div>
+						<else />
+						<div class="next"></div>
+						</if>
+
+						<if condition="$order_action_data['is_finished'] eq 1" >
+						<div class="start finished"></div>
+						<else />
+						<div class="end"></div>
+						</if>
+					</div>
+					<div class="cite">
+						<div><if condition="$order_action_data['is_sub'] eq 1" ><font style="font-weight:bold;color:#a10000;font-size:14px;">订单提交</font><else />订单提交</if></div>
+						<div><if condition="$order_action_data['is_pack'] eq 1" ><font style="font-weight:bold;color:#a10000;font-size:14px;">已发货</font><else />已发货</if></div>
+						<div><if condition="$order_action_data['is_delivery'] eq 1" ><font style="font-weight:bold;color:#a10000;font-size:14px;">运输在途</font><else />运输在途</if></div>
+						<div><if condition="$order_action_data['is_finished'] eq 1" ><font style="font-weight:bold;color:#a10000;font-size:14px;">送达成功</font><else />送达成功</if></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="address">
+				<div class="address_top">
+					<p>订单收货信息：</p>
+				</div>
+				<div class="address_bottom">
+					<p>订&nbsp;单&nbsp;号：{$order_data.ordersn}</p>
+					<p>收&nbsp;件&nbsp;人：{$order_data.consignee}</p>
+					<p>联系电话：{$address_data.phone}</p>
+					<p>收货地址：{$address_data.country}-{$address_data.pname}-{$address_data.cname}-{$address_data.county}-{$address_data.address}  </p>
+					<p>邮政编码：{$address_data.zipcode}</p>
+				</div>
+			</div>
+
+			<div class="address orderinfo">
+				<div class="address_top">
+					<p>订单详情：</p>
+				</div>
+				<div class="address_bottom">
+					<p>送货方式：{$order_data.shiptype}</p>
+					<p>支付方式：{$order_data.paytype}</p>
+					<p>订单生成时间：{$order_data.addtime|date="Y-m-d H:i:s", ###}</p>
+					<p>发货时间：<empty name="delivery_data"><else />{$delivery_data['starttime']|date="Y-m-d H:i:s", ###}</empty></p>
+					<p>是否开发票：<if condition="$receipt_data.id neq 0">是<else />否</if></p>
+					<p>发票抬头：<if condition="$receipt_data.id neq 0">{$receipt_data.user_type}<else />无</if></p>
+					<p>送货要求：{$order_data.besttime}</p>
+				</div>
+			</div>
+
+			<div class="address orderinfo">
+				<a href="" name="pro_status"></a>
+				<div class="address_top">
+					<p>订单跟踪信息：</p>
+				</div>
+				<div class="address_bottom">
+					<p>订单状态：</p>
+						<table class="order_tabstatus">
+							<tr class="tab_title">
+								<td class="td_border">时间</td>
+								<td class="td_border">跟踪记录显示</td>
+							</tr>
+
+							<!-- 系统提示 -->
+							<if condition="$order_action_data['is_sub'] eq 1" >
+							<tr>
+								<td class="td_border">{$Think.now}</td>
+								<td class="td_border">您的订单已提交,等待系统审核.</td>
+							</tr>
+							</if>
+
+							<if condition="$order_action_data['is_sub'] eq 1" >
+							<tr>
+								<td class="td_border">{$Think.now}</td>
+								<td class="td_border">您的订单已通过系统审核.</td>
+							</tr>
+							</if>
+
+							<if condition="$order_action_data['is_use'] eq 0" >
+							<tr>
+								<td class="td_border">{$Think.now}</td>
+								<td class="td_border">您的订单已经转为无效.</td>
+							</tr>
+							</if>
+
+							<if condition="$order_action_data['is_print'] eq 1" >
+							<tr>
+								<td class="td_border">{$Think.now}</td>
+								<td class="td_border">您的订单已经打印完毕.</td>
+							</tr>
+							</if>
+
+							<if condition="$order_action_data['is_print'] eq 1" >
+							<tr>
+								<td class="td_border">{$Think.now}</td>
+								<td class="td_border">您的订单已分配至库房.</td>
+							</tr>
+							</if>
+
+							<if condition="$order_action_data['is_pack'] eq 1" >
+							<tr>
+								<td class="td_border">{$Think.now}</td>
+								<td class="td_border">您的订单已打包完毕.</td>
+							</tr>
+							</if>
+
+							<if condition="$order_action_data['is_delivery'] eq 1" >
+							<tr>
+								<td class="td_border">{$Think.now}</td>
+								<td class="td_border">您的订单已从库房发出</td>
+							</tr>
+							</if>
+
+							<if condition="$order_action_data['is_ship'] eq 1" >
+							<tr>
+								<td class="td_border">{$Think.now}</td>
+								<td class="td_border">您的订单已到达中转站站，正在进行订单分拣。联系电话：0755-86136590,运单号:{$delivery_data['deliverysn']}</td>
+							</tr>
+							</if>
+
+							<if condition="$order_action_data['is_place'] eq 1" >
+							<tr>
+								<td class="td_border">{$Think.now}</td>
+								<td class="td_border">您的订单已分配给配送员送出。联系电话：15361503699,运单号:{$delivery_data['deliverysn']}</td>
+							</tr>
+							</if>
+
+							<if condition="$order_action_data['is_finished'] eq 1" >
+							<tr>
+								<td class="td_border">{$Think.now}</td>
+								<td class="td_border">您的订单已送达成功,运单号:{$delivery_data['deliverysn']}</td>
+							</tr>
+							</if>
+					
+						</table>
+						
+						<div class="goods_list_info">商品清单：</div>
+						<table class="tab_goods">
+							<tr>
+								<th>商品编码</th>
+								<th>商品名称</th>
+								<th>单位</th>
+								<th>尺寸</th>
+								<th>数量</th>
+								<th>单价</th>
+							</tr>
+
+							<foreach name="order_goods_data" item="goods">
+							<!-- 商品详情遍历 -->
+							<tr>
+								<td class="td_border td_height td_center">{$goods.goodssn}</td>
+								<td class="td_border td_height ">{$goods.name}</td>
+								<td class="td_border td_height td_center">件</td>
+								<td class="td_border td_height td_center">{$goods.size}</td>
+								<td class="td_border td_height td_center">{$goods.num}</td>
+								<td class="td_border td_height td_center">￥{$goods.promoteprice}</td>
+							</tr>
+							<!-- 商品详情遍历 -->
+							</foreach>
+
+						</table>
+				</div>
+			</div>
+
+			<div class="total">
+				<div class="total_tit">商品金额合计￥（{$order_data.total} 元）+运费￥（0.00 元）-优惠￥（0.00 元）=订单总金额￥（{$order_data.total} 元）</div>
+				<div class="total_con">
+					<p>商品金额合计：￥{$order_data.total} 元</p>
+					<p>优惠金额：￥0.00 元</p>
+					<p>运费金额：￥0.00 元</p>
+					<p>已支付金额：￥0.00 元</p>
+					<p>支付积分：0 积分</p>
+					<p>应收款金额：￥{$order_data.total} 元</p>
+				</div>
+			</div>
+			<div class="back_order" onclick="location.href='__CONTROLLER__/order'">返回我的订单</div>
+		</div>
+	</body>
+	<script>
+		//点击确认收货时触发的函数，该函数将启动付款机制，其中涉及到事务处理，临时弹出一个窗口，用户输入一个数字来完成付款
+		$('.sure_col').click(function() {
+			$('.rollback').css('display', 'block');
+		});
+		
+		//点击确认付款时触发的方法，该方法将请求控制器PayController来完成支付功能
+		$('#can_pay').click(function() {
+			//调用遮盖层插件函数
+			EV_modeAlert('rollback_plug');
+			var ordersn = $('input[name=o_sn]').val();
+			var pay = $('input[name=inp_pay]').val();
+			$.post("__APP__/Home/Pay/pay", {pay : pay, ordersn : ordersn}, function(data) {
+				$('.order_detial').html('<center>'+data+'</center>');
+			});
+		});
+
+		$('.click_close').click(function() {
+			$('.rollback').css('display', 'none');
+		});
+		
+	</script>
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>修改用户信息</title>
+		<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+		<script src="__PUBLIC__/Admin/Js/jquery.uploadify.min.js"></script>
+		<style type="text/css">
+			body{
+				background:url('__PUBLIC__/Admin/Images/w70.png') repeat;
+			}
+			table{
+				border-collapse:collapse;
+			}
+			tr{
+				border-top:2px solid #f9f0e0;
+			}
+			tr:hover{
+				background:#f9f0e0;
+			}
+			th{
+				color:#d39c59;
+				text-align:right;
+			}
+			.back_upd_user{
+				height:23px;
+				width:230px;
+			}
+			td{
+				text-indent:60px;
+				height:50px;
+			}
+		</style>
+	</head>
+	<body>
+		<center style="height:50px;line-height:50px;"><b style="font-size:30px;color:#d39c59;">修改用户信息</b></center>
+		<center>
+			<form action="__CONTROLLER__/upduser/id/{$user.id}" method="post" enctype="multipart/form-data">
+				<table width="1000">					
+					<tr>
+						<!-- 用户名,不可更改 -->
+						<th>用&nbsp;户&nbsp;名:</th>
+						<td><input type="text" name="username" disabled value="{$user.username}" class="back_upd_user" /></td>
+						<!-- 修改用户密码 -->
+						<th>用户密码:</th>
+						<td><input type="password" name="passpwd" class="back_upd_user" /></td>
+					</tr>
+					<tr>
+						<!-- 修改用户的昵称 -->
+						<th>用户昵称:</th>
+						<td><input type="text" name="nickname" value="{$user.nickname}" class="back_upd_user" /></td>
+						<!-- 修改邮箱 -->
+						<th>用户邮箱:</th>
+						<td><input type="email" name="email" value="{$user.email}" class="back_upd_user" /></td>
+					</tr>
+
+					<!--修改头像  -->
+					<tr>
+						<th>用户头像:</th>
+						<td>
+							<img src="__PUBLIC__/Common/Uploads/Headpic/{$user.photoname}" width="80" height="50" />
+							 <input type="file" name="photo" />
+						</td>
+						<th>用户积分:</th>
+						<td><input type="text" name="usermoney" value="{$user.usermoney}" style="height:23px;" /></td>
+					</tr>
+					<tr>
+						<th>用户等级:</th>
+						<td><input type="text" name="userrank" value="{$user.userrank}" style="height:23px;" /></td>
+						<th>积分等级:</th>
+						<td><input type="text" name="pointsrank" value="{$user.pointsrank}" style="height:23px;" /></td>
+					</tr>
+					<tr>
+						<th>用户生日:</th>
+						<td>
+							<select id="year" onchange="changeday()" name="year">
+								 <option value="{$user.year}">{$user.year}年</option>
+							 </select>
+			    				<select id="month" name="month"  onchange="changeday()">
+			    					<option value="{$user.month}">{$user.month}月</option> 
+			    				</select>
+			    				<select id="day" name="day" >
+			    					<option value="{$user.day}">{$user.day}日</option>
+			    				 </select>
+						</td>
+						<th>用户手机:</th>
+						<td><input type="text" name="mobilephone" value="{$user.mobilephone}" style="height:23px;width:200px;" /></td>
+					</tr>
+					<tr>
+						<th>性别:</th>
+						<td>
+							<input type="radio" value="1" name="sex" <if condition="$user.sex eq 1">checked</if> />男
+							<input type="radio" value="0" name="sex" <if condition="$user.sex eq 0">checked</if> />女
+						</td>
+						<th>QQ:</th>
+						<td><input type="text" name="qq" value="{$user.qq}" style="height:23px;width:200px;" /></td>
+					</tr>
+
+					<!-- 修改用户所属组 -->
+					<tr>
+						<th>用户所属组:</th>
+						<td>
+							<select name="gid" id="user_from_group" style="height:25px;">
+								<option value="">---</option>
+								<foreach name="groups" item="gp">
+									<option value="{$gp.id}">{$gp.groupname}</option>
+								</foreach>							
+							</select>
+						</td>
+						<th>真实姓名:</th>
+						<td><input type="text" name="realname" value="{$user.realname}" style="height:23px;" /></td>
+					</tr>
+
+					<!-- 修改用户提交按钮 -->
+					<tr>
+
+						<th colspan="4" style="text-align:center;height:60px;line-height:60px;"><input type="submit" value="修改用户" style="height:30px;width:110px;font-weight:bold;color:#d39c59;" /></th>
+					</tr>
+				</table>
+			</form>
+		</center>
+	</body>
+	<script>
+		//JS出生年月日插件
+	 	var curdate = new Date(); 
+                var year = document.getElementById("year"); 
+                var month = document.getElementById("month"); 
+                var day = document.getElementById("day"); 
+          //绑定年份月分的默认 
+          function add() { 
+              var curyear = curdate.getFullYear(); 
+              var minyear = curyear - 100; 
+              var maxyear = curyear + 0; 
+			for (maxyear; maxyear >= minyear; maxyear = maxyear - 1) { 
+                     year.options.add(new Option(maxyear, maxyear)); 
+             	} 
+               for (var mindex = 1; mindex <= 12; mindex++) { 
+                     month.options.add(new Option(mindex, mindex)); 
+              } 
+         } 
+
+          //判断是否是闰年 
+          function leapyear(intyear) { 
+              var result = false; 
+              if (((intyear % 400 == 0) && (intyear % 100 != 0)) || (intyear % 4 == 0)) { 
+                  result = true; 
+              } 
+              else { 
+                  result = false; 
+              } 
+              return result; 
+          } 
+          //绑定天数 
+          function addday(maxday) { 
+              day.options.length = 1; 
+              for (var dindex = 1; dindex <= maxday; dindex++) { 
+                  day.options.add(new Option(dindex, dindex)); 
+              } 
+          } 
+          function changeday() { 
+              if (year.value == null || year.value == "") { 
+                  alert("请先选择年份！"); 
+                  return false; 
+              } 
+              else { 
+                  if (month.value == 1 || month.value == 3 || month.value == 5 || month.value == 7 || month.value == 8 || month.value == 10 || month.value == 12) { 
+                      addday(31); 
+                  } 
+                  else { 
+                      if (month.value == 4 || month.value == 6 || month.value == 9 || month.value == 11) { 
+                          addday(30); 
+                      } 
+                      else { 
+                          if (leapyear(year.value)) { 
+                              addday(29); 
+                          } 
+                          else { 
+                              addday(28); 
+                          } 
+                      } 
+                  } 
+              } 
+          } 
+          window.onload = add; 
+
+          //默认选中所属组
+          $("#user_from_group option[value='{$user.gid}']").attr("selected","selected");
+	</script>
+</html>

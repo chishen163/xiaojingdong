@@ -1,0 +1,421 @@
+/*
+	我的订单页面Home/View/OrderAction/neworder.html页面样式表
+*/
+
+/*顶部和底部占位空间*/
+.static_space {
+	width:1200px;
+	height:25px;
+	margin:0px auto;
+}
+
+/*主体内容*/
+#neworder {
+	width:1200px;
+	height:auto;
+	overflow:hidden;
+	margin:0px auto;
+}
+
+/*浏览订单部分*/
+#order_list {
+	float:left;
+	width:1198px;
+	min-height:300px;
+	border:1px solid #E2E2E2;
+}
+
+/*订单列表顶部总盒子*/
+.order_list_top {
+	float:left;
+	width:1198px;
+	min-height:150px;
+}
+
+.order_list_top_left {
+	float:left;
+	width:1000px;
+	min-height:150px;
+}
+
+.z_order_notice {
+	float:left;
+	width:980px;
+	height:30px;
+	margin:10px 0 0 10px;
+}
+
+.z_order_notice > div {
+	float:left;
+	width:770px;
+	height:30px;
+	font-size:25px;
+	color:#A10000;
+	line-height:30px;
+	text-align:center;
+}
+
+.z_order_notice > span {
+	float:left;
+	width:180px;
+	height:20px;
+	margin:5px 0 0 15px;
+	font-size:12px;
+	line-height:20px;
+	text-align:right;
+}
+
+.order_list_top_left > table {
+	float:left;
+	width:980px;
+	height:auto;
+	margin-top:10px;
+	margin-left:10px;
+	overflow:hidden;
+	border-collapse:collapse;
+}
+
+.z_tab_th {
+	width:960px;
+	height:25px;
+	background:#D8D8D8;
+}
+
+.z_ordersn {
+	width:150px;
+	height:25px;
+	font-size:12px;
+	line-height:25px;
+	text-align:center;
+	font-weight:lighter;
+	border:1px solid #D8D8D8;
+}
+
+.z_house {
+	font-size:12px;
+	font-weight:lighter;
+	line-height:25px;
+	border:1px solid #D8D8D8;
+}
+
+.z_house_content {
+	font-size:12px;
+	font-weight:lighter;
+	line-height:25px;
+	text-indent:16px;
+	border:1px solid #D8D8D8;
+}
+
+.order_list_top_right {
+	float:right;
+	width:190px;
+	height:150px;
+}
+
+.order_list_top_right > img {
+	float:left;
+	width:143px;
+	height:142px;
+	margin:4px 0 0 23px;
+	background:green;
+}
+
+/*订单底部，包括银行选择和支付按钮*/
+.order_list_bottom {
+	float:left;
+	width:1198px;
+	min-height:200px;
+}
+
+/*支付提示*/
+.bottom_notice {
+	float:left;
+	width:1198px;
+	height:30px;
+	margin-top:20px;
+}
+
+.bottom_notice > div {
+	float:left;
+	width:170px;
+	height:30px;
+	font-size:12px;
+	font-weight:bold;
+	color:#a10000;
+	line-height:30px;
+	text-align:center;
+}
+
+.bottom_notice > span {
+	float:left;
+	width:270px;
+	height:30px;
+	font-size:12px;
+	line-height:30px;
+	text-align:center;
+	border:1px solid #CC9998;
+}
+
+/*支付方式选择*/
+.bottom_type {
+	float:left;
+	width:1198px;
+	min-height:20px;
+	margin-top:10px;
+	font-size:12px;
+	line-height:20px;
+	text-align:center;
+}
+
+.normal_pay_type {
+	float:left;
+	width:100px;
+	height:20px;
+	margin-left:60px;
+}
+
+.normal_pay_type:hover {
+	cursor:pointer;
+}
+
+.all_pay_type {
+	float:left;
+	width:100px;
+	height:20px;
+	margin-left:30px;
+}
+
+.all_pay_type:hover {
+	cursor:pointer;
+}
+
+/*个银行列表*/
+.bottom_bank {
+	display:none;
+	float:left;
+	width:1198px;
+	min-height:120px;
+	margin-top:10px;
+	background:#FAFAFA;
+}
+
+/*快捷显示*/
+.bottom_bank_quick {
+	float:left;
+	width:1198px;
+	min-height:120px;
+	margin-top:10px;
+	background:#FAFAFA;
+}
+
+/*快捷银行和支付方式列表*/
+.bank_list_quick {
+	float:left;
+	width:1150px;
+	min-height:50px;
+}
+
+.bank_list_quick > div {
+	float:left;
+	width:210px;
+	height:50px;
+	margin:10px 0 0 70px;
+}
+
+.bank_list_quick > div > div {
+	float:left;
+	width:10px;
+	height:10px;
+	margin:20px 0 0 10px;
+}
+
+.bank_list_quick > div > img {
+	float:left;
+	width:168px;
+	height:44px;
+	margin:3px 0 0 10px;
+}
+
+/*全部银行列表*/
+.bank_title {
+	float:left;
+	width:1150px;
+	height:30px;
+	text-indent:50px;
+	font-size:12px;
+	line-height:30px;
+}
+
+.bank_list {
+	float:left;
+	width:1150px;
+	min-height:50px;
+}
+
+.bank_list > div {
+	float:left;
+	width:210px;
+	height:50px;
+	margin:10px 0 0 70px
+}
+
+.bank_list > div > div {
+	float:left;
+	width:10px;
+	height:10px;
+	margin:20px 0 0 10px;
+}
+
+.bank_list > div > img {
+	float:left;
+	width:168px;
+	height:44px;
+	margin:3px 0 0 10px;
+}
+
+/*支付按钮*/
+.bottom_pay {
+	float:left;
+	width:1198px;
+	height:50px;
+}
+
+.bottom_pay > div {
+	float:right;
+	width:450px;
+	height:40px;
+	margin-right:50px;
+}
+
+.need_info {
+	float:left;
+	width:150px;
+	height:20px;
+	margin-top:20px;
+	text-align:right;
+}
+
+.pay_money {
+	float:left;
+	width:150px;
+	height:40px;
+	font-size:25px;
+	color:#a10000;
+	line-height:40px;
+	text-align:center;
+}
+
+.to_pay {
+	float:left;
+	width:150px;
+	height:40px;
+	font-size:25px;
+	line-height:40px;
+	color:#ffffff;
+	text-align:center;
+	background:#8B0122;
+}
+
+.to_pay:hover {
+	cursor:pointer;
+}
+
+/*订单操作快捷键部分*/
+#order_quick {
+	float:left;
+	width:1200px;
+	height:70px;
+}
+
+.order_quick_top {
+	float:left;
+	width:1198px;
+	height:30px;
+	margin-top:5px;
+}
+
+.order_quick_bar {
+	float:right;
+	width:600px;
+	height:30px;
+}
+
+.order_quick_bar > span {
+	float:left;
+	height:30px;
+	margin-left:10px;
+	line-height:30px;
+	text-align:center;
+}
+
+.order_quick_bar > span:hover {
+	cursor:pointer;
+}
+
+.second_status {
+	width:100px;
+	font-size:14px;
+	font-weight:bold;
+	color:#A10000;
+	text-align:center;
+}
+
+.integral_eco {
+	font-size:14px;
+	font-weight:bold;
+	color:#A10000;
+}
+
+.order_quick_bottom {
+	float:left;
+	width:1198px;
+	height:30px;
+	margin-top:5px;
+	font-size:12px;
+	font-weight:bold;
+	line-height:30px;
+}
+
+/*购买以上商品的顾客还购买过*/
+#inner_goods {
+	float:left;
+	width:1198px;
+	height:250px;
+	border:1px solid #E2E2E2;
+}
+
+.goods_position {
+	float:left;
+	width:200px;
+	height:240px;
+	margin:10px 0 0 32px;
+}
+
+.goods_position_image {
+	float:left;
+	width:150px;
+	height:150px;
+	margin-left:25px;
+}
+
+.goods_position_image:hover {
+	cursor:pointer;
+}
+
+.goods_position_content {
+	float:left;
+	width:180px;
+	height:80px;
+	margin:5px 0 0 10px;
+}
+
+.goods_position_content >p {
+	float:left;
+	width:160px;
+	height:auto;
+	margin-left:10px;
+	word-wrap:break-word;
+	font-size:12px;
+	margin-top:5px;
+}
+

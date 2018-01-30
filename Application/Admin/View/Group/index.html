@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>用户组管理</title>
+		<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+		<style type="text/css">
+			body{
+				background:url('__PUBLIC__/Admin/Images/w70.png') repeat;
+			}
+			table{
+				border-collapse:collapse;
+			}
+			tr{
+				height:50px;
+				border-top:2px solid #f9f0e0;
+			}
+			tr:hover{
+				background:#f9f0e0;
+			}
+			a{
+				text-decoration:none;
+			}
+			th{
+				color:#d39c59;
+			}
+		</style>
+	</head>
+	<body id="page_ing">
+		<center style="height:50px;line-height:50px;"><b style="font-size:30px;color:#d39c59;">用户组管理</b></center>
+		<center>
+			<table width="1100">
+				<tr>
+					<th width="30"></th>
+					<th width="30">ID</th>
+					<th width="100">用户组名:</th>
+					<th>用户组描述:</th>
+					<th>管理用户权限</th>
+					<th>发表评论权限</th>
+					<th>网站管理权限</th>
+					<th>发送消息权限</th>
+					<th>发表文章权限</th>
+					<th>文章管理权限</th>
+					<th width="80">操作</th>
+				</tr>
+				<foreach name="groups" item="g">
+					<tr>
+						<td><input type="checkbox" name="sel[]" class="selector_group"/></td>
+						<td align="center">{$g.id}</td>
+						<td>{$g.groupname}</td>
+						<td>{$g.description}</td>
+						<td align="center">
+							<if condition="$g.useradmin eq 1">
+								<img src="__PUBLIC__/Admin/Images/right_small_icon.jpg" alt="">
+							<else />
+								<img src="__PUBLIC__/Admin/Images/false_small_icon.jpg" alt="">
+							</if>
+						</td>
+						<td align="center">
+							<if condition="$g.commentadmin eq 1">
+								<img src="__PUBLIC__/Admin/Images/right_small_icon.jpg" alt="">
+							<else />
+								<img src="__PUBLIC__/Admin/Images/false_small_icon.jpg" alt="">
+							</if>
+						</td>
+						<td align="center">
+							<if condition="$g.webadmin eq 1">
+								<img src="__PUBLIC__/Admin/Images/right_small_icon.jpg" alt="">
+							<else />
+								<img src="__PUBLIC__/Admin/Images/false_small_icon.jpg" alt="">
+							</if>
+						</td>
+						<td align="center">
+							<if condition="$g.sendmessage eq 1">
+								<img src="__PUBLIC__/Admin/Images/right_small_icon.jpg" alt="">
+							<else />
+								<img src="__PUBLIC__/Admin/Images/false_small_icon.jpg" alt="">
+							</if>
+						</td>
+						<td align="center">
+							<if condition="$g.sendarticle eq 1">
+								<img src="__PUBLIC__/Admin/Images/right_small_icon.jpg" alt="">
+							<else />
+								<img src="__PUBLIC__/Admin/Images/false_small_icon.jpg" alt="">
+							</if>
+						</td>
+						<td align="center">
+							<if condition="$g.articleadmin eq 1">
+								<img src="__PUBLIC__/Admin/Images/right_small_icon.jpg" alt="">
+							<else />
+								<img src="__PUBLIC__/Admin/Images/false_small_icon.jpg" alt="">
+							</if>
+						</td>
+						<td align="center" width="70" style="font-size:14px;"><a href="__CONTROLLER__/mod/id/{$g.id}">修改</a>|<a href="__CONTROLLER__/del/id/{$g.id}">删除</a></td>
+					</tr>
+				</foreach>
+				<tr>
+					<td colspan="8">
+						<input type="button" onclick="sel(1)" value="全选">
+						<input type="button" onclick="sel(2)" value="反选">
+						<input type="button" onclick="sel(3)" value="全不选">
+						<!-- //搜索框 -->
+						<form action="__CONTROLLER__/searchGroup" method="post" style="width:430px;float:right;">
+							<span>
+								<input type="search" name="keywords" style="width:230px;height:22px;margin-right:0px;" />
+								<input type="submit" value="搜索" style="height:22px;width:60px;margin-left:0px;background:#d7a769;border:1px solid #a9a9a9;cursor:pointer;margin-left:-8px;font-weight:bold;" />
+							</span>
+						</form>
+					</td>
+
+					<td colspan="2" align="center">{$page}</td>
+					<td align="center"><a href="__CONTROLLER__/addgroup">添加用户组</a></td>
+				</tr>
+			</table>
+		</center>
+	</body>
+	<script type="text/javascript">
+		var inp = document.getElementsByClassName("selector_group");
+		var len = inp.length;
+		function sel(args) {
+
+			//设置全选状态
+			if (args == 1) {
+				for (var i = 0; i < len; i++) {
+					inp[i].checked = true;
+				}
+			}
+
+			//设置反选状态
+			if (args == 2) {
+				for (var i = 0; i < len; i++) {
+					inp[i].checked = !inp[i].checked;
+				}
+			}
+
+			//设置全不选状态
+			if (args == 3) {
+				for (var i = 0; i <len; i++) {
+					inp[i].checked = false;
+				}
+			}
+		}
+
+		//Ajax请求分页刷新页面
+		function setPage(url) {
+			$.get(url, function(data) {
+				$("#page_ing").html(data);
+			});
+		}
+	</script>
+</html>

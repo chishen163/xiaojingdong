@@ -1,0 +1,53 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+
+#account_div{
+	width:860px;
+	border-bottom:2px solid #e4e4e4;
+	margin:20px auto 20px auto;
+}
+#account_div>span{
+	height:30px;
+	width:100px;
+	font-weight:bold;
+	border-bottom:2px solid #810000;
+}
+
+#safe_method{
+	width:800px;
+	height:40px;
+	line-height:40px;
+	font-size:14px;
+	border:1px solid #ffeec4;
+	background:#fefef1;
+	margin:auto;
+}
+
+
+/*验证方法*/
+.safe_way{
+	height:50px;
+	width:760px;
+	line-height:50px;
+	margin:60px auto 60px auto;
+}
+.safe_way_div1{
+	float:left;
+	height:50px;
+	width:70px;
+}
+.safe_way_div2{
+	height:50px;	
+	width:360px;
+	margin-left:30px;
+	float:left;
+	font-size:14px;
+}
+.safe_way_div3{
+	float:left;
+	height:50px;
+	width:300px;
+	text-align:center;
+}

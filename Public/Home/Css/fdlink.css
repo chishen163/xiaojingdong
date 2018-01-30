@@ -1,0 +1,141 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+
+/*主体部分*/
+.fk_main_top{
+	height:30px;
+	width:1200px;
+	margin:10px auto auto;
+	font-size:14px;
+	font-weight:bold;
+	color:#910000;
+	text-indent:25px;
+	line-height:30px;
+	background:#f7f5f6;
+	border:1px solid #d8d8d8;
+	border-bottom:2px solid #a20806;
+}
+
+/*链接名称样式*/
+#fk_name{
+	width:1200px;
+	margin:auto;
+	margin-bottom:10px;
+	border:1px solid #d8d8d8;
+	border-top:0px;
+	padding-bottom:20px;
+	padding-top:30px;
+	overflow:hidden;
+}
+#fk_name>ul{
+	width:1030px;
+	margin:auto;
+	overflow:hidden;
+}
+.fk_link_name{
+	list-style-type:square;
+	float:left;
+	height:30px;
+	width:186px;
+	padding-left:20px;
+	list-style-position:inside;
+	border-bottom:1px dashed #bfbfbf;
+}
+.fk_link_name>a{
+	color:#910000;
+	font-size:14px;
+	letter-spacing:4px;
+	margin-left:10px;
+}
+
+/*申请友情链接样式*/
+#apply_link{
+	height:335px;
+	width:1080px;
+	margin:auto;
+	margin-bottom:10px;
+	border:1px solid #d8d8d8;
+	border-top:0px;
+	padding:45px 85px 40px 35px;
+	overflow:hidden;
+}
+
+/*左边申请步骤样式*/
+#apply_link_left{
+	width:550px;
+	float:left;
+}
+#apply_link_left>h3{
+	height:25px;
+	line-height:25px;
+	font-size:14px;
+	font-weight:bold;
+}
+.apply_steps{
+	margin:26px auto 33px auto;
+	line-height:23px;
+}
+.apply_steps>span{
+	margin-right:10px;
+}
+.apply_steps>p{
+	width:530px;
+	margin-left:20px;
+}
+
+
+/*右边填写申请信息*/
+#apply_link_right{
+	width:330px;
+	float:left;
+	margin-left:130px;
+}
+#apply_link_right>h3{
+	height:25px;
+	line-height:25px;
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom:20px;
+}
+.apply_link_info{
+	height:26px;
+	min-height:26px;
+	line-height:26px;
+	clear:both;
+	margin-bottom:5px;
+}
+.apply_link_info>input{
+	margin-left:15px;
+	height:20px;
+	width:220px;
+}
+.apply_link_introduction{
+	height:55px;
+	margin-bottom:5px;
+	overflow:hidden;
+}
+.apply_info_p{
+	height:60px;
+	width:55px;
+	float:left;
+}
+
+/*验证码*/
+.apply_link_code{
+	clear:both;
+	min-height:80px;
+	overflow:hidden;
+}
+.apply_info_pcode{
+	height:80px;
+	width:55px;
+	float:left;
+	margin-right:11px;
+}
+
+/*申请按钮*/
+#apply_link_btn{
+	margin-top:5px;
+}

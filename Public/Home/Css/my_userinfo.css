@@ -1,0 +1,103 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+
+/*item部分*/
+.h_content_data{
+	margin-bottom:20px;
+	border-bottom:2px solid #f2f2f2;
+}
+.h_content_data>h4{
+	width:80px;
+	text-align:center;
+	border-bottom:2px solid red;
+}
+
+/*menu导航部分*/
+.h_content_menu{
+	min-height:30px;
+	line-height:30px;
+	width:880px;
+	margin-bottom:20px;
+	overflow:hidden;
+}
+.h_list_menu{
+	width:880px;
+	min-height:30px;
+	overflow:hidden;
+}
+
+.h_list_menu_li{
+	list-style:none;
+	float:left;
+	width:100px;
+	text-align:center;
+	border-bottom:2px solid #cdcdcd;
+}
+.h_list_menu_li>a{
+	color:black;
+	font-size:13px;
+	text-decoration:none;
+	display:block;	
+	line-height:30px;
+}
+.active,.actived{
+	border:2px solid #cdcdcd;
+	border-bottom:0px;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	font-weight:bold;
+}
+
+
+/*form表单部分*/
+#my_photo{
+	margin-bottom:10px;
+}
+#my_email,#my_username{
+	width:860px;
+	height:25px;
+	font-size:14px;
+	color:#666666;
+}
+.my_userinfo{
+	margin-top:10px;
+	height:25px;
+	line-height:25px;
+	width:860px;
+	font-size:14px;
+	color:#666666;
+}
+.my_info_table{
+	height:25px;
+	width:200px;
+}
+#my_promptinfo{
+	font-size:14px;
+	height:20px;
+	margin-top:5px;
+	color:#666666;
+}
+#my_promptinfo>a{
+	text-decoration:none;
+	color:red;
+	font-size:13px;
+}
+#my_birthday>select{
+	height:20px;
+	width:70px;
+}
+#my_area>select{
+	height:20px;
+	width:120px;
+}
+#my_mobilephone>a{
+	text-decoration:none;
+	color:red;
+	font-size:13px;
+}
+#my_homeaddr{
+	width:350px;
+}
+

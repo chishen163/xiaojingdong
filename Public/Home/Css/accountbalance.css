@@ -1,0 +1,54 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+
+/*账户余额*/
+#balan_div{
+	width:860px;
+	border-bottom:2px solid #e4e4e4;
+	margin-top:30px;
+	margin-bottom:30px;
+}
+#balan_div>span{
+	width:100px;
+	height:30px;
+	border-bottom:2px solid #810000;
+}
+
+#balan_div1>p{
+	font-size:13px;
+	line-height:20px;
+}
+
+
+#balan_main{
+	width:860px;
+	min-height:100px;
+	margin-top:10px;
+	border-top:1px dashed #cdcdcd;
+}
+#balan_title{
+	height:30px;
+	width:860px;
+	line-height:30px;
+	font-size:14px;	 
+}
+
+#balan_list{
+	width:858px;
+	height:30px;
+	border:1px solid #cdcdcd;
+	border-bottom:2px solid #cccccc;
+}
+#balan_list>p{
+	width:214px;
+	height:30px;
+	text-align:center;
+	line-height:30px;
+	float:left;
+	font-size:13px;
+	font-weight:bold;
+}
+
+.balan_

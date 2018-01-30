@@ -1,0 +1,15 @@
+/*广告后台样式表*/
+*{
+	padding:0;
+	margin:0;
+}
+#banner_box{
+	width:1000px;
+	/*height:500px;*/
+	margin:20px auto;
+}
+#banner_title{
+	width:900px;
+	height:30px;
+	border:1px solid #a10000;
+}

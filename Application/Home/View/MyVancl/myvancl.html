@@ -1,0 +1,88 @@
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>我的凡客</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/header.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/myvancl.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/Css/footer.css">
+		<script type="text/javascript" src="__PUBLIC__/Home/Js/jquery.js"></script>
+		<style type="text/css">
+			.over,.overdw{
+				background:#f4f4f4;				
+			}
+			.over>a,.overdw>a{
+				color:red;
+				font-weight:bold;
+			}
+		</style>
+	</head>
+	<body>
+		<include file="Header:index" />
+		<!-- <div id="nav">您当前的位置：凡客首页〉我的凡客</div> -->
+		<div id="main_middle">			
+			<div id="main_left">
+				<div id="main_left_top">
+					<img src="__PUBLIC__/Home/Images/myhome.jpg" alt="">
+					<b>我的凡客</b>
+				</div>
+				<div id="main_left_bottom">
+					<ul>
+						<h3>订单中心</h3>
+						<li><a href="__CONTROLLER__/order" target="h_right_data">我的订单</a></li>
+						<li><a href="__CONTROLLER__/collect" target="h_right_data">我的收藏</a></li>
+						<li><a href="javascript::">我的礼品卡</a></li>
+						<li><a href="javascript::">我的积分</a></li>
+					</ul>
+					<ul>
+						<h3>客户服务</h3>
+						<li><a href="javascript::">退换贷办理</a></li>
+						<li><a href="__CONTROLLER__/point" target="h_right_data">我要评价</a></li>
+						<li><a href="javascript::">商品提问</a></li>
+						<li><a href="javascript::">优惠券</a></li>
+					</ul>
+					<ul>
+						<h3>账户管理</h3>
+						<li><a href="__CONTROLLER__/accountbalance" target="h_right_data">账户余额</a></li>
+						<li><a href="__CONTROLLER__/getaddress" target="h_right_data">收贷地址</a></li>
+						<li><a href="__CONTROLLER__/accountsafe" target="h_right_data">账户安全</a></li>
+						<li><a href="__CONTROLLER__/userinfo" target="h_right_data">我的资料</a></li>
+						<li><a href="__CONTROLLER__/releaccount" target="h_right_data">我的关联账户</a></li>
+						<li><a href="__CONTROLLER__/celpromotion" target="h_right_data">促销信息退订</a></li>
+					</ul>
+				</div>
+			</div>
+			<center id="main_right">
+				<iframe src="__CONTROLLER__/userinfo" name="h_right_data" frameborder="0"  scrolling="no" style="width:880px;margin-top:30px;margin-bottom:20px;" id="iframepage" height="100%" onLoad="iFrameHeight()" ></iframe>
+			</center>						
+		</div>
+		<div id="blank_n"></div>
+		<include file="Public:footer" />
+	</body>
+	<script type="text/javascript">
+
+		/*鼠标在菜单栏上的悬停事件*/
+		$("#main_left_bottom ul li").hover(function() {
+			$(this).addClass("over");
+		}, function() {
+			$(this).removeClass("over");
+		});
+
+		/*鼠标在菜单栏上的单击事件*/
+		$("#main_left_bottom ul li").click(function() {
+			$("#main_left_bottom ul li").removeClass("overdw");
+			$(this).addClass("overdw");	
+														
+		});
+
+		// 调节iframe框架的自适应宽和高
+		function iFrameHeight() { 
+			var ifm= document.getElementById("iframepage"); 
+			var subWeb = document.frames ? document.frames["h_right_data"].document : ifm.contentDocument; 
+			if(ifm != null && subWeb != null) { 
+			ifm.height = subWeb.body.scrollHeight; 
+			} 
+		} 
+	</script>
+</html>

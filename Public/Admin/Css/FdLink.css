@@ -1,0 +1,51 @@
+*{
+	padding:0px;
+	margin:0px;
+}
+
+/*类div的样式设定样式*/
+.fd_link_h{
+	height:50px;
+	line-height:50px;
+	width:410px;
+	border:1px solid #800000;
+	border-bottom:0px;
+}
+.fd_link_h>span{
+	height:50px;
+	width:110px;
+	border-right:1px solid #800000;
+	float:left;
+}
+.fd_link_h>input{
+	height:25px;
+	width:250px;
+	margin-left:10px;
+}
+
+/*链接介绍描述样式*/
+#fd_introduction_h{
+	height:100px;	
+	width:410px;
+	border:1px solid #800000;
+}
+#fd_introduction_h>span{
+	height:100px;
+	line-height:100px;
+	width:110px;
+	float:left;
+	border-right:1px solid #800000;
+}
+#fd_introduction_h>textarea{
+	margin-top:15px;
+}
+
+/*添加链接按钮样式*/
+#fd_sub_btn>input{
+	width:130px;
+	height:30px;
+	background:#900000;
+	border:1px solid red;
+	color:white;
+	font-weight:bolder;
+}

@@ -1,0 +1,14 @@
+body{
+	background:url("../../Images/w70.png") repeat;
+}
+table{
+	line-height:30px;
+}
+td:first-child{
+	width:50px;
+	background:red;
+}
+td:nth-child(2){
+	width:300px;
+	background:orange;
+}

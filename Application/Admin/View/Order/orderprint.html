@@ -1,0 +1,73 @@
+<div class="print">
+	<div class="print_title">打印订单：</div>
+	<input type="hidden" name="id" value="{$order_data.id}">
+	<table class="table table-hover font_sort">
+		<tr>
+			<th class="ordersn_w">订单编号</th><td colspan="2">{$order_data.ordersn}</td>
+			<th>下单姓名</th><td>{$user_data.username}</td>
+			<th>下单时间</th><td>{$order_data.addtime|date="Y-m-d H:i:s", ###}</td>
+		</tr>
+		<tr>
+			<th>收件人姓名</th><td colspan="2">{$order_data.consignee}</td>
+			<th>收货时间</th><td>{$order_data.besttime}</td>
+			<th>付款方式</th><td>{$order_data.paytype}</td>
+		</tr>
+		<tr>
+			<th>收货地址</th><td colspan="4">{$user_address_data.country} - {$user_address_data.pname} - {$user_address_data.cname} - {$user_address_data.county} - {$user_address_data.address}  {$user_address_data.zipcode} ({$user_address_data.name} (收))  {$user_address_data.phone}</td>
+			<th>开发票</th>
+			<td>
+				<if condition="$receipt_data['id'] gt 0">有发票<else />无发票</if>
+			</td>
+		</tr>
+
+		<!-- 如果有发票还需要打印发票信息 -->
+		<if condition="$receipt_data['id'] gt 0">
+			<tr>
+				<th>发票类型</th><td>{$receipt_data.user_type}</td><th>发票标题</th><td colspan="2">{$receipt_data.rec_title}</td><th>发票内容</th><td>{$receipt_data.rec_content}</td>
+			</tr>
+		</if>
+
+		<tr>
+			<td colspan="7">商品清单</td>
+		</tr>
+		<tr>
+			<th class="goodsn">商品名</th>
+			<th class="goodsnum">数量</th>
+			<th class="goodsnum">尺寸</th>
+			<th class="goodsnum">积分</th>
+			<th class="goodsnum">促销价</th>
+			<th class="goodsnum">商品价</th>
+			<th class="goodsnum">小计</th>
+		</tr>
+	
+		<foreach name="order_goods_data" item="goods">
+		<!-- 一个订单中的商品遍历开始 -->
+		<tr>
+			<td>{$goods.name}</td>
+			<td>{$goods.num}</td>
+			<td>{$goods.size}</td>
+			<td>{$goods.integral}</td>
+			<td>{$goods.promoteprice}</td>
+			<td>{$goods.goodsprice}</td>
+			<td>{$goods['goodsprice'] * $goods['num']}</td>
+		</tr>
+		<!-- 一个订单中的商品遍历结束 -->
+		</foreach>
+
+		<tr>
+			<th>订单备注：</th><td colspan="6">{$order_data.desc}</td>
+		</tr>
+	</table>
+	<div class="print_order">打印订单</div>
+</div>
+<script>
+	$('.print_order').click(function() {
+		
+		//获取该订单id号
+		var id = $('input[name=id]').val();
+
+		$.post("__CONTROLLER__/subPrint", {id : id}, function(data) {
+			$('.print').html(data);
+		});
+	});
+</script>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+	<head>
+		<title>管理员回答咨询和提问</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/z_question.css">
+		<link rel="stylesheet" href="__PUBLIC__/Admin/Css/bootstrap.css">
+		<script src="__PUBLIC__/Admin/Js/jquery.js"></script>
+	</head>
+	<body>
+		<div class="answer_show">
+			<div class="answer_title">
+				咨询回复：
+			</div>
+			<form action="" class="answer_frm">
+				<p><input type="hidden" name="id" value="{$question_data.id}"></p>
+				<p>商品名称：<input type="text" value="{$question_data.name}" name="name"></p>
+				<p>提问类型：<input type="text" value="{$question_data.type}" name="type"></p>
+				<p>提问内容：<br>
+					<textarea id="question_text" class="answer_text" name="content" cols="100" rows="5">{$question_data.content}</textarea>
+				</p>
+				<p>提问邮箱：<input type="text" value="{$question_data.email}" name="email"></p>
+				<p>提问时间：<input type="text" value="{$question_data.ctime|date="Y-m-d H:i:s", ###}"></p>
+				<p>管理回答：<br>
+					<textarea id="answer_text" class="answer_text" name="answer" cols="100" rows="5">{$question_data.answer}</textarea>
+				</p>
+			</form>
+			<div class="answer_sub">确认提交</div>
+		</div>
+	</body>
+	<script>
+		$('.answer_sub').click(function() {
+
+			//获取影藏表单id值
+			var id = $('input[type=hidden]').val();
+
+			//获取管理员回复内容
+			var answer = $('textarea[name=answer]').val();
+
+			if (answer == '') {
+				alert("回复内容为空");
+			}
+
+			$.post("__CONTROLLER__/subAnswer", {id : id, answer : answer}, function(data) {
+				$('.answer_show').html(data);
+			});
+		});
+	</script>
+</html>

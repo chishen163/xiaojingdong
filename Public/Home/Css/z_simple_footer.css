@@ -1,0 +1,35 @@
+.z_simple_footer {
+	width:1200px;
+	height:130px;
+	margin:0px auto;
+}
+
+.z_copyright {
+	float:left;
+	width:1200px;
+	height:30px;
+	margin-top:10px;
+	line-height:30px;
+	text-align:center;
+}
+
+.z_safe_img {
+	float:left;
+	width:1200px;
+	height:80px;
+	margin-top:10px;
+}
+
+.z_img_center {
+	float:left;
+	width:500px;
+	height:50px;
+	margin:15px 0 0 350px;
+}
+
+.z_img_center > img {
+	float:left;
+	max-width:160px;
+	max-height:50px;
+	margin-left:5px;
+}

@@ -1,0 +1,33 @@
+<!-- 查看我的全部评价 -->
+<div class="all_com">
+	<div class="all_com_top">
+		<div>
+			<span><a href="__APP__/Home/Detial/detial/id/{$comment_data.goodsid}#anchor_comment" target="_blank">查看全部商品评论</a></span>
+			<img src="__PUBLIC__/Home/Images/close.jpg" alt="" id="click_close_com">
+		</div>
+		<div></div>
+		<div class="top_star">
+			<div>外观：{$comment_data.watch}</div>
+			<div>舒适：{$comment_data.comfort}</div>
+			<div>透气：{$comment_data.freely}</div>
+		</div>
+		<div class="top_star">
+			<div>色差：{$comment_data.color}</div>
+			<div>厚度：{$comment_data.thick}</div>
+			<div>匹配：{$comment_data.prefect}</div>
+		</div>
+	</div>
+	<div class="all_com_bottom">
+		<div class="com_bottom_text">评价：{$comment_data.content}</div>
+		<div class="com_bottom_look">
+			<div>颜色：{$order_goods_data.color}</div>
+			<div>尺码：{$order_goods_data.size}</div>
+			<div>{$comment_data.addtime|date="Y-m-d H:i:s", ###}</div>
+		</div>
+	</div>
+</div>
+<script>
+	$('#click_close_com').click(function() {
+		$('.all_com').css('display', 'none');
+	});
+</script>

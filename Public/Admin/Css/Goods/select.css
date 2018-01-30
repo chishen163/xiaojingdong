@@ -1,0 +1,127 @@
+*{padding:0;margin:0;color:#8C5434;}
+body{
+	background:url("../../Images/w70.png") repeat;
+	font-size:14px;
+}
+a{
+	text-decoration:none;
+}
+#goods_box{
+	width:100%;
+	height:auto;
+}
+
+#goods_title{
+	width:100%;
+	height:30px;
+	font-size:14px;
+	font-weight:600;
+	line-height:30px;
+	text-align:center;
+}
+
+#goods_content{
+	width:100%;
+	height:auto;
+	margin:0 auto;
+}
+table{
+	height:100%;
+	margin:0 auto;
+	border:none;
+	border-collapse:collapse;
+	margin:5px;
+	line-height:30px;
+}
+
+th{
+	border:none;
+	/*border-bottom:1px solid #FBF6EE;*/
+	color:white;
+	border-right:1px solid white;
+}
+td{
+	border:none;
+	border-bottom:1px solid #FBF6EE;
+}
+.tr_hover:hover{
+	background:#F9F0E1;
+}
+.tr_hover>td{
+	text-align:center;
+	line-height:30px;
+}
+.tr_hover:hover>td>a{
+	visibility:visible;
+}
+
+td>img{
+	margin-top:7px;
+	line-height:30px;
+}
+
+#goods_minimg{
+	width:222px;
+	height:222px;
+	display:none;
+	position:fixed;
+	top:10px;
+	right:10px;
+	border:1px solid #ccc;
+	border-radius:5px;
+}
+
+.img_delete,.img_update{
+	width:18px;
+	height:18px;
+	/*display:block;*/
+	border:1px solid #8C5434;
+	border-radius:10px;
+	float:left;
+	background:url("../../Images/btn_bg.png") no-repeat;
+	visibility:hidden;
+}
+.img_delete{
+	background-position:4px -317px;
+}
+ 
+ .img_update{
+ 	margin-right:10px;
+ 	background-position:-189px -383px;
+ }
+
+
+ .float_add,.float_del,.float_upd{
+ 	display:none;
+ 	position:fixed;
+ 	top:200px;
+ 	left:400px;
+ 	border: 1px solid #A8732F;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: #666 0px 0px 10px;
+	-moz-box-shadow: #666 0px 0px 10px;
+	box-shadow: #666 0px 0px 10px;
+	/*background: #EEFF99;behavior: url(/PIE.htc);*/
+	background:#F6E7D3;
+ }
+ .float_title{
+ 	width:400px;
+ 	height:30px;
+ 	background:#D9AD73;
+ 	font-size:16px;
+ 	font-weight:bold;
+ 	text-indent:4mm;
+ 	line-height:30px;
+ 	border-top-left-radius:7px;
+ 	border-top-right-radius:7px;
+ }
+ .float_content{
+ 	text-align:center;
+ }
+ input[type=text]{
+ 	margin:10px 0 5px 0;
+ 	width:200px;
+ 	height:21px;
+ }

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>用户列表</title>
+		<style>
+			*{
+				padding:0px;
+				margin:0px;
+			}
+			a{
+				text-decoration:none;
+			}
+			body{
+				background:url("__PUBLIC__/Admin/Images/w70.png") repeat;
+			}
+			table{
+				border-collapse:collapse;
+			}
+			tr{
+				height:40px;
+				border-top:2px solid #f9f0e1;
+			}
+			tr:hover{
+				background:#f9f0e1;
+			}
+			.num{
+				width:10px;
+				font-size:20px;
+				margin-left:8px;
+				margin-right:5px;
+			}
+			.current{
+				font-size:25px;
+				font-weight:bold;
+				color:#deae6e;
+			}
+			th{
+				color:#d39c59;
+			}
+			#tooltip{
+                        position:absolute;
+                        border:1px solid #ccc;
+                        background:#333;
+                        padding:2px;
+                        display:none;
+                        color:#fff;
+                      } 
+                      /*img{border:none;}*/
+		</style>
+		<script type="text/javascript" src="__PUBLIC__/Admin/Js/jquery.js"></script>
+	</head>
+	<body id="page_box">
+		<center style="height:40px;line-height:40px;"><b style="color:#d39c59;font-size:30px;">用户管理</b></center>
+		<center><form action="__CONTROLLER__/delusers" method="post">
+			<table width="1100">
+				<tr>
+					<th></th>
+					<th>用户ID</th>
+					<th>用户名</th>
+					<th>用户昵称</th>
+					<th>用户邮箱</th>
+					<th>用户头像</th>
+					<th>用户生日</th>
+					<th>真实姓名</th>
+					<th>用户等级</th>
+					<th>积分等级</th>
+					<th>注册时间</th>
+					<th>操作</th>
+				</tr>
+				
+					<foreach name="user" item="us">
+						<tr>
+							<td align="center" width="20"><input type="checkbox" name="sel[]" class="selectors" value="{$us.id}"></td>
+							<td align="center">{$us.id}</td>
+							<td>{$us.username}</td>
+							<td>{$us.nickname}</td>
+							<td>{$us.email}</td>
+							<td align="center">
+								<a href="__PUBLIC__/Common/Uploads/Headpic/{$us.photoname}" class="tooltip">
+									<img src="__PUBLIC__/Common/Uploads/Headpic/{$us.photoname}" alt="没有头像" title="" width="70" height="30" id="largen_headpic" />
+								</a>
+							</td>
+							<td align="center">{$us.birthday}</td>
+							<td align="center">{$us.realname}</td>
+							<td align="center">{$us.userrank}</td>
+							<td align="center">{$us.pointsrank}</td>
+							<td align="center">{$us.regtime}</td>
+							<td align="center" width="80" style="font-size:13px;"><a href="__CONTROLLER__/mod/id/{$us.id}">修改</a>|<a href="__CONTROLLER__/del/id/{$us.id}">删除</a></td>
+						</tr>
+					</foreach>
+					<tr>
+						<td colspan="10">
+							<input type="button" value="全选" onclick="sel(1)" />
+							<input type="button" value="反选" onclick="sel(2)" />
+							<input type="button" value="全不选" onclick="sel(3)" />
+							<input type="submit" value="批量删除">
+				</form>
+						<!-- 搜索框 -->
+						<form action="__CONTROLLER__/searchuser" method="post" style="width:430px;float:right;">
+							<span>
+								<input type="search" name="keywords" style="width:230px;height:22px;margin-right:0px;" />
+								<input type="submit" value="搜索" style="height:22px;width:60px;margin-left:0px;background:#d7a769;border:1px solid #a9a9a9;cursor:pointer;margin-left:-8px;font-weight:bold;" />
+							</span>
+						</form>
+					</td>
+					<td colspan="3" align="center">
+						{$page}
+					</td>
+				</tr>
+			</table>
+		</center>
+	</body>
+	<script type="text/javascript">
+		var inp = document.getElementsByClassName("selectors");
+
+		function sel(args) {
+			var len = inp.length;
+
+			//当args =1时;设为全选状态
+			if (args == 1) {
+				for (var i = 0; i < len; i++) {
+					inp[i].checked = true;
+				}
+			}
+
+			//当args = 2时,设为反选状态
+			if (args == 2) {
+				for (var i = 0; i < len; i++) {
+				inp[i].checked = !inp[i].checked;
+				}
+			}
+
+			//当args = 3时,设为全不选状态
+			if (args == 3) {
+				for (var i = 0; i < len; i++) {
+					inp[i].checked = false;
+				}
+			}
+		}
+
+		//Ajax请求分页刷新
+		function setPage(url) {
+			$.get(url, function(data) {
+				$('#page_box').html(data);
+			});
+		}
+
+		//鼠标悬停头像,使之放大
+          	var x = 70;
+       	var y = 80;
+        	$("a.tooltip").mouseover(function(e){
+            this.myTitle = this.title;
+            this.title = "";
+            var imgTitle = this.myTitle? "<br/>" + this.myTitle : "";
+            var tooltip = "<div id='tooltip'><img src='"+ this.href +"' alt='精品预览图'/ width='200' height='160'>"+imgTitle+"<\/div>"; //创建 div 元素
+            $("body").append(tooltip);  //把它追加到文档中
+            $("#tooltip")
+              .css({
+                "top": (e.pageY-y) + "px",
+                "left":  (e.pageX+x)  + "px"
+              }).show("fast");    //设置x坐标和y坐标，并且显示
+            }).mouseout(function(){
+            this.title = this.myTitle;
+            $("#tooltip").remove();  //移除
+            }).mousemove(function(e){
+            $("#tooltip")
+              .css({
+                "top": (e.pageY-y) + "px",
+                "left":  (e.pageX+x)  + "px"
+              });
+          	});
+	</script>
+</html>

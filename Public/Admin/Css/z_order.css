@@ -1,0 +1,310 @@
+/*
+	订单列表部分order.html文件的样式表
+*/
+
+.order_main {
+	float:left;
+	width:100%;
+	min-height:300px;
+	background:url("../Images/w70.png");
+}
+
+/*订单号搜索*/
+.z_order_search {
+	float:left;
+	width:100%;
+	height:32px;
+	margin-top:10px;
+	border:1px solid #CBD8AC;
+}
+
+.z_order_search > div {
+	float:left;
+	width:500px;
+	height:30px;
+	margin-left:340px;
+}
+
+.z_input_ordersn {
+	float:left;
+	width:260px;
+	height:30px;
+	font-size:12px;
+}
+
+.z_input_ordersn > span {
+	float:left;
+	width:80px;
+	height:30px;
+	line-height:30px;
+}
+
+.z_input_ordersn > input {
+	width:160px;
+	height:18px;
+	margin:5px 0 0 10px;
+	border:1px solid #CBD8AC;
+}
+
+.order_search {
+	float:left;
+	width:50px;
+	height:20px;
+	margin:6px 0 0 0;
+	font-size:12px;
+}
+/*订单号搜索框结束*/
+
+/*订单列表样式*/
+.order_list {
+	float:left;
+	width:100%;
+	min-height:50px;
+}
+
+.order_list_title {
+	float:left;
+	width:100%;
+	height:30px;
+	font-size:14px;
+	font-weight:bold;
+	color:#666600;
+	text-align:center;
+}
+
+.order_list_title button {
+	margin-top:5px;
+}
+
+.list_title_left {
+	float:left;
+	width:100px;
+	height:30px;
+	line-height:30px;
+}
+
+.list_title_middle {
+	float:left;
+	width:350px;
+	height:30px;
+	margin-left:400px;
+	font-size:12px;
+}
+
+.list_title_right {
+	float:right;
+	width:84px;
+	height:30px;
+	font-size:12px;
+}
+
+.order_list_content {
+	float:left;
+	width:100%;
+	min-height:30px;
+}
+
+.order_table {
+	float:left;
+	width:100%;
+	text-align:center;
+}
+
+.order_font_layout {
+	float:left;
+	width:100%;
+	height:20px;
+	font-size:12px;
+	text-align:right;
+}
+
+.order_font_layout > input {
+	float:left;
+	width:auto;
+	height:auto;
+	overflow:hidden;
+	margin-left:10px;
+}
+
+.order_font_layout  a {
+	width:20px;
+	height:20px;
+	margin-left:10px;
+	line-height:20px;
+	text-decoration:none;
+}
+
+.order_font_layout  span {
+	width:20px;
+	height:20px;
+	margin-left:10px;
+	line-height:20px;
+}
+
+table {
+	font-size:12px;
+	line-height:30px;
+	border:1px solid #CBD8AC;
+}
+
+/*
+	修改订单modify.html部分样式表
+*/
+.modify_title {
+	float:left;
+	width:100%;
+	height:32px;
+	font-size:14px;
+	font-weight:bold;
+	color:#666600;
+	padding-top:16px;
+	text-indent:32px;
+	background:1px solid #CFCFCF;
+}
+
+.modify_frm {
+	float:left;
+	width:600px;
+	height:600px;
+	margin-top:10px;
+	font-size:12px;
+	text-indent:32px;
+	background:1px solid #CFCFCF;
+}
+
+#modify_content {
+	margin-left:32px;
+}
+
+#modify_save {
+	width:100px;
+	height:28px;
+	margin-left:64px;
+	background:url("../Images/my_savebtn.jpg") 0 0 no-repeat;
+}
+
+#modify_save:hover {
+	cursor:pointer;
+}
+
+/*打印订单页面样式表*/
+.print {
+	float:left;
+	width:100%;
+}
+
+.print_title {
+	float:left;
+	width:100%;
+	height:30px;
+	margin-top:20px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:30px;
+	color:#666600;
+	text-indent:32px;
+}
+
+.print_order {
+	float:left;
+	width:120px;
+	height:30px;
+	margin:32px 0 32px 32px; 
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+	line-height:30px;
+	color:#ffffff;
+	background:#a10000;
+}
+
+.print_order:hover {
+	cursor:pointer;
+}
+
+/*
+	生成包装页面pack.html样式表
+*/
+.pack_title {
+	float:left;
+	width:100%;
+	height:32px;
+	font-size:14px;
+	font-weight:bold;
+	color:#666600;
+	padding-top:16px;
+	text-indent:32px;
+	background:1px solid #CFCFCF;
+}
+
+#pack_desc {
+	margin-left:32px;
+}
+
+#sure_combine {
+	width:120px;
+	height:30px;
+	margin-left:32px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:30px;
+	color:#ffffff;
+	background:#8E0121;
+}
+
+#sure_combine:hover {
+	cursor:pointer;
+}
+
+/*发货单样式表*/
+.delivery_table {
+	float:left;
+	width:990px;
+	text-align:left;
+	border-collapse:collapse;
+}
+
+.delivery_table th{
+	border:1px solid black;
+}
+
+.delivery_table td {
+	border:1px solid black;
+}
+
+.g_com {
+	width:50px;
+}
+
+.delivery_frm {
+	float:left;
+	width:1000;
+	margin:10px 0 0 32px;
+	border:1px solid #CFCFCF;
+}
+
+.delivery_order_desc {
+	padding:0px;
+	width:800px;
+	height:80px;
+	font-size:12px;
+	border:none;
+	resize:none;
+}
+
+.sure_delivery {
+	float:left;
+	width:120px;
+	height:30px;
+	margin-left:32px;
+	font-size:14px;
+	font-weight:bold;
+	line-height:30px;
+	color:#ffffff;
+	text-align:center;
+	background:#8E0121;
+}
+
+.sure_delivery:hover {
+	cursor:pointer;
+}
