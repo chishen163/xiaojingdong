@@ -13,8 +13,7 @@ class AddGoodsController extends Controller {
 		$res = M("plate");
 		$where['cid'] = I('id');
 		$goods = $res -> where($where) -> select();
-		echo json_encode($goods);
-		//这里也是github实验提交
+		echo json_encode($goods);		
 	}
 
 	public function getAdd(){
